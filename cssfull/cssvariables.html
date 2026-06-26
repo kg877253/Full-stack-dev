@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables</title>
+    <style>
+        :root {
+            --color: brown;
+            --border: 2px solid black;
+        }
+
+        div {
+            color: var(--color);
+            border: var(--border);
+            padding: 20px;
+        }
+
+        span {
+            color: var(--color);
+            display: inline-block;
+            border: var(--border);
+            padding: 20px;
+            margin: 20px;
+        }
+
+        ul {
+            display: flex;
+        }
+
+        ul li {
+            list-style: none;
+            opacity: 0.6;
+            padding: 20px;
+            border: solid 1px black;
+        }
+
+        ul li:first-child {
+            --color: rgb(33, 42, 38);
+            --seccolor: rgb(151, 138, 181) ;
+            background-color: var(--color);
+            color: var(--seccolor);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="boxer">
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+
+    <span>
+        i am a span
+    </span>
+</body>
+
+</html>
