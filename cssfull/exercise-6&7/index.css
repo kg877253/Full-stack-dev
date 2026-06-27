@@ -1,0 +1,106 @@
+/* ===== BODY ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== NAV ===== */
+header {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    /* justify-content: space-around; */
+    gap: 20px;
+}
+
+nav ul li {
+    /* margin: 10px; */
+    font-size: large;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+main {
+    border: 2px solid rgb(255, 255, 255);
+    margin: 50px;
+    padding: 60px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    font-size: xxx-large;
+}
+
+.content {
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* ===== GRID ===== */
+.container {
+    border: 2px solid rgb(255, 255, 255);
+    display: grid;
+    width: 70vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 200px 200px 200px 200px;
+    row-gap: 12px;
+    column-gap: 12px;
+    margin: 0 auto;
+}
+
+.item {
+    border: 2px solid #F2F0EC;
+    background-color: #F2F0EC;
+    border-radius: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.item1 {
+    border: 1px solid #F2F0EC;
+    display: grid;
+    justify-content: center;
+    font-size: xx-large;
+}
+
+.download2 {
+    border: 2px solid rgb(123, 245, 127);
+    border-radius: 7px;
+    background-color: rgb(70, 214, 75);
+    text-decoration: none;
+    color: white;
+    border: none;
+    padding: 12px;
+}
+
+.download1 {
+    border: 2px solid rgb(90, 147, 211);
+    border-radius: 7px;
+    background-color: rgb(89, 160, 193);
+    text-decoration: none;
+    color: white;
+    border :none;
+    padding: 12px;
+}
+
+.subtitle {
+    font-size: medium;
+    text-align: center;
+    padding: 4px;
+}
+
+.button {
+    display: flex;
+    gap: 8px;
+}
