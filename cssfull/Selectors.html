@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+    <style>
+        /* Id selector  */
+        #box1{
+            background-color: blue;
+        }
+        /* child selector */
+        div > .box{
+
+            background-color: red;
+        }
+        /* last/first child selector */
+        .boxer:last-child{
+            background-color: rgb(34, 78, 78);
+        }
+        /* pseudo selector */
+        a:visited{
+            background-color: yellow;
+        }
+        a:link{
+            color: aquamarine;
+
+        }
+        a:hover{
+            color: rgb(218, 204, 204);
+        }
+        p,a,.box,[data-color="primary"]{
+            color: rgb(49, 43, 67);
+        }
+
+        input::placeholder{
+            color: rgb(198, 24, 76);
+        }
+
+        .box::first-letter{
+            color: rgb(63, 224, 57);
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="boxes">
+        <div id="box1">Hey Iam a first box </div>
+        <div class="box">Hey Iam a second box </div>
+        <div class="box">Hey Iam a third box </div>
+    </div>
+    <div data-color="primary" class="boxer">Hey Iam a span </div>
+    <a href="https://www.google.com" target="_blank">Google</a>
+    <input type="text" placeholder="Enter your name">
+</body>
+</html>
