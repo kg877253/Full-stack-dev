@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display:flex;
+            border: 2px solid black;
+            height: 80vh;
+            /* justify-content: center; */
+            align-items: center;
+            /* flex-direction: column; */
+            flex-wrap: wrap;
+            /* align-content: start; */
+            /* there is no thing such as justify-items: ; */
+            /* flex-flow: column wrap; */
+            /* gap: 10px; */
+            /* row-gap: 10px; */
+            /* column-gap: 10px; */
+            gap: 10px 20px;
+
+
+        }
+        .item{
+            /* flex-grow: 1; */
+            border: 2px solid black;
+            background-color: violet;
+            /* margin: 5px; */
+            height: 80px;
+            width: 80px;
+        }
+        .order1{
+            order: 1;
+        }
+        .order2{
+            order: 3;
+        }
+        .order3{
+            order: 2;
+        }
+
+        .grows{
+            /* flex-grow: 3; */
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="item order1">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item order2">6</div>
+            <div class="item">7</div>
+            <div class="item order3">8</div>
+            <div class="item">9</div>
+            <div class="item grows">10</div>
+            
+        </div>
+    </main>
+</body>
+</html>
