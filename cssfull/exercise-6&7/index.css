@@ -15,7 +15,18 @@ nav ul {
     list-style: none;
     /* justify-content: space-around; */
     gap: 20px;
+
 }
+
+nav ul :hover {
+    background-color: rgb(70, 214, 75);
+    color: antiquewhite;
+    border-radius: 20px;
+    padding: 1px;
+
+}
+
+
 
 nav ul li {
     /* margin: 10px; */
@@ -90,7 +101,7 @@ main {
     background-color: rgb(89, 160, 193);
     text-decoration: none;
     color: white;
-    border :none;
+    border: none;
     padding: 12px;
 }
 
