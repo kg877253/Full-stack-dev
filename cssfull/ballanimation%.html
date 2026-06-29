@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation2</title>
+    <style>
+        .container{
+            background-color: aqua;
+            width: 60vw;
+            height: 80vh;
+            position: relative;
+
+        }
+        .box{
+            background-color: violet;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            border-radius: 50%;
+            left: 0;
+            bottom: 0;
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            animation: kartik 5s  ease-out 1s infinite ;
+        }
+        @keyframes kartik {
+            0%{
+            left:0 ;
+            bottom:0 ;
+            }
+            20%{
+            left: 10% ;
+            bottom: 60%;    
+            }
+            35%{
+                left: 30%;
+                bottom: 0%;
+            }
+            50%{
+                left:50% ;
+                bottom: 60%;
+            }   
+            70%{
+                left: 75%;
+                bottom: 0%;
+            }
+            90%{
+                left: 85%;
+                bottom: 60%;
+            }
+            100%{
+                left: 95%;
+                bottom: 1%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            
+
+        </div>
+    </div>
+</body>
+</html>
