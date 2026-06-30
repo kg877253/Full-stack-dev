@@ -1,62 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animation</title>
     <style>
-        .container{
+        .container {
             background-color: rgb(39, 125, 199);
             width: 50vw;
             height: 100vh;
         }
-        .box{
+
+        .box {
             background-color: aquamarine;
             width: 50px;
             height: 50px;
             animation-timing-function: cubic-bezier(0, 0.4, 0.94, 1.24);
-            animation-name: kartik ;
+            animation-name: kartik;
             animation-duration: 4s;
             animation-delay: 2s;
             animation-iteration-count: 3;
-            animation-direction:alternate-reverse;
+            animation-direction: alternate-reverse;
             animation-fill-mode: both;
             /* animation: kartik 4s 1.5s cubic-bezier(0, 0.4, 0.94, 1.24) 3 , 
                        kartik2 4s 1.5s cubic-bezier(0, 0.4, 0.94, 1.24) 3 ; */
-        } 
+        }
 
         @keyframes kartik {
-           for{
+            for {}
 
-           }
-            to{
+            to {
                 background-color: blueviolet;
                 transform: scale(1.5);
                 transform: translateX(1000px);
             }
         }
+
         @keyframes kartik2 {
-            0%{
+            0% {
                 transform: rotate(80deg);
             }
-            20%{
+
+            20% {
                 transform: rotate(120deg);
 
             }
-            40%{
+
+            40% {
                 transform: rotate(160deg);
             }
-            60%{
+
+            60% {
                 transform: rotate(200deg);
             }
-            80%{
+
+            80% {
                 transform: rotate(240deg);
             }
-            100%{
+
+            100% {
                 transform: rotate(360deg);
-            
+
+            }
         }
-    }
     </style>
 </head>
 
@@ -67,4 +74,5 @@
         </div>
     </div>
 </body>
+
 </html>
