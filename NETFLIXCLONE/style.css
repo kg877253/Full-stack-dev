@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.main {
+    background-image: url(assets/images/bg.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 700px;
+    position: relative;
+
+
+}
+
+.main .box {
+    opacity: 0.7;
+    position: absolute;
+    height: 700px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 77vw;
+    margin: auto;
+    height: 90px;
+}
+
+nav img {
+    width: 160px;
+    position: relative;
+    z-index: 10;
+}
+
+nav button {
+    position: relative;
+}
+
+.btn {
+    color: white;
+    background-color: transparent;
+    border: 0.2px solid rgb(207, 202, 202);
+    padding: 8px 20px 8px 20px;
+    border-radius: 4px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.red-btn {
+    background-color: red;
+    border: none;
+}
+
+.getbtn {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 90px);
+    gap: 30px;
+    color: aliceblue;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px 0px 50px;
+}
+
+.hero> :nth-child(1) {
+    font-size: 60px;
+    font-weight: 700;
+    z-index: 10;
+}
+
+.hero> :nth-child(2) {
+    font-size: 30px;
+    font-weight: 400;
+    z-index: 10;
+
+}
+
+.hero> :nth-child(3) {
+    font-size: 20px;
+    font-weight: 60;
+    z-index: 10;
+    padding: 40px 0 0 0px;
+}
+
+.inputbox {
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+    font-weight: 400;
+    padding: 10px 0 0 0;
+}
+
+.inputbox input {
+    padding: 20px 120px 20px 5px;
+    width: 200px;
+    border: 0.8px solid gray;
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: start;
+}
+
+.seperation {
+    width: 100%;
+    height: 10px;
+    background-color: #251f1f;
+}
+
+.first {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 85vw;
+    gap: 180px;
+}
+
+.secImg video {
+    position: relative;
+    top: -382px;
+    right: -86px;
+    width: 465px;
+}
+
+section.first>div {
+    display: flex;
+    flex-direction: column;
+    padding: 44px 40px 30px 0px;
+}
+section.first>div>div:nth-child(1) {
+    font-size: 50px;
+    font-weight: 800;
+}
+section.first>div>div:nth-child(2) {
+    font-size: 24px;
+    
+}
+.faq h2 {
+    text-align: center;
+    font-size: 48px;
+}
+
+.faq {
+    background: black;
+    color: white;
+    padding: 34px;
+}
+
+.faqbox:hover {
+    background-color: #414141;
+    color: rgb(197, 55, 55);
+}
+
+.faqbox svg {
+    filter: invert(1);
+}
+
+.faqbox {
+    transition: all 1s ease-out;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #2d2d2d;
+    padding: 24px;
+    max-width: 60vw;
+    margin: 34px auto;
+    cursor: pointer;
+}
+.extra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 30px 0 30px 0;
+}
+footer{
+    color: white;
+    width: 60vw;
+    margin: auto;
+    padding: 60px;
+}
+footer .questions {
+    padding: 34px 0;
+}
+
+.footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: white;
+    
+}
+.footer a {
+    font-size: 14px;
+    color: white;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+@media screen and (max-width:1300px) {
+    .footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+    
+    .nav{
+        max-width: 90vw;
+    }
+    .first{
+        flex-wrap: wrap;
+    }
+    .secImg img{
+        width: 300px;
+    }
+    .secImg video{
+        width: 300px;
+    }
+    .hero> :nth-child(1) {
+        font-size: 32px;
+    }
+
+    .hero> :nth-child(2) {
+        font-size: 18px;
+    }
+
+    .hero> :nth-child(3) {
+        font-size: 18px;
+    }
+    .inputbox{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+    .faq h2 {
+        text-align: center;
+        font-size: 32px;
+    }
+
+    footer {
+        max-width: 90vw;
+        padding: 75px 0;
+    }
+
+    .footer-item{
+        align-items: center;
+    }
+}
