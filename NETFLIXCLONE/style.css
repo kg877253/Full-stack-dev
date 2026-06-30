@@ -143,7 +143,7 @@ nav button {
     top: -382px;
     right: -86px;
     width: 465px;
-    
+
 }
 
 section.first>div {
@@ -151,14 +151,16 @@ section.first>div {
     flex-direction: column;
     padding: 44px 40px 30px 0px;
 }
+
 section.first>div>div:nth-child(1) {
     font-size: 50px;
     font-weight: 800;
 }
+
 section.first>div>div:nth-child(2) {
     font-size: 24px;
-    
 }
+
 .faq h2 {
     text-align: center;
     font-size: 48px;
@@ -190,29 +192,33 @@ section.first>div>div:nth-child(2) {
     margin: 34px auto;
     cursor: pointer;
 }
-.extra{
+
+.extra {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     padding: 30px 0 30px 0;
 }
-footer{
+
+footer {
     color: white;
     width: 60vw;
     margin: auto;
     padding: 60px;
 }
+
 footer .questions {
     padding: 34px 0;
 }
 
-.footer{
+.footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     color: white;
-    
+
 }
+
 .footer a {
     font-size: 14px;
     color: white;
@@ -230,19 +236,23 @@ footer .questions {
         grid-template-columns: 1fr 1fr;
         gap: 25px;
     }
-    
-    .nav{
+
+    .nav {
         max-width: 90vw;
     }
-    .first{
+
+    .first {
         flex-wrap: wrap;
     }
-    .secImg img{
+
+    .secImg img {
         width: 300px;
     }
-    .secImg video{
+
+    .secImg video {
         width: 300px;
     }
+
     .hero> :nth-child(1) {
         font-size: 32px;
     }
@@ -254,13 +264,15 @@ footer .questions {
     .hero> :nth-child(3) {
         font-size: 18px;
     }
-    .inputbox{
+
+    .inputbox {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 16px;
     }
+
     .faq h2 {
         text-align: center;
         font-size: 32px;
@@ -271,7 +283,7 @@ footer .questions {
         padding: 75px 0;
     }
 
-    .footer-item{
+    .footer-item {
         align-items: center;
     }
 }
