@@ -1,6 +1,4 @@
-let a;
-let b;
-let c;
+let a,b,c;
 let adrandom = Math.floor(Math.random() * 3) + 1;
 if (adrandom === 1) {
     a="Crazy";
