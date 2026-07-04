@@ -27,3 +27,4 @@ const sum = (a,b)=>{
 }
 let sumarr2=arr2.reduce(sum)
 console.log(sumarr2)
+//reduce method takes first 2 values then add and then summof these 2 values and 3rd value and goes on
