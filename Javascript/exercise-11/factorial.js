@@ -14,4 +14,5 @@ function factorial(number) {
     return result;
 }
 
+
 console.log(factorial(a));
