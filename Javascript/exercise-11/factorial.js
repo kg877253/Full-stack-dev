@@ -1,4 +1,4 @@
-let a = 6;
+let a = 12;
 
 function factorial(number) {
     if (number < 0) {
