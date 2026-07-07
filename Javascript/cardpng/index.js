@@ -42,7 +42,7 @@ function createCardImage(title, cname, views, monthsold, duration, thumbnail) {
             </ul>
         </div>
     `;
-
+// ye card ko append karne ke liye humne document.getElementById("cards-wrapper").appendChild(card); use kiya hai, jisse har baar function call hone par naya card neeche add hoga.
     document.getElementById("cards-wrapper").appendChild(card);
 }
 
