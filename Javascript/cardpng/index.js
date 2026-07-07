@@ -56,6 +56,7 @@ function convertMonths(months) {
     return months + " Months ago";
 }
 
+
 // Ab jitni baar chaho call karo, har baar naya card niche add hoga
 createCardImage("Introduction to Backend | Sigma Web Dev video #2", "CodeWithHarry", 500, 7, "31:22", "https://i.ytimg.com/vi/tVzUXW6siu0/hqdefault.jpg");
 createCardImage("Installing VS Code & How Websites Work", "CodeWithHarry", 727000, 2, "31:20", "https://i.ytimg.com/vi/gRLdHSabW3o/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBOkIyACIrUQH4WItgmM-x89Ebw2Q");
