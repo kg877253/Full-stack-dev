@@ -15,6 +15,8 @@
 //     }
 //     if(views>=1000000){
 //         return (views/1000000)+"M";
+//     }else{
+//         return views;
 //     }
 // }
 
