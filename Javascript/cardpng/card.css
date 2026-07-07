@@ -1,4 +1,4 @@
-/* card ag ek se jyada hua to ek column me show ho jayenge ek k neeche ek center me  */
+/* card agr ek se jyada hua to ek column me show ho jayenge ek k neeche ek center me  */
 #cards-wrapper {
 
     display: flex;
@@ -36,7 +36,7 @@ body {
 .thumb-wrap {
     position: relative;
     flex-shrink: 0;
-    /* text jyada hone pr image ko chota mt krna */
+    /* text jyada hone pr image ko chota nhi hone dega */
 }
 
 img {
