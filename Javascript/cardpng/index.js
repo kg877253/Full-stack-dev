@@ -8,6 +8,7 @@
 //     document.getElementById("duration").innerText=duration;
 //     document.getElementById("thumbnail").src=thumbnail;
 
+
 // }
 // function convertViews(views) {
 //     if(views>=1000 && views<1000000){
