@@ -1,4 +1,6 @@
+/* card ag ek se jyada hua to ek column me show ho jayenge ek k neeche ek center me  */
 #cards-wrapper {
+
     display: flex;
     flex-direction: column;
     gap: 15px;
