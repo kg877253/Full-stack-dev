@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            color: rebeccapurple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">i am a box</div>
+        <div class="box">i am box</div>
+        <div class="box">i am box</div>
+    </div>
+    <script > 
+        let div=document.createElement('div');
+        div.innerHTML='i am a new div';
+        
+        div.setAttribute('class','created');
+        document.querySelector('.container').prepend(div);
+    </script>
+</body>
+</html>
