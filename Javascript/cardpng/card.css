@@ -77,7 +77,7 @@ ul {
     gap: 6px;
     font-size: 13px;
     font-weight: 400;
-    color: #aaaaaa;
+    color: #aba4a4;
 }
 
 ul li:not(:last-child)::after {
