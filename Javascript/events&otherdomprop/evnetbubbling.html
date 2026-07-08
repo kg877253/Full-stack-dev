@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling</title>
+    <style>
+        .mainbox{
+            border: 2px solid black;
+            margin: 14px;
+            padding: 14px;
+        }
+        .childbox{
+            border: 2px solid red;
+            margin: 10px;
+            padding: 14px;
+        }
+        .grandchildbox{
+            border: 2px solid green;
+            margin: 14px;
+            padding: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainbox">
+        <div class="childbox">
+            <div class="grandchildbox">
+                I am a box.
+            </div>
+        </div>
+    </div>
+    <script>
+       document.querySelector(".mainbox").addEventListener("click",(e)=>{
+        alert("main box clicked");
+       })
+
+       document.querySelector(".childbox").addEventListener("click",(e)=>{
+        e.stopPropagation();
+        alert("child box clicked");
+       })
+
+       document.querySelector(".grandchildbox").addEventListener("click",(e)=>{
+        e.stopPropagation();
+        alert("grand child box clicked");
+       })
+
+       function randomcolor(){
+        let var1= Math.ceil(0+(Math.random()*255));
+        let var2= Math.ceil(0+(Math.random()*255));
+        let var3= Math.ceil(0+(Math.random()*255));
+        return `rgb(${var1}, ${var2}, ${var3})`;
+       }
+
+
+    //kitni der bad color change hoga ---->bar bar hoga
+    //    let a = setInterval(()=>{
+    //     document.querySelector(".childbox").style.backgroundColor=randomcolor();
+
+    //    },500);
+
+    //    console.log(a);
+    
+    //kitni der bad color change hoga---->sirf 1 bar hoga par
+    let b= setTimeout(()=>{
+        document.querySelector(".childbox").style.backgroundColor=randomcolor();
+    },2000
+    )
+
+    </script>
+</body>
+</html>
