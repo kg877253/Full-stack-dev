@@ -28,3 +28,12 @@ const sum = (a,b)=>{
 let sumarr2=arr2.reduce(sum)
 console.log(sumarr2)
 //reduce method takes first 2 values then add and then summof these 2 values and 3rd value and goes on
+
+//Array.from() method creates a new, shallow-copied Array instance from an array-like or iterable object.
+let k=["aux","bul","cko"]
+Array.from(k,(e)=>{
+    console.log(e);
+})
+Array.from("kartik",(e)=>{
+    console.log(e);
+})
