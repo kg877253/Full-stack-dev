@@ -18,7 +18,6 @@ const prom1 = new Promise((resolve, reject) => {
 
 })
 
-
 const prom2=new Promise((resolve,reject)=>{
 
     let a= Math.random();
@@ -58,8 +57,6 @@ const prom3=new Promise((resolve,reject)=>{
 
 
 })
-
-
 //first finished promise ko return karta h chahe wo resolve ho ya reject
 // let b = Promise.race([prom1,prom2,prom3]).then((value)=>{
 //     console.log(value)
