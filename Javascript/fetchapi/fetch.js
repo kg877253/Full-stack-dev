@@ -5,7 +5,7 @@ async function fetchData() {
         resolve("fetching data...");
     }, 2000);
 })
-
+//post get put delete patch request ke liye fetch api ka use hota h
 }
 
 async function main() {
