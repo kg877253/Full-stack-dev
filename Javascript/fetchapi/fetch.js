@@ -5,6 +5,7 @@ async function fetchData() {
         resolve("fetching data...");
     }, 2000);
 })
+
 }
 
 async function main() {
