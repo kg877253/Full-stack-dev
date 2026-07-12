@@ -16,9 +16,7 @@
     </style>
 </head>
 <body>
-
     <div id="terminal"></div>
-
     <script>
         // step 1: saare messages ek array mein
         const messages = [
@@ -43,7 +41,6 @@
             const randomMs = Math.random() * (max - min) + min;
             return randomMs;
         }
-
         // step 4: dots ko cycle karne wala function
         function startDots(spanElement) {
             let dotCount = 0;
@@ -75,12 +72,8 @@
 
             for (let i = 0; i < messages.length; i++) {
                 const currentMessage = messages[i];
-
                 // random time ruko
                 const delayTime = getRandomDelay();
-                console.log("Waiting for:", delayTime, "ms");
-                await wait(delayTime);
-
                 // agar pichli line thi, uske dots band karo aur "..." pe fix karo
                 if (lastIntervalId !== null) {
                     clearInterval(lastIntervalId);
@@ -103,16 +96,11 @@
                 // uspe dots cycling shuru karo
                 lastIntervalId = startDots(dotsSpan);
                 lastDotsSpan = dotsSpan;
-
-                console.log("Line added:", currentMessage);
             }
 
             console.log("All messages done!");
         }
-
-        // function ko call karo taaki sab shuru ho
         startHacking();
     </script>
-
 </body>
 </html>
