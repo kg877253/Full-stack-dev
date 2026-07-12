@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hacking Simulator - Simple</title>
+    <style>
+        body {
+            background-color: #0e6b0e;
+            color: #d8ffd8;
+            font-family: monospace;
+            font-size: 24px;
+        }
+        .line {
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="terminal"></div>
+
+    <script>
+        // step 1: saare messages ek array mein
+        const messages = [
+            "Initializing Hacking",
+            "Reading your Files",
+            "Password files Detected",
+            "Sending all passwords and personal files to server",
+            "Cleaning up"
+        ];
+
+        // step 2: wait function - jaisa tumne abhi seekha
+        function wait(ms) {
+            return new Promise((resolve) => {
+                setTimeout(resolve, ms);
+            });
+        }
+
+        // step 3: random delay nikalne wala function (alag rakha, samajhna easy ho)
+        function getRandomDelay() {
+            const min = 1000; // 1 sec
+            const max = 7000; // 7 sec
+            const randomMs = Math.random() * (max - min) + min;
+            return randomMs;
+        }
+
+        // step 4: dots ko cycle karne wala function
+        function startDots(spanElement) {
+            let dotCount = 0;
+
+            const intervalId = setInterval(() => {
+                dotCount = dotCount + 1;
+
+                if (dotCount > 3) {
+                    dotCount = 1; // 3 ke baad wapas 1 pe
+                }
+
+                let dotsText = "";
+                for (let i = 0; i < dotCount; i++) {
+                    dotsText = dotsText + ".";
+                }
+
+                spanElement.textContent = dotsText;
+            }, 400);
+
+            return intervalId;
+        }
+
+        // step 5: main function jo sab kuch chalata hai
+        async function startHacking() {
+            const terminal = document.getElementById("terminal");
+
+            let lastIntervalId = null;
+            let lastDotsSpan = null;
+
+            for (let i = 0; i < messages.length; i++) {
+                const currentMessage = messages[i];
+
+                // random time ruko
+                const delayTime = getRandomDelay();
+                console.log("Waiting for:", delayTime, "ms");
+                await wait(delayTime);
+
+                // agar pichli line thi, uske dots band karo aur "..." pe fix karo
+                if (lastIntervalId !== null) {
+                    clearInterval(lastIntervalId);
+                    lastDotsSpan.textContent = "...";
+                }
+
+                // naya line div banao
+                const newLine = document.createElement("div");
+                newLine.className = "line";
+
+                // andar text daalo + ek khaali span dots ke liye
+                newLine.innerHTML = currentMessage + "<span></span>";
+
+                // page pe daalo
+                terminal.appendChild(newLine);
+
+                // abhi jo span banaya usko dhoondo
+                const dotsSpan = newLine.querySelector("span");
+
+                // uspe dots cycling shuru karo
+                lastIntervalId = startDots(dotsSpan);
+                lastDotsSpan = dotsSpan;
+
+                console.log("Line added:", currentMessage);
+            }
+
+            console.log("All messages done!");
+        }
+
+        // function ko call karo taaki sab shuru ho
+        startHacking();
+    </script>
+
+</body>
+</html>
