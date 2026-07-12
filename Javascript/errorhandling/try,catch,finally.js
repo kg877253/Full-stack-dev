@@ -16,6 +16,7 @@ function main(){
         console.error("An error occurred:");
         return false;
     }
+    
     //finally block will always execute, regardless of whether an error occurred or not
     //nhi lgayenge to return hone k bad function ka execution ruk jaayega aur finally block execute nahi hoga
     finally{
