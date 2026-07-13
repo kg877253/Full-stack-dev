@@ -17,7 +17,7 @@ async function main() {
     let data = await fetchData();
     console.log(data);
 
-    let a = await fetch("https://jsonplaceholder.typicode.com/posts/30");
+    let a = await fetch("https://jsonplaceholder.typicode.com/posts");
     let postData = await a.json();
     console.log(postData);
     console.log("script executed successfully");
