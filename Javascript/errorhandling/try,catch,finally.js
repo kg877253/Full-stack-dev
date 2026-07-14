@@ -7,13 +7,14 @@ if(isNaN(a) || isNaN(b)) {
 }
 
 function main(){
-    let x=3;
+    
+    let x=10;
 
     try {
         console.log("The sum is: " + sum*x);
         return true;
     } catch (error) {
-        console.error("An error occurred:");
+        console.error("An error occurred:" + error.message);
         return false;
     }
     
