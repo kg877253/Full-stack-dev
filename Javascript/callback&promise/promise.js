@@ -23,3 +23,6 @@ const promis=new Promise((resolve,reject)=>{
 promis.then((value)=>{//then  resolve k andr ki value ko le aata h
     console.log(value);
 })
+// .catch((error)=>{//catch reject k andr ki value ko le aata h
+//     console.log(error);
+// })
