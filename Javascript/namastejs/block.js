@@ -11,10 +11,10 @@
 // }
 // console.log(b);
 // console.log(a);//shadowing 
-
-let a =100;
+var a =100;
 function c(){
-    var a=10;
+    let a=10;
     console.log(a);
 }
 c();
+console.log(a);

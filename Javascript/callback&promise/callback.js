@@ -1,5 +1,4 @@
 console.log("helloooo")
-console.log("yo")
 
 // setTimeout(() => {
 //     console.log("i am inside ")
