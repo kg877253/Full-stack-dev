@@ -7,4 +7,5 @@ function greet(name, Callbackhai) {
 function callbackkliye() {
   console.log("Callback executed!");
 }
-greet("Kartik", callbackkliye);
+let nameofp = "Kartik";
+greet(nameofp, callbackkliye);
