@@ -18,6 +18,9 @@ const prom1 = new Promise((resolve, reject) => {
 
 })
 
+
+
+
 const prom2 = new Promise((resolve, reject) => {
 
     let a = Math.random();
