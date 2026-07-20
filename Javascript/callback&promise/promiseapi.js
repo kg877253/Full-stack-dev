@@ -18,41 +18,41 @@ const prom1 = new Promise((resolve, reject) => {
 
 })
 
-const prom2=new Promise((resolve,reject)=>{
+const prom2 = new Promise((resolve, reject) => {
 
-    let a= Math.random();
+    let a = Math.random();
     //agar a ki value 0.5 se choti h to reject ho jao otherwise resolve ho jao
-    if(a<0.5){
+    if (a < 0.5) {
         reject("not done2")
     }
-    
-    else{
+
+    else {
 
         setTimeout(() => {
             console.log("i am inside promise2")
             resolve("done2")
             console.log("i am inde promise2")
-        },1500)
+        }, 1500)
     }
 
 
 })
 
-const prom3=new Promise((resolve,reject)=>{
+const prom3 = new Promise((resolve, reject) => {
 
-    let a= Math.random();
+    let a = Math.random();
     //agar a ki value 0.5 se choti h to reject ho jao otherwise resolve ho jao
-    if(a<0.5){
+    if (a < 0.5) {
         reject("not done3")
     }
-    
-    else{
+
+    else {
 
         setTimeout(() => {
             console.log("i am inside promise3")
             resolve("done3")
             console.log("i am inside promise3")
-        },1000)
+        }, 1000)
     }
 
 
@@ -84,8 +84,8 @@ const prom3=new Promise((resolve,reject)=>{
 
 
 //it waits for the first promise to resolve and returns the value of that promise. If all promises are rejected, it returns an aggregate error.
-let b = Promise.any([prom1,prom2,prom3]).then((value)=>{
+let b = Promise.any([prom1, prom2, prom3]).then((value) => {
     console.log(value)
-}) .catch((err)=>{
+}).catch((err) => {
     console.error(err)
 })
