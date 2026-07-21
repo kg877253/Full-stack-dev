@@ -1,11 +1,12 @@
-body{
+body {
     background-color: rgb(3, 3, 3);
     color: white;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-nav{
+
+nav {
     margin: 5px;
     padding: 5px;
     display: flex;
@@ -14,16 +15,18 @@ nav{
     width: calc(100vw-10px);
 }
 
-.logo-section{
+.logo-section {
     flex: 1;
 }
-.homeicon{
+
+.homeicon {
     border: 1px solid gray;
     background-color: aliceblue;
     border-radius: 50%;
     padding: 7px 7px;
 }
-.center-section{
+
+.center-section {
     flex: 2;
     align-items: center;
     justify-content: center;
@@ -33,29 +36,35 @@ nav{
     margin: 0;
     padding: 0;
 }
-.searchbar{
+
+.searchbar {
     width: 30vw;
     height: 6vh;
     border-radius: 20px;
     border: none;
     font-size: 20px;
 }
-.profile-section{
+
+.profile-section {
     flex: 1;
     display: flex;
     justify-content: flex-end;
 }
-.containermain{
-    margin:40px 10px;
+
+.containermain {
+    margin: 40px 10px;
     height: 70vh;
 }
-.leftbox{
+
+.leftbox {
     width: 20vw;
     align-content: center;
 }
-.centrebox{
+
+.centrebox {
     width: 60vw;
 }
-.rightbox{
+
+.rightbox {
     width: 20vw;
 }
