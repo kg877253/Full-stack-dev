@@ -15,6 +15,10 @@ nav {
     width: calc(100vw-10px);
 }
 
+
+
+
+
 .logo-section {
     flex: 1;
 }
@@ -66,5 +70,7 @@ nav {
 }
 
 .rightbox {
+
     width: 20vw;
+    
 }
