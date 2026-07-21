@@ -1,0 +1,15 @@
+.rborder{
+    border: 1px solid red;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.flex{
+    display: flex;
+}
+.justify-center{
+    justify-content: center;
+}
+.align-center{
+    align-items: center;
+}
