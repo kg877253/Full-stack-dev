@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(3, 3, 3);
@@ -11,7 +15,7 @@ body {
 .navbar {
     margin: 5px;
     padding: 5px 10px 5px 10px;
-    width: calc(100vw - 20px);
+    width: calc(100vw - 25px);
     gap: 15px;
 }
 
@@ -87,7 +91,7 @@ body {
 /* Main layout */
 .main-container {
     margin: 15px 10px;
-    height: 80vh;
+    height: 85vh;
     background-color:black;
 }
 
@@ -171,14 +175,48 @@ body {
     color: black;
 }
 
-.library-list {
-    height: 55vh;
-    padding: 15px;
-}
-
 /* Centre and Right boxes */
 .content-box {
     width: 72vw;
     
     background-color: #121212;
+}
+.trendingsong{
+    margin: 20px 30px;
+}
+.trendingsong h2{
+    margin: 0 20px 0 20px;
+}
+.cardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    /* overflow: auto; */
+}
+
+.card{
+    width: 170px;
+    padding: 15px;
+    /* background-color: #1f1f1f; */
+    border-radius: 7px;
+}
+.card:hover{
+    background-color: #1f1f1f;
+    cursor: pointer;
+}
+.card img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 7px;
+}
+.card-info p{
+    margin: 4px 0 0 0;
+    font-size: small;
+    color: #c4bebe;
+}
+.card-info div{
+    font-size: 18px;
+    font-weight: 500;
+    margin: 10px 0 0 0;
 }
