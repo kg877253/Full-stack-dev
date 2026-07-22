@@ -97,9 +97,13 @@ body {
     
     background-color: #121212;
 }
-
+.createplus {
+    border: #aca8a8;
+    border-radius: 50%;
+    background-color: #121212;
+}
 .library-header {
-    padding: 10px;
+    padding: 10px 22px;
     font-weight: 700;
     height: 6vh;
     justify-content: space-between;
