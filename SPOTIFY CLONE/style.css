@@ -7,59 +7,148 @@ body {
     padding: 0;
 }
 
-nav {
+/* Navbar */
+.navbar {
     margin: 5px;
-    padding: 5px;
-    justify-content: space-between;
-    width: calc(100vw - 10px);
+    padding: 5px 10px 5px 10px;
+    width: calc(100vw - 20px);
+    gap: 15px;
 }
 
-.logo-section {
+.logo-box {
+    display: flex;
+    align-items: center;
+}
+
+.home-icon-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
     flex: 1;
+    /* justify-content: center; */
 }
 
-.homeicon {
-    border: 1px solid gray;
-    background-color: aliceblue;
-    border-radius: 50%;
-    padding: 7px 7px;
-}
-
-.center-section {
-    flex: 2;
-    justify-content: center;
-    list-style: none;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-}
-
-.searchbar {
+.search-input {
     width: 30vw;
     height: 6vh;
     border-radius: 20px;
     border: none;
     font-size: 20px;
+    padding: 0 20px;
+    background-color: #2a2a2a;
+
+}
+.search-input::placeholder {
+    color: #aca8a8;
 }
 
-.profile-section {
+.profile-box {
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.signup-btn {
+    
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 28px;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    background-color: rgb(76, 71, 71);
+    color: rgb(241, 231, 231);
+    border: none;
+    border-radius: 25px;
+    
+    /* color: white; */
+}
+
+.login-btn {
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Main layout */
+.main-container {
+    margin: 15px 10px;
+    height: 80vh;
+    background-color:black;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 28vw;
+    
+    background-color: #121212;
+}
+
+.library-header {
+    padding: 10px;
+    font-weight: 700;
+    height: 6vh;
+    justify-content: space-between;
+}
+
+.library-title {
+    flex: 2.5;
+}
+
+.library-icons {
     flex: 1;
     justify-content: flex-end;
+    gap: 10px;
 }
 
-.containermain {
-    margin: 40px 10px;
-    height: 70vh;
+.library-filters {
+    padding: 0 15px;
+    gap: 10px;
 }
 
-.leftbox {
-    width: 20vw;
+.filter-pill {
+    background-color: #2a2a2a;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
 }
 
-.centrebox {
-    width: 60vw;
+.filter-pill:hover {
+    background-color: #3a3a3a;
 }
 
-.rightbox {
-    width: 20vw;
+.filter-pill.active {
+    background-color: white;
+    color: black;
+}
+
+.library-list {
+    height: 55vh;
+    padding: 15px;
+}
+
+/* Centre and Right boxes */
+.content-box {
+    width: 72vw;
+    
+    background-color: #121212;
 }

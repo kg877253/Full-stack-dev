@@ -13,40 +13,83 @@
 </head>
 
 <body>
-    <header class="navbar">
-        <nav class="flex align-center">
-            <div class="logo-section">
-                <svg role="img" viewBox="0 0 24 24" width="35" height="35" fill="#FFFFFF">
-                    <title>Spotify</title>
-                    <path
-                        d="M13.427.01C6.805-.253 1.224 4.902.961 11.524.698 18.147 5.853 23.728 12.476 23.99c6.622.263 12.203-4.892 12.466-11.514S20.049.272 13.427.01m5.066 17.579a.717.717 0 0 1-.977.268 14.4 14.4 0 0 0-5.138-1.747 14.4 14.4 0 0 0-5.42.263.717.717 0 0 1-.338-1.392c1.95-.474 3.955-.571 5.958-.29 2.003.282 3.903.928 5.647 1.92a.717.717 0 0 1 .268.978m1.577-3.15a.93.93 0 0 1-1.262.376 17.7 17.7 0 0 0-5.972-1.96 17.7 17.7 0 0 0-6.281.238.93.93 0 0 1-1.11-.71.93.93 0 0 1 .71-1.11 19.5 19.5 0 0 1 6.94-.262 19.5 19.5 0 0 1 6.599 2.165c.452.245.62.81.376 1.263m1.748-3.551a1.147 1.147 0 0 1-1.546.488 21.4 21.4 0 0 0-6.918-2.208 21.4 21.4 0 0 0-7.259.215 1.146 1.146 0 0 1-.456-2.246 23.7 23.7 0 0 1 8.034-.24 23.7 23.7 0 0 1 7.657 2.445c.561.292.78.984.488 1.546" />
-                </svg>
-            </div>
 
-            <ul class="center-section flex align-center">
-                <li><svg class="homeicon" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
-                        data-encore-id="icon" role="img" aria-hidden="true" class="e-10451-icon" viewBox="0 0 24 24"
-                        style="--encore-icon-height: var(--encore-graphic-size-decorative-base); --encore-icon-width: var(--encore-graphic-size-decorative-base);">
-                        <path
-                            d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732z">
-                        </path>
-                    </svg></li>
-                <li><input class="searchbar" type="text" placeholder="What do you want to play???"></li>
-            </ul>
+    <!-- Top Navbar -->
+    <header class="navbar flex align-center">
 
-            <div class="profile-section flex align-center">
-                <span>Profile</span>
-            </div>
-        </nav>
+        <div class="logo-box">
+            <svg role="img" viewBox="0 0 24 24" width="35" height="35" fill="#FFFFFF">
+                <title>Spotify</title>
+                <path
+                    d="M13.427.01C6.805-.253 1.224 4.902.961 11.524.698 18.147 5.853 23.728 12.476 23.99c6.622.263 12.203-4.892 12.466-11.514S20.049.272 13.427.01m5.066 17.579a.717.717 0 0 1-.977.268 14.4 14.4 0 0 0-5.138-1.747 14.4 14.4 0 0 0-5.42.263.717.717 0 0 1-.338-1.392c1.95-.474 3.955-.571 5.958-.29 2.003.282 3.903.928 5.647 1.92a.717.717 0 0 1 .268.978m1.577-3.15a.93.93 0 0 1-1.262.376 17.7 17.7 0 0 0-5.972-1.96 17.7 17.7 0 0 0-6.281.238.93.93 0 0 1-1.11-.71.93.93 0 0 1 .71-1.11 19.5 19.5 0 0 1 6.94-.262 19.5 19.5 0 0 1 6.599 2.165c.452.245.62.81.376 1.263m1.748-3.551a1.147 1.147 0 0 1-1.546.488 21.4 21.4 0 0 0-6.918-2.208 21.4 21.4 0 0 0-7.259.215 1.146 1.146 0 0 1-.456-2.246 23.7 23.7 0 0 1 8.034-.24 23.7 23.7 0 0 1 7.657 2.445c.561.292.78.984.488 1.546" />
+            </svg>
+        </div>
+
+        <div class="home-icon-box">
+            <svg class="icon-circle" xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48"
+                style="fill:#FFFFFF;">
+                <path
+                    d="M39.5,43h-9c-1.381,0-2.5-1.119-2.5-2.5v-9c0-1.105-0.895-2-2-2h-4c-1.105,0-2,0.895-2,2v9c0,1.381-1.119,2.5-2.5,2.5h-9	C7.119,43,6,41.881,6,40.5V21.413c0-2.299,1.054-4.471,2.859-5.893L23.071,4.321c0.545-0.428,1.313-0.428,1.857,0L39.142,15.52	C40.947,16.942,42,19.113,42,21.411V40.5C42,41.881,40.881,43,39.5,43z">
+                </path>
+            </svg>
+        </div>
+
+        <div class="search-box flex align-center">
+            <input class="search-input" type="text" placeholder="What do you want to play???">
+        </div>
+
+        <div class="profile-box flex align-center">
+            <button class="signup-btn">Sign up</button>
+            <button class="login-btn">Log in</button>
+        </div>
+
     </header>
 
+    <!-- Main Content -->
     <main>
-        <div class="containermain flex">
-            <div class="leftbox rborder">hwhoierhgoerhiog</div>
-            <div class="centrebox rborder">Centre Box</div>
-            <div class="rightbox rborder">Right Box</div>
+        <div class="main-container flex">
+
+            <!-- Left Sidebar (chhota) -->
+            <div class="sidebar rborder">
+
+                <div class="library-header flex align-center">
+                    <div class="library-title">Your Library</div>
+                    <div class="library-icons flex align-center">
+                        <svg class="icon-circle" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg class="icon-circle" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <polyline points="9 21 3 21 3 15"></polyline>
+                            <line x1="21" y1="3" x2="14" y2="10"></line>
+                            <line x1="3" y1="21" x2="10" y2="14"></line>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="library-filters flex align-center">
+                    <button class="filter-pill active">Playlists</button>
+                    <button class="filter-pill">Artists</button>
+                    <button class="filter-pill">Albums</button>
+                </div>
+
+                <div class="library-list">
+                    <!-- playlist items yahan aayenge -->
+                </div>
+
+            </div>
+
+            <!-- Right Content (bada) -->
+            <div class="content-box rborder">Centre Box</div>
+
         </div>
+
     </main>
+
 </body>
 
 </html>
