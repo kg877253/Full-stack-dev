@@ -238,6 +238,22 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
-.cardcontainer::-webkit-scrollbar {
+/* .cardcontainer::-webkit-scrollbar {
     display: none;
+} */
+ .cardcontainer::-webkit-scrollbar {
+    height: 4px;
+}
+
+.cardcontainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cardcontainer::-webkit-scrollbar-thumb {
+    background-color: #4d4a4a;
+    border-radius: 15px;
+}
+
+.cardcontainer::-webkit-scrollbar-thumb:hover {
+    background-color: #6a6a6a;
 }
