@@ -27,6 +27,8 @@
 
 // createCardImage("Introduction to Backend | Sigma Web Dev video #2", "  CodeWithHarry", convertViews(560000),convertMonths(7), "131:22", "https://i.ytimg.com/vi/tVzUXW6siu0/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLACwWOixJVrKLFindK92kYMgTcQbw")
 // this code is for creating multiple card images for youtube videos using javascript, html and css. Each time you call the function, a new card will be added below the previous one.
+
+
 function createCardImage(title, cname, views, monthsold, duration, thumbnail) {
     const card = document.createElement("div");
     card.className = "container";
