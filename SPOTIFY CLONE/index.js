@@ -1,6 +1,5 @@
 console.log("Welcome to Spotify Clone!");
 
-// Step 1: Server se saare mp3 file links nikalna
 async function getSongs() {
     let response = await fetch("http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/");
     let htmlText = await response.text();
@@ -26,7 +25,6 @@ async function getSongs() {
     return songs;
 }
 
-// Step 2: Songs ki list HTML me dikhana, har song ke saath ek play button
 function displaySongs(songs) {
     let listContainer = document.getElementById("songList");
     listContainer.innerHTML = "";
@@ -52,22 +50,55 @@ function displaySongs(songs) {
         let playButton = songItem.querySelector(".song-play-btn");
         playButton.addEventListener("click", () => {
             audio.src = songUrl;
-            audio.play().catch(error => console.log("Play failed:", error));
+            safePlay();
+            updateNowPlayingName(songName);   // naam update karo click hote hi
         });
 
         listContainer.appendChild(songItem);
     }
 }
 
-// ek hi shared audio object
 let audio = new Audio();
-
-// bottom wala play-pause icon aur uska img element
 let playPauseIcon = document.getElementById("playPauseIcon");
+let nowPlayingName = document.getElementById("nowPlayingName");
+let timeElapsed = document.getElementById("timeElapsed");
+let timeTotal = document.getElementById("timeTotal");
+
+function safePlay() {
+    audio.play().catch(error => console.log("Play failed:", error));
+}
+
+// naam update karne ka chhota function
+function updateNowPlayingName(name) {
+    nowPlayingName.textContent = name;
+}
+
+// seconds ko "mm:ss" format mein badalne wala helper
+function formatTime(seconds) {
+    let minutes = Math.floor(seconds / 60);
+    let remainingSeconds = Math.floor(seconds % 60);
+
+    // agar seconds 5 hai toh "05" dikhana hai, "5" nahi
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds;
+    }
+
+    return minutes + ":" + remainingSeconds;
+}
 
 audio.addEventListener("play", () => playPauseIcon.src = "pause.svg");
 audio.addEventListener("pause", () => playPauseIcon.src = "play.svg");
 audio.addEventListener("ended", () => playPauseIcon.src = "play.svg");
+
+// jab song load ho jaye aur uski total duration pata chal jaye
+audio.addEventListener("loadedmetadata", () => {
+    timeTotal.textContent = formatTime(audio.duration);
+});
+
+// jab audio chalta rehta hai, ye baar baar fire hota hai (roughly har second)
+audio.addEventListener("timeupdate", () => {
+    timeElapsed.textContent = formatTime(audio.currentTime);
+});
 
 // bottom button pe click karne se toggle ho (if-else se)
 playPauseIcon.addEventListener("click", () => {
@@ -78,13 +109,16 @@ playPauseIcon.addEventListener("click", () => {
     }
 });
 
-// Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs();
     console.log(songs);
 
     displaySongs(songs);
 
+    // pehle song ka naam bhi dikha do shuru mein
+    let firstFilename = decodeURIComponent(songs[0].split("/").pop());
+    let firstSongName = firstFilename.replace(".mp3", "");
+    updateNowPlayingName(firstSongName);
 }
 
 main();

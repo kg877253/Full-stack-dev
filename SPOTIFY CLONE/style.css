@@ -8,8 +8,6 @@ body {
     background-color: rgb(3, 3, 3);
     color: white;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 /* Navbar */
@@ -20,11 +18,7 @@ body {
     gap: 15px;
 }
 
-.logo-box {
-    display: flex;
-    align-items: center;
-}
-
+.logo-box,
 .home-icon-box {
     display: flex;
     align-items: center;
@@ -32,7 +26,6 @@ body {
 
 .search-box {
     flex: 1;
-    /* justify-content: center; */
 }
 
 .search-input {
@@ -44,7 +37,6 @@ body {
     font-size: 20px;
     padding: 0 20px;
     background-color: #2a2a2a;
-
 }
 
 .search-input::placeholder {
@@ -57,7 +49,6 @@ body {
 }
 
 .signup-btn {
-
     background: none;
     border: none;
     color: #b3b3b3;
@@ -70,10 +61,7 @@ body {
 .signup-btn:hover {
     background-color: rgb(76, 71, 71);
     color: rgb(241, 231, 231);
-    border: none;
     border-radius: 25px;
-
-    /* color: white; */
 }
 
 .login-btn {
@@ -128,11 +116,6 @@ body {
     gap: 10px;
 }
 
-.library-filters {
-    padding: 0 5px;
-    gap: 10px;
-}
-
 .library-list {
     padding: 10px;
     overflow-y: auto;
@@ -142,7 +125,6 @@ body {
 .library-list::-webkit-scrollbar {
     display: none;
 }
-
 
 .song-item {
     display: flex;
@@ -169,7 +151,6 @@ body {
 .song-item:hover .song-play-btn {
     opacity: 1;
 }
-
 
 .song-item:hover {
     background-color: #1a1a1a;
@@ -202,8 +183,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 8px 12px;
-    margin: 0;
-    padding: 0;
 }
 
 .footer-links a {
@@ -217,33 +196,9 @@ body {
     text-decoration: underline;
 }
 
-.filter-pill {
-    background-color: #2a2a2a;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.filter-pill:hover {
-    background-color: #3a3a3a;
-}
-
-.filter-pill.active {
-    background-color: white;
-    color: black;
-}
-
-
-
 /* Centre and Right boxes */
 .content-box {
     width: 72vw;
-    /* position:relative; */
     background-color: #121212;
 }
 
@@ -260,7 +215,6 @@ body {
     flex-wrap: nowrap;
     gap: 20px;
     padding: 20px;
-
     overflow-x: auto;
     overflow-y: hidden;
 }
@@ -269,11 +223,9 @@ body {
     width: 170px;
     padding: 15px;
     flex-shrink: 0;
-    /* background-color: #1f1f1f; */
     border-radius: 7px;
     position: relative;
     transition: background-color 0.5s ease;
-
 }
 
 .card:hover {
@@ -313,9 +265,6 @@ body {
     transform: translateY(0);
 }
 
-/* .cardcontainer::-webkit-scrollbar {
-    display: none;
-} */
 .cardcontainer::-webkit-scrollbar {
     height: 4px;
 }
@@ -333,42 +282,75 @@ body {
     background-color: #6a6a6a;
 }
 
+/* Player controls */
 .player-controls {
     width: 100%;
     padding: 10px 0;
     background-color: #181818;
-    /* border-radius: 20px; */
     position: absolute;
     bottom: 0;
 }
 
 .controls-row {
-    gap: 16px;
-    margin-bottom: 10px;
-    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 40px;
+    margin-bottom: 16px;
+    margin-top: 10px;
+    position: relative;
 }
+
 .controls-row svg {
     cursor: pointer;
 }
 
+.now-playing-name {
+    text-align:right;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 150px;
+}
+
+.playback-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.time-info {
+    flex: 0 1 200px;
+    text-align:left;
+    font-size: 11px;
+    color: #a7a7a7;
+    padding-right: 20px;
+}
 
 .seekbar {
+    position: relative;
     height: 5px;
-    width: 90%;
+    width: 80%;
     display: flex;
-    justify-self: center;
     background-color: whitesmoke;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
 }
 
 .circle {
-
-    height: 20px;
-    width: 20px;
-    background-color:rgb(194, 189, 189);
+    height: 14px;
+    width: 14px;
+    background-color: rgb(194, 189, 189);
     border-radius: 50%;
     position: absolute;
-    bottom: 14px;
-    transition: left 0.5s ease;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transition: left 0.2s ease;
 }
