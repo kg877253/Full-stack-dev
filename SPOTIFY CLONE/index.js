@@ -25,7 +25,12 @@ async function getSongs() {
         }
     }
     return songs;
+
+
 }
+
+// songs ko display karne ka function lib ke neeche
+
 function displaySongs(songs) {
     let listContainer = document.getElementById("songList");
     listContainer.innerHTML = "";  // purana clear karo
@@ -62,7 +67,7 @@ async function main() {
 
     displaySongs(songs);   // list bana do
 
-    audio.src = songs[4];   // pehle song set karo
+    audio.src = songs[0];   // pehle song set karo
 
     // ab tumhare play-pause button pe click event lagao
     let playBtn = document.querySelector(".play-pausebtn");
