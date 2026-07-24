@@ -33,26 +33,31 @@ async function getSongs() {
 
 function displaySongs(songs) {
     let listContainer = document.getElementById("songList");
-    listContainer.innerHTML = "";  // purana clear karo
+    listContainer.innerHTML = "";
 
     for (let i = 0; i < songs.length; i++) {
         let songUrl = songs[i];
-
-        // filename nikaalo URL se (extension hataake)
         let filename = decodeURIComponent(songUrl.split("/").pop());
         let songName = filename.replace(".mp3", "");
 
         let item = document.createElement("div");
         item.className = "song-item";
         item.innerHTML = `
-            <img src="music.svg" alt="Music image ">
+            <img src="music.svg" alt="Music image">
             <div class="song-name">${songName}</div>
+            <button class="song-play-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#1ED760">
+                    <circle cx="12" cy="12" r="12" fill="#1ED760"/>
+                    <polygon points="9,7 18,12 9,17" fill="#000000"/>
+                </svg>
+            </button>
         `;
 
-        // click karne pe woh gaana play ho
-        item.addEventListener("click", () => {
+        // ab click sirf play button pe lagega, poore item pe nahi
+        let playBtn = item.querySelector(".song-play-btn");
+        playBtn.addEventListener("click", () => {
             audio.src = songUrl;
-            audio.play();
+            audio.play().catch(err => console.log("Play failed:", err));;
         });
 
         listContainer.appendChild(item);
@@ -70,9 +75,9 @@ async function main() {
     audio.src = songs[0];   // pehle song set karo
 
     // ab tumhare play-pause button pe click event lagao
-    let playBtn = document.querySelector(".play-pausebtn");
-    playBtn.addEventListener("click", () => {
-        audio.play();
-    });
+    // let playBtn = document.querySelector(".play-pausebtn");
+    // playBtn.addEventListener("click", () => {
+    //     audio.play();
+    // });
 }
 main();
