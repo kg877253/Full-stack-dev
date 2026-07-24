@@ -1,36 +1,32 @@
 console.log("Welcome to Spotify Clone!");
 
+// Step 1: Server se saare mp3 file links nikalna
 async function getSongs() {
-    let a = await fetch("http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/")
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a");
+    let response = await fetch("http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/");
+    let htmlText = await response.text();
+
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlText;
+    let allLinks = tempDiv.getElementsByTagName("a");
 
     let songs = [];
-    for (let i = 0; i < as.length; i++) {
-        const element = as[i];
 
-        if (element.href.endsWith("mp3")) {
-            // pehle decode karo taaki %5C wapas \ ban jaaye
-            let decoded = decodeURIComponent(element.href);
+    for (let i = 0; i < allLinks.length; i++) {
+        let link = allLinks[i];
 
-            // ab real \ ya / pe split karo
-            let parts = decoded.split(/[\\/]/);
+        if (link.href.endsWith("mp3")) {
+            let decodedLink = decodeURIComponent(link.href);
+            let parts = decodedLink.split(/[\\/]/);
             let filename = parts[parts.length - 1];
-
-            // clean URL banao (filename ko encode karke, spaces sahi handle hon)
-            let cleanUrl = "http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/" + encodeURIComponent(filename);
-            songs.push(cleanUrl);
+            let songUrl = "http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/" + encodeURIComponent(filename);
+            songs.push(songUrl);
         }
     }
+
     return songs;
-
-
 }
 
-// songs ko display karne ka function lib ke neeche
-
+// Step 2: Songs ki list HTML me dikhana, har song ke saath ek play button
 function displaySongs(songs) {
     let listContainer = document.getElementById("songList");
     listContainer.innerHTML = "";
@@ -40,9 +36,9 @@ function displaySongs(songs) {
         let filename = decodeURIComponent(songUrl.split("/").pop());
         let songName = filename.replace(".mp3", "");
 
-        let item = document.createElement("div");
-        item.className = "song-item";
-        item.innerHTML = `
+        let songItem = document.createElement("div");
+        songItem.className = "song-item";
+        songItem.innerHTML = `
             <img src="music.svg" alt="Music image">
             <div class="song-name">${songName}</div>
             <button class="song-play-btn">
@@ -53,31 +49,42 @@ function displaySongs(songs) {
             </button>
         `;
 
-        // ab click sirf play button pe lagega, poore item pe nahi
-        let playBtn = item.querySelector(".song-play-btn");
-        playBtn.addEventListener("click", () => {
+        let playButton = songItem.querySelector(".song-play-btn");
+        playButton.addEventListener("click", () => {
             audio.src = songUrl;
-            audio.play().catch(err => console.log("Play failed:", err));;
+            audio.play().catch(error => console.log("Play failed:", error));
         });
 
-        listContainer.appendChild(item);
+        listContainer.appendChild(songItem);
     }
 }
-let audio = new Audio();  // ek hi audio object bahar bana lo
 
+// ek hi shared audio object
+let audio = new Audio();
 
+// bottom wala play-pause icon aur uska img element
+let playPauseIcon = document.getElementById("playPauseIcon");
+
+audio.addEventListener("play", () => playPauseIcon.src = "pause.svg");
+audio.addEventListener("pause", () => playPauseIcon.src = "play.svg");
+audio.addEventListener("ended", () => playPauseIcon.src = "play.svg");
+
+// bottom button pe click karne se toggle ho (if-else se)
+playPauseIcon.addEventListener("click", () => {
+    if (audio.paused) {
+        audio.play().catch(error => console.log("Play failed:", error));
+    } else {
+        audio.pause();
+    }
+});
+
+// Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs();
     console.log(songs);
 
-    displaySongs(songs);   // list bana do
+    displaySongs(songs);
 
-    audio.src = songs[0];   // pehle song set karo
-
-    // ab tumhare play-pause button pe click event lagao
-    // let playBtn = document.querySelector(".play-pausebtn");
-    // playBtn.addEventListener("click", () => {
-    //     audio.play();
-    // });
 }
+
 main();
