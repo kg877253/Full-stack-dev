@@ -1,6 +1,5 @@
 console.log("Welcome to Spotify Clone!");
 
-
 let hamburgerBtn = document.getElementById("hamburgerBtn");
 let sidebar = document.querySelector(".sidebar");
 let sidebarOverlay = document.getElementById("sidebarOverlay");
@@ -15,7 +14,7 @@ sidebarOverlay.addEventListener("click", () => {
     sidebarOverlay.classList.remove("show");
 });
 
-
+// Step 1: Server se saare mp3 file links nikalna
 async function getSongs() {
     let response = await fetch("http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/");
     let htmlText = await response.text();
@@ -41,6 +40,7 @@ async function getSongs() {
     return songs;
 }
 
+// Step 2: Songs ki list HTML me dikhana, har song ke saath ek play button
 function displaySongs(songs) {
     let listContainer = document.getElementById("songList");
     listContainer.innerHTML = "";
@@ -65,15 +65,14 @@ function displaySongs(songs) {
 
         let playButton = songItem.querySelector(".song-play-btn");
         playButton.addEventListener("click", () => {
-            audio.src = songUrl;
-            safePlay();
-            updateNowPlayingName(songName);
+            playSongByIndex(i);
         });
 
         listContainer.appendChild(songItem);
     }
 }
 
+// ek hi shared audio object
 let audio = new Audio();
 
 let playPauseIcon = document.getElementById("playPauseIcon");
@@ -82,14 +81,20 @@ let timeElapsed = document.getElementById("timeElapsed");
 let timeTotal = document.getElementById("timeTotal");
 let seekCircle = document.querySelector(".circle");
 
+let allSongs = [];
+let currentIndex = 0;
+
+// safe play helper — error handle karne ke liye ek hi jagah
 function safePlay() {
     audio.play().catch(error => console.log("Play failed:", error));
 }
 
+// currently playing song ka naam update karna
 function updateNowPlayingName(name) {
     nowPlayingName.textContent = name;
 }
 
+// seconds ko "mm:ss" format mein badalne wala helper
 function formatTime(seconds) {
     let minutes = Math.floor(seconds / 60);
     let remainingSeconds = Math.floor(seconds % 60);
@@ -101,14 +106,36 @@ function formatTime(seconds) {
     return minutes + ":" + remainingSeconds;
 }
 
+// diye gaye index ka gaana play karta hai, aur out-of-range ko wraparound karta hai
+function playSongByIndex(index) {
+    if (index < 0) {
+        index = allSongs.length - 1;
+    }
+    if (index >= allSongs.length) {
+        index = 0;
+    }
+
+    currentIndex = index;
+
+    let songUrl = allSongs[currentIndex];
+    let filename = decodeURIComponent(songUrl.split("/").pop());
+    let songName = filename.replace(".mp3", "");
+
+    audio.src = songUrl;
+    safePlay();
+    updateNowPlayingName(songName);
+}
+
+// audio object khud batata hai jab bhi play/pause/end ho
 audio.addEventListener("play", () => playPauseIcon.src = "pause.svg");
 audio.addEventListener("pause", () => playPauseIcon.src = "play.svg");
 
 audio.addEventListener("ended", () => {
     playPauseIcon.src = "play.svg";
-    seekCircle.style.left = "0%";   // song khatam hone pe circle wapas shuru me
+    seekCircle.style.left = "0%";
 });
 
+// jab song load ho jaye aur uski total duration pata chal jaye
 audio.addEventListener("loadedmetadata", () => {
     timeTotal.textContent = formatTime(audio.duration);
 });
@@ -117,12 +144,11 @@ audio.addEventListener("loadedmetadata", () => {
 audio.addEventListener("timeupdate", () => {
     timeElapsed.textContent = formatTime(audio.currentTime);
 
-    // kitna percent gaana bajj chuka hai, uske hisaab se circle move karo
     let percentPlayed = (audio.currentTime / audio.duration) * 100;
     seekCircle.style.left = percentPlayed + "%";
 });
 
-// bottom button pe click karne se toggle ho (if-else se)
+// bottom button pe click karne se toggle ho
 playPauseIcon.addEventListener("click", () => {
     if (audio.paused) {
         audio.play().catch(error => console.log("Play failed:", error));
@@ -131,9 +157,23 @@ playPauseIcon.addEventListener("click", () => {
     }
 });
 
+// prev aur next buttons
+let prevBtn = document.getElementById("prevBtn");
+let nextBtn = document.getElementById("nextBtn");
 
+prevBtn.addEventListener("click", () => {
+    playSongByIndex(currentIndex - 1);
+});
+
+nextBtn.addEventListener("click", () => {
+    playSongByIndex(currentIndex + 1);
+});
+
+// Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs();
+    allSongs = songs;
+
     console.log(songs);
 
     displaySongs(songs);
@@ -142,8 +182,6 @@ async function main() {
         let percent = event.offsetX / event.target.getBoundingClientRect().width * 100;
         document.querySelector(".circle").style.left = percent + "%";
         audio.currentTime = ((audio.duration) * percent) / 100;
-
-
     });
 }
 
