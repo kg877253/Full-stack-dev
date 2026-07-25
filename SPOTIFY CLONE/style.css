@@ -286,7 +286,7 @@ body {
 .player-controls {
     width: 100%;
     padding: 10px 0;
-    background-color: #181818;
+    background-color: black;
     position: absolute;
     bottom: 0;
 }
@@ -354,4 +354,149 @@ body {
     left: 0;
     transform: translateY(-50%);
     transition: left 0.2s ease;
+}
+.hamburger-btn {
+    display: none;
+    cursor: pointer;
+    align-items: center;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+@media (max-width: 1150px){
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .sidebar{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        z-index: 2;
+        transition: left 0.3s ease;
+        width: 280px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    .content-box{
+        width: 100vw;
+    }
+}
+
+/* Tablet aur chhoti screens */
+@media (max-width: 768px) {
+    .navbar {
+        gap: 8px;
+        padding: 5px 8px;
+    }
+
+    .search-input {
+        max-width: 180px;
+        height: 5vh;
+        font-size: 14px;
+        padding: 0 12px;
+    }
+
+    .signup-btn,
+    .login-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .trendingsong {
+        margin: 15px 10px;
+    }
+
+    .trendingsong h2 {
+        font-size: 18px;
+        margin: 0 5px 0 5px;
+    }
+
+    .card {
+        width: 130px;
+        padding: 10px;
+    }
+
+    .card-info div {
+        font-size: 14px;
+    }
+
+    .card-info p {
+        font-size: 11px;
+    }
+
+    .controls-row {
+        padding: 5px 10px;
+    }
+
+    .now-playing-name {
+        font-size: 11px;
+        padding-left: 0;
+        max-width: 90px;
+    }
+
+    .time-info {
+        flex: 0 1 90px;
+        font-size: 10px;
+        padding-right: 0;
+    }
+
+    .playback-buttons {
+        gap: 10px;
+    }
+
+    .play-pausebtn img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 480px) {
+    .search-box {
+        display: none;
+    }
+
+    .signup-btn {
+        display: none;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .card {
+        width: 110px;
+    }
+
+    .now-playing-name {
+        max-width: 60px;
+        font-size: 10px;
+    }
+
+    .time-info {
+        flex: 0 1 70px;
+        font-size: 9px;
+    }
+
+    .sidebar {
+        width: 240px;
+    }
 }

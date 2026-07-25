@@ -1,5 +1,21 @@
 console.log("Welcome to Spotify Clone!");
 
+
+let hamburgerBtn = document.getElementById("hamburgerBtn");
+let sidebar = document.querySelector(".sidebar");
+let sidebarOverlay = document.getElementById("sidebarOverlay");
+
+hamburgerBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+    sidebarOverlay.classList.toggle("show");
+});
+
+sidebarOverlay.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    sidebarOverlay.classList.remove("show");
+});
+
+
 async function getSongs() {
     let response = await fetch("http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/");
     let htmlText = await response.text();
