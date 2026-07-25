@@ -169,6 +169,13 @@ nextBtn.addEventListener("click", () => {
     playSongByIndex(currentIndex + 1);
 });
 
+let volumeSlider = document.getElementById("volumeSlider");
+
+volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value / 100;
+});
+
+
 // Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs();

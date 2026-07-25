@@ -286,12 +286,10 @@ body {
 .player-controls {
     width: 100%;
     padding: 10px 0;
-    background-color: black;
+    background-color: #181818;
     position: absolute;
     bottom: 0;
 }
-
-
 
 .controls-row {
     display: flex;
@@ -327,12 +325,41 @@ body {
     transform: translateX(-50%);
 }
 
+.right-section {
+    flex: 0 1 auto;
+    gap: 15px;
+    padding-right: 20px;
+}
+
 .time-info {
-    flex: 0 1 200px;
-    text-align: left;
+    text-align: right;
     font-size: 11px;
     color: #a7a7a7;
-    padding-right: 20px;
+    white-space: nowrap;
+}
+
+.volume-control {
+    gap: 8px;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 90px;
+    height: 4px;
+    border-radius: 10px;
+    background: #4d4d4d;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
 }
 
 .seekbar {
@@ -357,6 +384,7 @@ body {
     transform: translateY(-50%);
     transition: left 0.2s ease;
 }
+
 .hamburger-btn {
     display: none;
     cursor: pointer;
@@ -454,10 +482,17 @@ body {
         max-width: 90px;
     }
 
+    .right-section {
+        gap: 8px;
+        padding-right: 5px;
+    }
+
     .time-info {
-        flex: 0 1 90px;
         font-size: 10px;
-        padding-right: 0;
+    }
+
+    .volume-slider {
+        width: 50px;
     }
 
     .playback-buttons {
@@ -493,9 +528,16 @@ body {
         font-size: 10px;
     }
 
+    .right-section {
+        gap: 5px;
+    }
+
     .time-info {
-        flex: 0 1 70px;
         font-size: 9px;
+    }
+
+    .volume-slider {
+        width: 40px;
     }
 
     .sidebar {
