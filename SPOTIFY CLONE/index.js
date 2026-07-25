@@ -116,7 +116,7 @@ async function main() {
     displaySongs(songs);
 
     // pehle song ka naam bhi dikha do shuru mein
-    let firstFilename = decodeURIComponent(songs[0].split("/").pop());
+    let firstFilename = decodeURIComponent(songs.split("/").pop());
     let firstSongName = firstFilename.replace(".mp3", "");
     updateNowPlayingName(firstSongName);
 }
