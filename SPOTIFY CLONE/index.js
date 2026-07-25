@@ -51,7 +51,7 @@ function displaySongs(songs) {
         playButton.addEventListener("click", () => {
             audio.src = songUrl;
             safePlay();
-            updateNowPlayingName(songName);   // naam update karo click hote hi
+            updateNowPlayingName(songName);
         });
 
         listContainer.appendChild(songItem);
@@ -59,26 +59,25 @@ function displaySongs(songs) {
 }
 
 let audio = new Audio();
+
 let playPauseIcon = document.getElementById("playPauseIcon");
 let nowPlayingName = document.getElementById("nowPlayingName");
 let timeElapsed = document.getElementById("timeElapsed");
 let timeTotal = document.getElementById("timeTotal");
+let seekCircle = document.querySelector(".circle");
 
 function safePlay() {
     audio.play().catch(error => console.log("Play failed:", error));
 }
 
-// naam update karne ka chhota function
 function updateNowPlayingName(name) {
     nowPlayingName.textContent = name;
 }
 
-// seconds ko "mm:ss" format mein badalne wala helper
 function formatTime(seconds) {
     let minutes = Math.floor(seconds / 60);
     let remainingSeconds = Math.floor(seconds % 60);
 
-    // agar seconds 5 hai toh "05" dikhana hai, "5" nahi
     if (remainingSeconds < 10) {
         remainingSeconds = "0" + remainingSeconds;
     }
@@ -88,16 +87,23 @@ function formatTime(seconds) {
 
 audio.addEventListener("play", () => playPauseIcon.src = "pause.svg");
 audio.addEventListener("pause", () => playPauseIcon.src = "play.svg");
-audio.addEventListener("ended", () => playPauseIcon.src = "play.svg");
 
-// jab song load ho jaye aur uski total duration pata chal jaye
+audio.addEventListener("ended", () => {
+    playPauseIcon.src = "play.svg";
+    seekCircle.style.left = "0%";   // song khatam hone pe circle wapas shuru me
+});
+
 audio.addEventListener("loadedmetadata", () => {
     timeTotal.textContent = formatTime(audio.duration);
 });
 
-// jab audio chalta rehta hai, ye baar baar fire hota hai (roughly har second)
+// audio chalte waqt baar baar fire hota hai (roughly har second)
 audio.addEventListener("timeupdate", () => {
     timeElapsed.textContent = formatTime(audio.currentTime);
+
+    // kitna percent gaana bajj chuka hai, uske hisaab se circle move karo
+    let percentPlayed = (audio.currentTime / audio.duration) * 100;
+    seekCircle.style.left = percentPlayed + "%";
 });
 
 // bottom button pe click karne se toggle ho (if-else se)
@@ -109,16 +115,20 @@ playPauseIcon.addEventListener("click", () => {
     }
 });
 
+
 async function main() {
     let songs = await getSongs();
     console.log(songs);
 
     displaySongs(songs);
 
-    // pehle song ka naam bhi dikha do shuru mein
-    let firstFilename = decodeURIComponent(songs.split("/").pop());
-    let firstSongName = firstFilename.replace(".mp3", "");
-    updateNowPlayingName(firstSongName);
+    document.querySelector(".seekbar").addEventListener("click", (event) => {
+        let percent = event.offsetX / event.target.getBoundingClientRect().width * 100;
+        document.querySelector(".circle").style.left = percent + "%";
+        audio.currentTime = ((audio.duration) * percent) / 100;
+
+
+    });
 }
 
 main();

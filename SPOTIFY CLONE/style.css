@@ -335,11 +335,12 @@ body {
 
 .seekbar {
     position: relative;
-    height: 5px;
+    height: 6px;
     width: 80%;
     display: flex;
     background-color: whitesmoke;
     border-radius: 10px;
+    cursor: pointer;
     margin: 0 auto 10px auto;
 }
 
