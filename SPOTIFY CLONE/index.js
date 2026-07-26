@@ -190,6 +190,16 @@ async function main() {
         document.querySelector(".circle").style.left = percent + "%";
         audio.currentTime = ((audio.duration) * percent) / 100;
     });
+
+    // Playlist cards ke liye click event listener
+    Array.from(document.querySelectorAll(".card")).forEach(card => {
+        card.addEventListener("click", async () => {
+            let folder = card.getAttribute("data-folder");
+            let songs = await getSongs(`songs/${folder}`);
+            allSongs = songs;
+            displaySongs(songs);
+        });
+    });
 }
 
 main();
