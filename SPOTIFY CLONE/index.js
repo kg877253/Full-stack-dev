@@ -14,6 +14,24 @@ sidebarOverlay.addEventListener("click", () => {
     sidebarOverlay.classList.remove("show");
 });
 
+let searchInput = document.querySelector(".search-input");
+
+searchInput.addEventListener("input", () => {
+    let searchTerm = searchInput.value.toLowerCase();
+    let allSongItems = document.querySelectorAll("#songList .song-item");
+
+    allSongItems.forEach(item => {
+        let songName = item.querySelector(".song-name").textContent.toLowerCase();
+
+        if (songName.includes(searchTerm)) {
+            item.style.display = "flex";
+        } else {
+            item.style.display = "none";
+        }
+    });
+});
+
+
 // Step 1: Server se saare mp3 file links nikalna
 async function getSongs(folder) {
     let response = await fetch(`http://127.0.0.1:3000/SPOTIFY%20CLONE/${folder}/`);
