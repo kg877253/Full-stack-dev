@@ -176,12 +176,47 @@ volumeSlider.addEventListener("input", () => {
 });
 
 
+//displayalbums ke liye function
+async function displayalbums() {
+
+    let response = await fetch(`http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/`);
+    let htmlText = await response.text();
+
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlText;
+    let anchors = tempDiv.getElementsByTagName("a");
+    let cardcontainer = document.getElementsByClassName("cardcontainer")[0];
+
+    Array.from(anchors).forEach(async anchor => {
+        if (anchor.href.endsWith("/") && anchor.href.includes("%5C")) {
+            let folder = anchor.href.split("5C").slice(-1)[0].replace("/", "");
+
+            let infoResponse = await fetch(`http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/${folder}/info.json`);
+            let infoData = await infoResponse.json();
+            console.log(infoData);
+
+            cardcontainer.innerHTML = cardcontainer.innerHTML + `<div data-folder="${folder}" class="card">
+                            <div class="playbutton">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                                    <circle cx="24" cy="24" r="24" fill="#1ED760" />
+                                    <polygon points="18,14 36,24 18,34" fill="#000000" />
+                                </svg>
+                            </div>
+                            <img src="songs/${folder}/albumimage.jpg" alt="Album image">
+                            <div class="card-info">
+                                <div>${infoData.title}</div>
+                                <p>${infoData.artist}</p>
+                            </div>
+                        </div>`
+        }
+    });
+
+}
+
 // Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs("songs/firstplaylist"); // Replace "firstplaylist" with the actual folder name
     allSongs = songs;
-
-    console.log(songs);
 
     displaySongs(songs);
 
@@ -191,15 +226,19 @@ async function main() {
         audio.currentTime = ((audio.duration) * percent) / 100;
     });
 
-    // Playlist cards ke liye click event listener
-    Array.from(document.querySelectorAll(".card")).forEach(card => {
-        card.addEventListener("click", async () => {
-            let folder = card.getAttribute("data-folder");
-            let songs = await getSongs(`songs/${folder}`);
-            allSongs = songs;
-            displaySongs(songs);
-        });
+    // Playlist cards ke liye event delegation — cardcontainer pe ek hi listener,
+    // isse naye (dynamically added) cards pe bhi click kaam karega
+    document.querySelector(".cardcontainer").addEventListener("click", async (event) => {
+        let card = event.target.closest(".card");
+        if (!card) return;
+
+        let folder = card.getAttribute("data-folder");
+        let songs = await getSongs(`songs/${folder}`);
+        allSongs = songs;
+        displaySongs(songs);
     });
+
+    displayalbums();
 }
 
 main();

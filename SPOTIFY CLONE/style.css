@@ -253,8 +253,8 @@ body {
 
 .playbutton {
     position: absolute;
-    top: 52%;
-    left: 65%;
+    top: 47%;
+    right: 11.5%;
     opacity: 0;
     transform: translateY(5px);
     transition: opacity 0.2s ease, transform 0.2s ease;
