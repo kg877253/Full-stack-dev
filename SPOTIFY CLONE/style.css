@@ -340,6 +340,7 @@ body {
 
 .volume-control {
     gap: 8px;
+    cursor: pointer;
 }
 
 .volume-slider {

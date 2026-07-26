@@ -241,12 +241,12 @@ async function main() {
 
     //volume button toggle
     document.querySelector("#volumeIcon").addEventListener("click",e => {
-        if(e.target.src.includes("volume.svg")){
-            e.target.src = e.target.src.replace("volume.svg", "mute.svg");
+        if(e.target.src.includes("normalvolume.svg")){
+            e.target.src = e.target.src.replace("normalvolume.svg", "mute.svg");
             audio.volume = 0;
             document.querySelector(".volume-slider").value = 0;
         } else {
-            e.target.src = e.target.src.replace("mute.svg", "volume.svg");
+            e.target.src = e.target.src.replace("mute.svg", "normalvolume.svg");
             audio.volume = .3;
             document.querySelector(".volume-slider").value = 30;
         }
