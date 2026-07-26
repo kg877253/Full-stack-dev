@@ -15,8 +15,8 @@ sidebarOverlay.addEventListener("click", () => {
 });
 
 // Step 1: Server se saare mp3 file links nikalna
-async function getSongs() {
-    let response = await fetch("http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/");
+async function getSongs(folder) {
+    let response = await fetch(`http://127.0.0.1:3000/SPOTIFY%20CLONE/${folder}/`);
     let htmlText = await response.text();
 
     let tempDiv = document.createElement("div");
@@ -32,7 +32,7 @@ async function getSongs() {
             let decodedLink = decodeURIComponent(link.href);
             let parts = decodedLink.split(/[\\/]/);
             let filename = parts[parts.length - 1];
-            let songUrl = "http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/" + encodeURIComponent(filename);
+            let songUrl = `http://127.0.0.1:3000/SPOTIFY%20CLONE/${folder}/` + encodeURIComponent(filename);
             songs.push(songUrl);
         }
     }
@@ -178,7 +178,7 @@ volumeSlider.addEventListener("input", () => {
 
 // Step 3: Sab kuch shuru karne wala main function
 async function main() {
-    let songs = await getSongs();
+    let songs = await getSongs("songs/firstplaylist"); // Replace "firstplaylist" with the actual folder name
     allSongs = songs;
 
     console.log(songs);
