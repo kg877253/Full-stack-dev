@@ -193,7 +193,6 @@ async function displayalbums() {
 
             let infoResponse = await fetch(`http://127.0.0.1:3000/SPOTIFY%20CLONE/songs/${folder}/info.json`);
             let infoData = await infoResponse.json();
-            console.log(infoData);
 
             cardcontainer.innerHTML = cardcontainer.innerHTML + `<div data-folder="${folder}" class="card">
                             <div class="playbutton">
