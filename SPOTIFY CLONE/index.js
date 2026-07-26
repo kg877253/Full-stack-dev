@@ -212,6 +212,50 @@ async function displayalbums() {
 
 }
 
+
+
+// Individual songs ko cards ki tarah dikhana, click pe seedha wahi gaana bajaye
+async function displaySongCards() {
+    let songs = await getSongs("songs/popularsongs");  // apna folder name daal do
+    let songCardsContainer = document.getElementById("songCardsContainer");
+    songCardsContainer.innerHTML = "";
+
+    for (let i = 0; i < songs.length; i++) {
+        let songUrl = songs[i];
+        let filename = decodeURIComponent(songUrl.split("/").pop());
+        let songName = filename.replace(".mp3", "");
+
+        // image ka naam mp3 jaisa hi hoga, bas extension .jpg
+        let imageUrl = songUrl.replace(".mp3", ".jpg");
+
+        let card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <div class="playbutton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                    <circle cx="24" cy="24" r="24" fill="#1ED760" />
+                    <polygon points="18,14 36,24 18,34" fill="#000000" />
+                </svg>
+            </div>
+            <img src="${imageUrl}" alt="${songName}">
+            <div class="card-info">
+                <div>${songName}</div>
+            </div>
+        `;
+
+        // is card ka apna index yaad rakhna hai taaki click pe sahi gaana chale
+        card.addEventListener("click", () => {
+            allSongs = songs;        // is poori list ko active kar do (prev/next ke liye)
+            playSongByIndex(i);      // isi index ka gaana seedha bajao
+        });
+
+        songCardsContainer.appendChild(card);
+    }
+}
+
+
+
+
 // Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs("songs/firstplaylist"); // Replace "firstplaylist" with the actual folder name
@@ -237,8 +281,7 @@ async function main() {
         displaySongs(songs);
     });
 
-    displayalbums();
-
+    
     //volume button toggle
     document.querySelector("#volumeIcon").addEventListener("click",e => {
         if(e.target.src.includes("normalvolume.svg")){
@@ -251,6 +294,10 @@ async function main() {
             document.querySelector(".volume-slider").value = 30;
         }
     });
+
+    displayalbums();
+    displaySongCards();
+
 }
 
 main();
