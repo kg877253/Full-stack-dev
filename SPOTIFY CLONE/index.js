@@ -215,9 +215,9 @@ async function displayalbums() {
 
 
 // Individual songs ko cards ki tarah dikhana, click pe seedha wahi gaana bajaye
-async function displaySongCards() {
-    let songs = await getSongs("songs/popularsongs");  // apna folder name daal do
-    let songCardsContainer = document.getElementById("songCardsContainer");
+async function displaySongCards(folder, containerId) {
+    let songs = await getSongs(folder);
+    let songCardsContainer = document.getElementById(containerId);
     songCardsContainer.innerHTML = "";
 
     for (let i = 0; i < songs.length; i++) {
@@ -296,7 +296,8 @@ async function main() {
     });
 
     displayalbums();
-    displaySongCards();
+    displaySongCards("songs/popularsongs", "songCardsContainer");
+    displaySongCards("songs/chillsongs", "chillSongsContainer");
 
 }
 

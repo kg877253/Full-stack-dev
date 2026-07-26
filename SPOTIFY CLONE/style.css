@@ -221,7 +221,6 @@ body {
     background-color: #6a6a6a;
 }
 
-
 .trendingsong {
     margin: 20px 30px;
 }
@@ -255,8 +254,10 @@ body {
 
 .card img {
     width: 100%;
-    object-fit: contain;
+    height: 140px;
+    object-fit:cover;
     border-radius: 7px;
+    display: block;
 }
 
 .card-info p {
@@ -273,8 +274,8 @@ body {
 
 .playbutton {
     position: absolute;
-    top: 47%;
-    right: 11.5%;
+    top: 100px;
+    right: 25px;
     opacity: 0;
     transform: translateY(5px);
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -524,6 +525,19 @@ body {
         width: 32px;
         height: 32px;
     }
+
+     .card img {
+        height: 100px;
+    }
+
+    .playbutton {
+        top: 75px;
+        right: 20px;
+    }
+
+    .now-playing-name {
+        display: none;
+    }
 }
 
 /* Mobile screens */
@@ -563,5 +577,23 @@ body {
 
     .sidebar {
         width: 240px;
+    }
+
+    .card img {
+        height: 80px;
+    }
+
+    .playbutton {
+        top: 55px;
+        right: 15px;
+    }
+
+    .playbutton svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .seekbar {
+        width: 90%;
     }
 }
