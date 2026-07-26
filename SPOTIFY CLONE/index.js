@@ -271,9 +271,6 @@ async function displaySongCards(folder, containerId) {
     }
 }
 
-
-
-
 // Step 3: Sab kuch shuru karne wala main function
 async function main() {
     let songs = await getSongs("songs/firstplaylist"); // Replace "firstplaylist" with the actual folder name
