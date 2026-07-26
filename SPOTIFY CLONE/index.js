@@ -296,10 +296,10 @@ async function main() {
         displaySongs(songs);
     });
 
-    
+
     //volume button toggle
-    document.querySelector("#volumeIcon").addEventListener("click",e => {
-        if(e.target.src.includes("normalvolume.svg")){
+    document.querySelector("#volumeIcon").addEventListener("click", e => {
+        if (e.target.src.includes("normalvolume.svg")) {
             e.target.src = e.target.src.replace("normalvolume.svg", "mute.svg");
             audio.volume = 0;
             document.querySelector(".volume-slider").value = 0;
