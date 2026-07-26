@@ -286,7 +286,7 @@ body {
 .player-controls {
     width: 100%;
     padding: 10px 0;
-    background-color: #181818;
+    background-color: black;
     position: absolute;
     bottom: 0;
 }
