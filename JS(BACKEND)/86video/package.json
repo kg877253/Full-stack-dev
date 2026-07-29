@@ -1,0 +1,21 @@
+{
+  "name": "full-stack-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kg877253/Full-stack-dev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kg877253/Full-stack-dev/issues"
+  },
+  "homepage": "https://github.com/kg877253/Full-stack-dev#readme"
+}
