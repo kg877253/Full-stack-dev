@@ -2,6 +2,10 @@ const express = require('express');
 const app = express()
 const port = 3000
 
+//now we can access the files in public folder by searching localhost:3000/kartik.txt
+app.use(express.static('public'));
+
+
 app.get('/', (req, res) => {
   res.send('Helloeeee Wordddld!')
 })
