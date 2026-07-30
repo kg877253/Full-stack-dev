@@ -1,14 +1,42 @@
-const { createServer } = require('node:http');
+const express = require('express');
+const app = express()
+const port = 3000
 
-const hostname = '127.0.0.1';
-const port = 3000;
+app.get('/', (req, res) => {
+  res.send('Helloeeee Wordddld!')
+})
+//when we will search localhost:3000/about, it will show about page written on it 'about page'
+app.get('/about', (req, res) => {
+  res.send('About Page')
+})
+//when we will search localhost:3000/contact, it will show contact page written on it 'contact page'
+app.get('/contact', (req, res) => {
+  res.send('Contact Page')
+})
 
-const server = createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<h1>Hello Worldeed3333</h1>');
-});
+app.get('/blog', (req, res) => {
+  res.send('Blog Page')
+})
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.get('/blog/:slug', (req, res) => {//we can add 2 or more parameters like /blog/:slug/:id also 
+    //logic to fetch the blog post based on the slug parameter
+    //for url:http://localhost:3000/blog/introtopython?mode=dark&region=in
+    console.log(req.params)//output-{ slug: 'introtopython' }
+    console.log(req.query)//output-{ mode: 'dark', region: 'in' }
+  res.send(`Blog Page: ${req.params.slug}`)
+})
+
+// app.get('/blog/introtojs', (req, res) => {
+//   res.send('Blog Page: Introduction to JavaScript')
+// })
+
+// app.get('/blog/introtopython', (req, res) => {
+//   res.send('Blog Page: Introduction to Python')
+// })
+
+//and if we search anything else like localhost:3000/hello, it will cannot get/hello
+
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
