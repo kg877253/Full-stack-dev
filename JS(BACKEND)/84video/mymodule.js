@@ -1,3 +1,4 @@
+//ecmascript module example
 
 //named export
 export const a=1;
