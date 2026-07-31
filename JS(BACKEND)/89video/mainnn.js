@@ -24,6 +24,12 @@ app.delete('/', (req, res) => {
   res.send('Hello World delete thiing ');
 });
 
+//it will send the index.html file when the user visits the /index route
+app.get('/index', (req, res) => {
+  console.log("get request received");
+  res.sendFile('templates/index.html', { root: __dirname });
+
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
