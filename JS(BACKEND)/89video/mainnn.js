@@ -31,6 +31,10 @@ app.get('/index', (req, res) => {
 
 })
 
+app.get('/api', (req, res) => {
+  res.json({a:1, b:2, c:3,name:["sandeep" ,"kartik"]});
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
