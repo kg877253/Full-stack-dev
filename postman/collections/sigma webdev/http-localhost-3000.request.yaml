@@ -1,0 +1,6 @@
+$kind: http-request
+name: http://localhost:3000
+description: ""
+url: http://localhost:3000/index
+method: GET
+order: 1785494512909
