@@ -4,7 +4,7 @@ const fs = require('fs/promises');
 const path = require('path');
 
 async function main() {
-
+    
     const files = await fs.readdir("C:\\Users\\kg877\\testfolder");
     console.log("File Inside : ", files);
     // Output: [ 'ss.png', 'qr.jpg', 'fee.pdf' ]
