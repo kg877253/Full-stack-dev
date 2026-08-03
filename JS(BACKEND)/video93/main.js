@@ -8,12 +8,14 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     let sitename = "adidas";
     let searchbar = "Search now";
+    
     res.render('index', { sitename: sitename, searchbar: searchbar });
 });
 
 app.get('/blog/:slug', (req, res) => {
     let blogtitle = "adidas shoes";
     let blogcontent = "good brand & shoes"
+
     res.render('blogpost', { blogtitle: blogtitle, blogcontent: blogcontent });
 });
 
