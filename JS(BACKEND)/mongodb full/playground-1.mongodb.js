@@ -1,7 +1,9 @@
 // Select the database to use.
+
 use('mongodbVSCodePlaygroundDB');
 
 // Insert a few documents into the courses collection.
+
 db.getCollection('courses').insertMany([
   {
     name: 'python',
