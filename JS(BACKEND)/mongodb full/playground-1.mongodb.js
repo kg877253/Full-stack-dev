@@ -44,6 +44,7 @@ db.getCollection('courses').insertMany([
     name: 'sql',
     price: NumberInt('140000')
   },
+  
   {
     name: 'docker',
     price: NumberInt('230000')
