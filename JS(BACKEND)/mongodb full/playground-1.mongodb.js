@@ -35,16 +35,18 @@ db.getCollection('courses').insertMany([
   {
     name: 'typescript',
     price: NumberInt('210000')
+
   },
   {
     name: 'c++',
     price: NumberInt('17000000')
+    
   },
   {
     name: 'sql',
     price: NumberInt('140000')
   },
-  
+
   {
     name: 'docker',
     price: NumberInt('230000')
