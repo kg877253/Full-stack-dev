@@ -48,7 +48,6 @@ db.getCollection('courses').insertMany([
     name: 'docker',
     price: NumberInt('230000')
   }
-
 ]
 );
 
