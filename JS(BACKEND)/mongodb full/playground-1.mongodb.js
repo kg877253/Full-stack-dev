@@ -8,6 +8,7 @@ db.getCollection('courses').insertMany([
     name: 'python',
     price: NumberInt('150000')
   },
+  
   {
     name: 'javascript',
     price: NumberInt('180000')
