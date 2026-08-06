@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
+
 import express from "express";
+
 import { Todo } from "./modules/todo.js";
+
 
 await mongoose.connect("mongodb://localhost:27017/todo");
 const app = express();
@@ -13,12 +16,15 @@ app.get("/", async (req, res) => {
         completed: false,
         days: 3
     });
+
     await todo1.save();
     res.send("Todo added!");
 });
 
-app.get("/a", async(req, res) => {
-    const todos = await Todo.find({completed: false});
+app.get("/a", async (req, res) => {
+
+    const todos = await Todo.find({ completed: false });
+
     res.json(todos);
 });
 
