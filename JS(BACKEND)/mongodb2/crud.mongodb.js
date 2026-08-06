@@ -56,15 +56,15 @@ db.createCollection("coursesdb");
 // console.log(a.toArray());
 
 
-let b = db.coursesdb.findOne({price:5000});
+let b = db.coursesdb.findOne({ price: 5000 });
 // console.log(b);
 
 //3. UPDATE 
-db.coursesdb.updateOne({price:2000},{$set:{price:20000}});
+db.coursesdb.updateOne({ price: 2000 }, { $set: { price: 20000 } });
 
-db.coursesdb.updateMany({price:100000},{$set:{price:3460600}});
+db.coursesdb.updateMany({ price: 100000 }, { $set: { price: 3460600 } });
 
 //4. DELETE 
-db.coursesdb.deleteOne({price:3000});
+db.coursesdb.deleteOne({ price: 3000 });
 
-db.coursesdb.deleteMany({price:20000});
+db.coursesdb.deleteMany({ price: 20000 });
