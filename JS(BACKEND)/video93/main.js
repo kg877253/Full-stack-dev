@@ -6,7 +6,7 @@ const port = 3000;
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    let sitename = "adidas";
+    let sitename = "abibas";
     let searchbar = "Search now";
     
     res.render('index', { sitename: sitename, searchbar: searchbar });
