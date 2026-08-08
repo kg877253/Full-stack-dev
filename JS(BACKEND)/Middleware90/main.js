@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.send('Hello about!');
+  res.send('Hello about main!');
 });
 
 app.listen(port, () => {
