@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy data generator</title>
+</head>
+
+<body>
+    <button class="databutton">Generate Data!</button>
+
+    <script>
+
+        const button = document.querySelector(".databutton");
+        let a = button.addEventListener("click", async () => {
+            let b= await fetch("/generator");
+            let c = await b.json();
+            console.log(c);
+        })
+
+    </script>
+</body>
+
+</html>
