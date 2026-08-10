@@ -11,16 +11,20 @@
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-orange-950: oklch(26.6% 0.079 36.259);
     --color-amber-100: oklch(96.2% 0.059 95.617);
+    --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-amber-500: oklch(76.9% 0.188 70.08);
+    --color-green-500: oklch(72.3% 0.219 149.579);
     --color-sky-500: oklch(68.5% 0.169 237.323);
     --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
     --color-gray-800: oklch(27.8% 0.033 256.848);
+    --color-gray-900: oklch(21% 0.034 264.665);
     --color-mist-400: oklch(72.3% 0.014 214.4);
     --color-mist-500: oklch(56% 0.021 213.5);
     --color-mist-700: oklch(37.8% 0.015 216);
@@ -322,6 +326,9 @@
   .mt-16 {
     margin-top: calc(var(--spacing) * 16);
   }
+  .mr-5 {
+    margin-right: calc(var(--spacing) * 5);
+  }
   .mr-6 {
     margin-right: calc(var(--spacing) * 6);
   }
@@ -403,11 +410,20 @@
   .h-1 {
     height: var(--spacing);
   }
+  .h-2 {
+    height: calc(var(--spacing) * 2);
+  }
+  .h-2\/3 {
+    height: calc(2 / 3 * 100%);
+  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
   .h-5 {
     height: calc(var(--spacing) * 5);
+  }
+  .h-8 {
+    height: calc(var(--spacing) * 8);
   }
   .h-9 {
     height: calc(var(--spacing) * 9);
@@ -463,6 +479,9 @@
   .w-2 {
     width: calc(var(--spacing) * 2);
   }
+  .w-2\/3 {
+    width: calc(2 / 3 * 100%);
+  }
   .w-3 {
     width: calc(var(--spacing) * 3);
   }
@@ -471,6 +490,9 @@
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
+  }
+  .w-8 {
+    width: calc(var(--spacing) * 8);
   }
   .w-9 {
     width: calc(var(--spacing) * 9);
@@ -504,6 +526,9 @@
   }
   .w-20 {
     width: calc(var(--spacing) * 20);
+  }
+  .w-23 {
+    width: calc(var(--spacing) * 23);
   }
   .w-25 {
     width: calc(var(--spacing) * 25);
@@ -739,6 +764,9 @@
   .bg-white {
     background-color: var(--color-white);
   }
+  .p-1 {
+    padding: var(--spacing);
+  }
   .p-2 {
     padding: calc(var(--spacing) * 2);
   }
@@ -912,11 +940,17 @@
   .text-gray-50 {
     color: var(--color-gray-50);
   }
+  .text-gray-400 {
+    color: var(--color-gray-400);
+  }
   .text-gray-500 {
     color: var(--color-gray-500);
   }
   .text-gray-600 {
     color: var(--color-gray-600);
+  }
+  .text-gray-900 {
+    color: var(--color-gray-900);
   }
   .text-mist-700 {
     color: var(--color-mist-700);
@@ -954,11 +988,17 @@
     .hover\:cursor-pointer:hover {
       cursor: pointer;
     }
+    .hover\:rounded-full:hover {
+      border-radius: calc(infinity * 1px);
+    }
     .hover\:bg-\[\#71767b\]\/80:hover {
       background-color: color-mix(in oklab, #71767b 80%, transparent);
     }
     .hover\:bg-gray-200:hover {
       background-color: var(--color-gray-200);
+    }
+    .hover\:bg-gray-900:hover {
+      background-color: var(--color-gray-900);
     }
     .hover\:bg-mist-900:hover {
       background-color: var(--color-mist-900);
@@ -977,8 +1017,29 @@
         background-color: color-mix(in oklab, var(--color-white) 35%, transparent);
       }
     }
+    .hover\:text-blue-500:hover {
+      color: var(--color-blue-500);
+    }
+    .hover\:text-green-500:hover {
+      color: var(--color-green-500);
+    }
     .hover\:underline:hover {
       text-decoration-line: underline;
+    }
+    .hover\:drop-shadow-amber-300:hover {
+      --tw-drop-shadow-color: oklch(87.9% 0.169 91.605);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:drop-shadow-amber-300:hover {
+        --tw-drop-shadow-color: color-mix(in oklab, var(--color-amber-300) var(--tw-drop-shadow-alpha), transparent);
+      }
+    }
+    .hover\:drop-shadow-amber-300:hover {
+      --tw-drop-shadow: var(--tw-drop-shadow-size);
+    }
+    .hover\:invert:hover {
+      --tw-invert: invert(100%);
+      filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
     }
     :is(.\*\:hover\:text-sky-500 > *):hover {
       color: var(--color-sky-500);
