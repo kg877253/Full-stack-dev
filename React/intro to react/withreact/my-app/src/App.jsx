@@ -11,16 +11,16 @@ function App() {
 
   return (
     <>
-    <div className='app'>
-      <Navbar logotext="My 6-7th App" />
-      <h1>
-        {value}
-      </h1>
-      <button onClick={()=>{
-        setCount(value + 1)
-      }}>clickme</button>
-      <Footer property="Some property value" />
-    </div>
+      <div className='app'>
+        <Navbar logotext="My 6-7th App" />
+        <h1>
+          {value}
+        </h1>
+        <button onClick={() => {
+          setCount(value + 1)
+        }}>clickme</button>
+        <Footer property="Some property value" />
+      </div>
     </>
   )
 }
