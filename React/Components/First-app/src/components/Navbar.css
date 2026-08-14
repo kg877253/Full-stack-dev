@@ -1,0 +1,12 @@
+nav{
+    background-color: antiquewhite;
+    padding: 25px;
+}
+ul{
+    display: flex;
+    gap: 25px;
+}
+li{
+    list-style: none;
+
+}
