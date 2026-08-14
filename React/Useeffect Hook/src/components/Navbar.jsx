@@ -15,6 +15,13 @@ const Navbar = ({color}) => {
       alert("color was changed")
     },[color])
 
+    //cleanup function
+    useEffect(() => {
+      return () => {
+        alert("Navbar will unmount")
+      }
+    }, [])
+
   return (
     <div>
       Iam a Navbar
