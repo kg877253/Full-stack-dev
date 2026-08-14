@@ -6,21 +6,10 @@ function App() {
 
   return (
     <>
-      <section id="center">
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <div className='div1'>
+        <h2>The count is {count}</h2>
+        <button onClick={ () => {setCount(count+2)}}> Update count </button>
+      </div>
     </>
   )
 }

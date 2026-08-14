@@ -16,7 +16,13 @@
     outline-offset: 2px;
   }
 }
-
+.div1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .hero {
   position: relative;
 
