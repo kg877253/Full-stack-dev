@@ -8,7 +8,7 @@ function App() {
     <>
       <div className='div1'>
         <h2>The count is {count}</h2>
-        <button onClick={ () => {setCount(count+2)}}> Update count </button>
+        <button onClick={() => { setCount(count + 2) }}> Update count </button>
       </div>
     </>
   )
