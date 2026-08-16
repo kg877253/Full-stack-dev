@@ -15,10 +15,6 @@ function App() {
     {
       title: "Learn Vite",
       desc: "Learn Vite from scratch",
-    },
-    {
-      title: "Learn React Router",
-      desc: "Learn React Router from scratch",
     }
   ])
 
