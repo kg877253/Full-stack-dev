@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 import Card from './components/Cards.jsx'
 
 function App() {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState([])//ek khali array banaya hai jisme hum data ko store karenge
   const [loading, setLoading] = useState(true)
 
   const fetchCardsData = async () => {
     try {
       const res = await fetch("https://jsonplaceholder.typicode.com/posts")
       const posts = await res.json()
-      setData(posts.slice(0, 100))
+      setData(posts.slice(0, 100))//100 posts ko slice karke data state me store karrdiya hai
     } catch (err) {
       console.error("Fetch failed:", err)
     } finally {
@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     fetchCardsData()
-  }, [])
+  }, [])//ek br rendering k time chlega bs
 
   if (loading) return <p>Loading...</p>
   if (!data) return <p>Failed to load data</p>
