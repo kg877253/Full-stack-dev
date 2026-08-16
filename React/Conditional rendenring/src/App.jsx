@@ -5,6 +5,7 @@ import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
+
   const [count, setCount] = useState(0)
   const [showbtn, setshowbtn] = useState(false)
   const [todos, settodos] = useState([
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <>
+
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
@@ -60,7 +62,7 @@ function App() {
           Toggle
         </button>
       </section>
-
+      
     </>
   )
 }
