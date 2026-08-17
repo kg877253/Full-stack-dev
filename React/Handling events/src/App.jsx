@@ -5,8 +5,10 @@ import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
+
   const [count, setCount] = useState(0)
   // const [name, setname] = useState("kartik")
+
   const [form, setform] = useState({
     name: '',
     phone: ''
@@ -23,8 +25,8 @@ function App() {
   return (
     <>
       <button onClick={handleclick}>Click me</button>
+      
       <input type="text" name='name' value={form.name} onChange={handlechange} />
-
       <input type="text" name='phone' value={form.phone} onChange={handlechange} />
     </>
   )
