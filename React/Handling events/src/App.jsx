@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <button onClick={handleclick}>Click me</button>
-      
+
       <input type="text" name='name' value={form.name} onChange={handlechange} />
       <input type="text" name='phone' value={form.phone} onChange={handlechange} />
     </>
