@@ -16,7 +16,7 @@ function App() {
     alert('Hello World')
   }
   function handlechange(e) {
-    setform({...form,[e.target.name]:e.target.value})
+    setform({ ...form, [e.target.name]: e.target.value })
     console.log(form)
   }
 
@@ -24,7 +24,7 @@ function App() {
     <>
       <button onClick={handleclick}>Click me</button>
       <input type="text" name='name' value={form.name} onChange={handlechange} />
-      
+
       <input type="text" name='phone' value={form.phone} onChange={handlechange} />
     </>
   )
