@@ -73,8 +73,8 @@ function App() {
               <div name={item.todo} className="listedtodo flex justify-between items-center">
                 <div className='flex gap-3'>
 
-                <input onChange={(e) => handlecheckbox(e, item.id)} type="checkbox" name="" id="" checked={item.iscompleted} />
-                <div className={item.iscompleted ? 'line-through' : ' '} >{item.todo}</div>
+                  <input onChange={(e) => handlecheckbox(e, item.id)} type="checkbox" name="" id="" checked={item.iscompleted} />
+                  <div className={item.iscompleted ? 'line-through' : ' '} >{item.todo}</div>
                 </div>
                 <div className="buttons flex gap-4 items-center">
                   <button onClick={(e) => handleedit(e, item.id)} className='bg-blue-300 rounded-2xl text-[15px] px-3 py-0.5 cursor-pointer'>EDIT</button>
