@@ -7,7 +7,7 @@ const Navbarr = () => {
             
             <span className='font-medium text-3xl text-cyan-900 bg-amber-100 p-1 rounded-3xl'>K-days</span>
             <ul className="flex gap-8 text-2xl ">
-                <li className='cursor-pointer underline '><a href="#home">Home</a></li>
+                <li className='cursor-pointer underline hover:text-gray-700 transform hover:scale-110 '><a href="#home">Home</a></li>
                 <li className='cursor-pointer underline decoration-blue-800'><a href="#about">About Todo's</a></li>
             </ul>
         </nav>
