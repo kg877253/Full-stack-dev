@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+body{
+    margin: 0;
+    padding: 0;
+}
+body{
+    @apply bg-gradient-to-r from-black/60 to-black/90 ;
+}

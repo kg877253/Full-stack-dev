@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import { MdOutlineEdit } from "react-icons/md";
+import { RiDeleteBin3Fill } from "react-icons/ri";
 import Navbarr from './components/Navbarr'
+
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
@@ -11,7 +14,7 @@ function App() {
     return todos ? JSON.parse(todos) : []
   })
   const [finished, setfinished] = useState(false)
-  
+
   const savetoLS = (updatedTodos) => {
     localStorage.setItem('todos', JSON.stringify(updatedTodos))
   }
@@ -59,15 +62,18 @@ function App() {
     <>
       <Navbarr />
 
-      <main className='m-2 mt-5 bg-violet-300 mx-auto w-[60%] h-[20vh] rounded-2xl p-5 '>
-        <div className="todohead font-bold text-4xl text-center mb-5 underline decoration-2 decoration-indigo-400">
-          K-TODO APP
+      <main className=' pt-4 mt-4 bg-violet-300 mx-auto w-[60%] h-[20vh] rounded-2xl  bg-gradient-to-r from-blue-100 to-blue-400'>
+        <div className="allthings ">
+
+          <div className="todohead font-bold sm:text-2xl md:text-4xl text-center mb-4 underline decoration-2 decoration-indigo-400">
+            K-TODO APP
+          </div>
+          <div className="addtodo p-2 flex md:justify-center md:gap-8 sm:gap-8">
+            <input onChange={handlechange} value={todo} className='rounded-3xl p-2 bg-amber-50 w-[30vw]' type="text" placeholder="Add a new todo..." />
+            <button onClick={handleadd} className='bg-indigo-200 rounded-2xl text-xl sm:px-2 md:px-4 py-0.5 cursor-pointer' >ADD</button>
+          </div>
+          <input type="checkbox" checked={finished} onChange={handlefinished} className='text-purple-300 border-purple-300 ml-5' /> Show Finished
         </div>
-        <div className="addtodo p-2 flex justify-center gap-8">
-          <input onChange={handlechange} value={todo} className='rounded-3xl p-2 bg-amber-50 pr-20' type="text" placeholder="Add a new todo..." />
-          <button onClick={handleadd} className='bg-indigo-200 rounded-2xl text-xl px-4 py-0.5 cursor-pointer' >ADD</button>
-        </div>
-        <input type="checkbox" checked={finished} onChange={handlefinished} /> Show Finished
       </main>
 
 
@@ -75,7 +81,7 @@ function App() {
         {alltodos.map((item) => {
           if (finished && !item.iscompleted) return null
           return (
-            <div name={item.todo} key={item.id} className="showtodos p-4 flex flex-col gap-4 m-4 w-[95%] bg-violet-500 rounded-2xl mx-auto ">
+            <div name={item.todo} key={item.id} className="showtodos p-3 flex flex-col gap-4 m-4 w-[95%] bg-violet-500 rounded-2xl mx-auto ">
 
               <div name={item.todo} className="listedtodo flex justify-between items-center">
                 <div className='flex gap-3'>
@@ -83,9 +89,11 @@ function App() {
                   <input onChange={(e) => handlecheckbox(e, item.id)} type="checkbox" name="" id="" checked={item.iscompleted} />
                   <div className={item.iscompleted ? 'line-through' : ' '} >{item.todo}</div>
                 </div>
-                <div className="buttons flex gap-4 items-center">
-                  <button onClick={(e) => handleedit(e, item.id)} className='bg-blue-300 rounded-2xl text-[15px] px-3 py-0.5 cursor-pointer'>EDIT</button>
-                  <button onClick={(e) => handledelete(e, item.id)} className='bg-red-400 rounded-2xl text-[15px] px-3 py-0.5 cursor-pointer '>DELETE</button>
+                <div className="buttons flex gap-5 items-center">
+                  <button onClick={(e) => handleedit(e, item.id)} className='bg-blue-300 rounded-2xl text-[15px] px-4 py-1.5 cursor-pointer'><MdOutlineEdit />
+                  </button>
+                  <button onClick={(e) => handledelete(e, item.id)} className='bg-red-400 rounded-2xl text-[15px] px-4 py-1.5 cursor-pointer '><RiDeleteBin3Fill />
+                  </button>
                 </div>
               </div>
 
