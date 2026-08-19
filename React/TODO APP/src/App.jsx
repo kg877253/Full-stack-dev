@@ -14,26 +14,37 @@ function App() {
     return todos ? JSON.parse(todos) : []
   })
   const [finished, setfinished] = useState(false)
+  const [editingId, setEditingId] = useState(null)
 
   const savetoLS = (updatedTodos) => {
     localStorage.setItem('todos', JSON.stringify(updatedTodos))
   }
 
   const handleadd = () => {
-    if (todo === '') return
-    const newtodos = [...alltodos, { id: uuidv4(), todo, iscompleted: false }]
-    setalltodos(newtodos)
-    settodo('')
-    savetoLS(newtodos)
+  if (todo.trim() === '') return
+
+  let newtodos
+  if (editingId) {
+    // purane todo ka text update karo, baaki sab same rakho
+    newtodos = alltodos.map((item) =>
+      item.id === editingId ? { ...item, todo: todo } : item
+    )
+    setEditingId(null)   // edit mode se bahar niklo
+  } else {
+    // ADD MODE: naya todo banao
+    newtodos = [...alltodos, { id: uuidv4(), todo, iscompleted: false }]
   }
 
+  setalltodos(newtodos)
+  settodo('')
+  savetoLS(newtodos)
+}
+
   const handleedit = (e, id) => {
-    let t = alltodos.filter((item) => item.id === id)
-    settodo(t[0].todo)
-    let newtodos = alltodos.filter((item) => item.id !== id)
-    setalltodos(newtodos)
-    savetoLS(newtodos)
-  }
+  let t = alltodos.find((item) => item.id === id)
+  settodo(t.todo)        // input box mein text daal do
+  setEditingId(id)        // bas yaad rakho ki YE wala edit ho raha hai
+}
 
   const handledelete = (e, id) => {
     if (confirm("Are you sure you want to delete this todo?") === false) return
@@ -47,12 +58,12 @@ function App() {
   }
 
   const handlecheckbox = (e, id) => {
-    let newtodos = [...alltodos]
-    let index = newtodos.findIndex((item) => item.id === id)
-    newtodos[index].iscompleted = !newtodos[index].iscompleted
-    setalltodos(newtodos)
-    savetoLS(newtodos)
-  }
+  const newtodos = alltodos.map((item) =>
+    item.id === id ? { ...item, iscompleted: !item.iscompleted } : item
+  )
+  setalltodos(newtodos)
+  savetoLS(newtodos)
+}
 
   const handlefinished = (e) => {
     setfinished(!finished)
