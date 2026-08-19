@@ -6,11 +6,12 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
 
   const [todo, settodo] = useState('')
-  
+
   const [alltodos, setalltodos] = useState(() => {
     let todos = localStorage.getItem('todos')
     return todos ? JSON.parse(todos) : []
   })
+  
   const savetoLS = (updatedTodos) => {
     localStorage.setItem('todos', JSON.stringify(updatedTodos))
   }
