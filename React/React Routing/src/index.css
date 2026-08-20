@@ -1,0 +1,7 @@
+@import "tailwindcss";
+nav{
+  @apply bg-gray-800 text-white p-4;
+}
+ul{
+  @apply flex space-x-4;
+}
