@@ -5,8 +5,8 @@ const fs= require('fs');
 const birds = require('./routes/blog');
 
 app.use(express.static('public'));
-
-app.use('/blog', birds);
+//is kar ki jgh jo dalenge vo prefix hoga url ka mtlb 3000/kar/ krke hum blog.js vali file ke routes ko access karenge
+app.use('/kar', birds);
 
 //MIDDLEWARE-1  
 app.use((req, res, next) => {
