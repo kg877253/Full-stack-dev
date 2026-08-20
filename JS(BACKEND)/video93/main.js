@@ -6,17 +6,17 @@ const port = 3000;
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    let sitename = "abibas";
+    let dublicate = "kuprat";
     let searchbar = "Search now";
     
-    res.render('index', { sitename: sitename, searchbar: searchbar });
+    res.render('index', { sitename: dublicate, searchbar: searchbar });
 });
 
 app.get('/blog/:slug', (req, res) => {
-    let blogtitle = "adidas shoes";
-    let blogcontent = "good brand & shoes"
+    let slugtitle = req.params.slug;
+    let slugcontent = "good brand & shoes"
 
-    res.render('blogpost', { blogtitle: blogtitle, blogcontent: blogcontent });
+    res.render('blogpost', { blogtitle: slugtitle, blogcontent: slugcontent });
 });
 
 app.listen(port, () => {
