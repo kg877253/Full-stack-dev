@@ -9,26 +9,29 @@ import Navbar from './components/Navbar'
 
 function App() {
 
-  const router=createBrowserRouter([
+  const router = createBrowserRouter([
     {
-      path:"/",
-      element:<><Navbar/> <Home/></>
+      path: "/",
+      element: <><Navbar /> <Home /></>
     },
     {
-      path:"/about",
-      element:<><Navbar/> <About/></>},
+      path: "/about",
+      element: <><Navbar /> <About /></>
+    },
     {
-      path:"/login",
-      element:<><Navbar/> <Login/></>},
-      {
-      path:"/user/:namme",
-      element:<><Navbar/> <User/></>}
+      path: "/login",
+      element: <><Navbar /> <Login /></>
+    },
+    {
+      path: "/user/:namme",
+      element: <><Navbar /> <User /></>
+    }
   ])
 
   return (
     <>
-    <RouterProvider router={router}/>
-      
+      <RouterProvider router={router} />
+
     </>
   )
 }
