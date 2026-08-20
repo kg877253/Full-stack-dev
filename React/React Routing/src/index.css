@@ -3,5 +3,11 @@ nav{
   @apply bg-gray-800 text-white p-4;
 }
 ul{
-  @apply flex space-x-4;
+  @apply flex space-x-4 gap-20;
+}
+.blue{
+  @apply bg-blue-400 text-white p-2 rounded;
+}
+.red{
+  @apply bg-red-400 text-white p-2 rounded;
 }
