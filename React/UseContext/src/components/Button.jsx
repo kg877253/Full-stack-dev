@@ -6,7 +6,7 @@ const Button = () => {
   const value = useContext(countcon)
   return (
     <div>
-      <button onClick={() => value.setCount((count) => count + 1)}>Counter times --  <Comp/></button>
+      <button onClick={() => value.setCount((count) => count + 1)}>Counter times --<Comp/></button>
     </div>
   )
 }
