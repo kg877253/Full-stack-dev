@@ -1,13 +1,17 @@
 @import "tailwindcss";
-nav{
+
+nav {
   @apply bg-gray-800 text-white p-4;
 }
-ul{
+
+ul {
   @apply flex space-x-4 gap-20;
 }
-.blue{
+
+.blue {
   @apply bg-blue-400 text-white p-2 rounded;
 }
-.red{
+
+.red {
   @apply bg-red-400 text-white p-2 rounded;
 }
