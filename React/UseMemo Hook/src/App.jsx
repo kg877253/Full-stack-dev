@@ -1,15 +1,12 @@
 import { useState, useMemo } from 'react'
 import './App.css'
 
-
 const nums = new Array(3_000_000).fill(0).map((_, i) => {
     return {
         index: i,
         isMagical: i === 2_000_000
     }
 })
-
-
 function App() {
     const [count, setCount] = useState(0)
     const [numbers, setNumbers] = useState(nums)
