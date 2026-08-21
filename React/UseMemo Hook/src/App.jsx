@@ -4,8 +4,7 @@ import './App.css'
 const nums = new Array(3_000_000).fill(0).map((_, i) => {
     return {
         index: i,
-        isMagical: i === 2_000_000
-    }
+        isMagical: i === 2_000_000 }
 })
 
 function App() {
