@@ -16,8 +16,7 @@ function App() {
     const magical = useMemo(() => number.find(item => item.isMagical === true), [number])
 
     return (
-        <>
-            <div>
+        <> <div>
                 <span>Magical number is {magical.index}</span>
                 <a href="https://vitejs.dev" target="_blank">Vite</a>
                 <a href="https://react.dev" target="_blank">React</a>
