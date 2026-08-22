@@ -10,10 +10,10 @@ const nums = new Array(3_000_000).fill(0).map((_, i) => {
 
 function App() {
     const [count, setCount] = useState(0)
-    const [numbers, setNumbers] = useState(nums)
+    const [number, setnumber] = useState(nums)
 
-    // const magical = numbers.find(item=>item.isMagical===true) // Expensive Computation
-    const magical = useMemo(() => numbers.find(item => item.isMagical === true), [numbers])
+    // const magical = number.find(item=>item.isMagical===true) // Expensive Computation
+    const magical = useMemo(() => number.find(item => item.isMagical === true), [number])
 
     return (
         <>
@@ -27,7 +27,7 @@ function App() {
                 <button onClick={() => {
                     setCount((count) => count + 1);
                     if (count == 10) {
-                        setNumbers(new Array(2_000_000).fill(0).map((_, i) => {
+                        setnumber(new Array(2_000_000).fill(0).map((_, i) => {
                             return {
                                 index: i,
                                 isMagical: i === 1_000_000
