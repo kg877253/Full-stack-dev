@@ -16,12 +16,12 @@ function App() {
     const magical = useMemo(() => number.find(item => item.isMagical === true), [number])
 
     return (
-        <>
-            <div>
-                <span>Magical number is {magical.index}</span>
-                <a href="https://vitejs.dev" target="_blank">Vite</a>
-                <a href="https://react.dev" target="_blank">React</a>
-            </div>
+        <> 
+        <div>
+            <span>Magical number is {magical.index}</span>
+            <a href="https://vitejs.dev" target="_blank">Vite</a>
+            <a href="https://react.dev" target="_blank">React</a>
+        </div>
             <h1>Vite + React</h1>
             <div className="card">
                 <button onClick={() => {
