@@ -10,12 +10,12 @@ function App() {
   const [adjective, setadjective] = useState("good")
 
   const getadjective = useCallback(() => {
-    setadjective("bad")
-  },[] )
+    setadjective(adjective + "a")
+  },[adjective] )
   
   return (
     <>
-    <Navbar adjective={adjective} getadjective={getadjective} />
+    <Navbar adjective={adjective} getadjective={getadjective} count={count} />
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
