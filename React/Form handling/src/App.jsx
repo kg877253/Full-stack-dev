@@ -3,12 +3,14 @@ import './App.css'
 import { useForm } from "react-hook-form"
 
 function App() {
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors, isSubmitting },
   } = useForm()
+
   const delay = (t) => {
     return new Promise((resolve, reject) => {
       setTimeout((t) => {
@@ -16,6 +18,7 @@ function App() {
       }, t * 1000);
     })
   }
+  
   const onSubmit = async (data) => {
     await delay(2)
     console.log(data)
