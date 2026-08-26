@@ -30,7 +30,7 @@ function App() {
       <br />
       {isSubmitting && <p>Submitting...</p>}
       <form action="" onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder='enter username' {...register("username", { required: { value: true, message: "This field is required" }, minLength: { value: 2, message: "Username must be at least 2 characters" }, maxLength: { value: 18, message: "Username must be less than 18 characters" } })} />
+        <input type="text" placeholder='enter username'{...register("username", { required: { value: true, message: "This field is required" }, minLength: { value: 2, message: "Username must be at least 2 characters" }, maxLength: { value: 18, message: "Username must be less than 18 characters" } })} />
         {errors.username && <p>{errors.username.message}</p>}
         <br />
         <input type="password" placeholder='enter password' {...register("password", { required: { value: true, message: "This field is required" } })} />
