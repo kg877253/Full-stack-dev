@@ -25,7 +25,6 @@ function App() {
     let res = await r.text()
     console.log(data, res)
   }
-
   return (
     <>
       <br />
