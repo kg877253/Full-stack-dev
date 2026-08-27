@@ -10,12 +10,11 @@ import Navbar from './components/Navbar'
 function App() {
 
   const router = createBrowserRouter([
-    {
-      path: "/",
+    
+    {path: "/",
       element: <><Navbar /> <Home /></>
     },
-    {
-      path: "/about",
+    {path: "/about",
       element: <><Navbar /> <About /></>
     },
     {
