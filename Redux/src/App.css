@@ -182,3 +182,12 @@
     border-right-color: var(--border);
   }
 }
+
+.inputa{
+  border: 2px solid rgb(182, 131, 131);
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  background-color: rgb(230, 198, 156);
+  font-weight: bolder;
+}
