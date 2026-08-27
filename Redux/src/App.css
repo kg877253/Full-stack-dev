@@ -190,4 +190,15 @@
   margin: 10px;
   background-color: rgb(230, 198, 156);
   font-weight: bolder;
+  font-size: large;
+}
+.buttona{
+  border: 2px solid rgb(222, 193, 193);
+  border-radius: 5px;
+  padding: 10px 30px;
+  margin: 5px;
+  background-color: rgb(165, 234, 164);
+  font-weight: bolder;
+  font-size: larger;
+  cursor: pointer;
 }

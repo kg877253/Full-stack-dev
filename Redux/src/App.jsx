@@ -14,17 +14,17 @@ function App() {
       <Navbar />
       <br /><br />
       <div>
-        <button onClick={() => dispatch(decrement())}>-</button>
+        <button className='buttona' onClick={() => dispatch(decrement())}>-</button>
         <br />
         counter: {count}
         <br />
-        <button onClick={() => dispatch(increment())}>+</button>
+        <button className='buttona' onClick={() => dispatch(increment())}>+</button>
         <br />
-        <button onClick={() => dispatch(multiply())}>*2</button>
+        <button className='buttona' onClick={() => dispatch(multiply())}>*2</button>
         <br />
         <input type="number" value={amount} placeholder='Enter amount' onChange={(e) => setamount(e.target.value)} className='inputa' />
         <br />
-        <button onClick={()=>{
+        <button className='buttona' onClick={()=>{
           dispatch(incrementByAmount(amount));
         }}>Set </button>
       </div>
