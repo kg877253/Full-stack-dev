@@ -24,6 +24,11 @@ function App() {
     {
       path: "/user/:namme",
       element: <><Navbar /> <User /></>
+    },
+    // it selects all routes jo define nhi hai 
+    {
+      path: "*",
+      element: <><Navbar /> <h1>404 - Page Not Found</h1></>
     }
   ])
 
