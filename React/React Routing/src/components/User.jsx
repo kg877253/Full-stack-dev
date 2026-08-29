@@ -4,9 +4,9 @@ const User = () => {
     const params = useParams()
     // const {namme}=useParams()
     return (
-        <div>
+        <div className='bg-indigo-400'>
             {/* <h1>User: {namme}</h1> */}
-            <h1>User: {params.namme}</h1>
+            <h1>User ka nam dalo url me: {params.namme}</h1>
         </div>
     )
 }
