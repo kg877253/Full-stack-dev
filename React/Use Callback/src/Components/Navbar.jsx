@@ -9,5 +9,4 @@ const Navbar = ({ adjective,getadjective,count }) => {
     </div>
   )
 }
-
 export default memo(Navbar)

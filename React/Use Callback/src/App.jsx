@@ -11,8 +11,11 @@ function App() {
 
   const getadjective = useCallback(() => {
     setadjective(adjective + "a")
-  },[adjective] )
-  
+  }, [adjective])
+
+  // const getadjective = () => {
+  //   setadjective(adjective + "a")
+  // }
   return (
     <>
     <Navbar adjective={adjective} getadjective={getadjective} count={count} />
