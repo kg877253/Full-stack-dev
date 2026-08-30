@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
+
 const handler = NextAuth(
     {
         // Configure one or more authentication providers
@@ -16,6 +17,6 @@ const handler = NextAuth(
             // ...add more providers here
         ],
     }
-) 
+)
 
-export {handler as GET, handler as POST}
+export { handler as GET, handler as POST }
