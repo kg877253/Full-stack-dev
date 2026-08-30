@@ -14,7 +14,7 @@ export default function Component() {
   return (
     <><div className="flex flex-col gap-5 w-1/4 m-0-auto mt-10 p-5 border-2 border-gray-300 rounded-xl mx-auto">
 
-    <br />
+      <br />
       <span>Not signed in</span>
       <br />
       <button className="bg-blue-200 text-blue-800 hover:bg-blue-300 rounded-2xl p-2" onClick={() => signIn("github")}>Sign in with github</button>
