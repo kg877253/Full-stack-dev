@@ -6,7 +6,7 @@ export default function Home() {
     "use server"
     const name = e.get("namer");
     const address = e.get("adder");
-    await fs.writeFile("kartik.txt", `Name: ${name}, Address: ${address}`);
+    await fs.writeFile("kartik.txt", `Name: ${name}, Address: ${address}`);f
     console.log("Saved:", { name, address });
   }
   return (
