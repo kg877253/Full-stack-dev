@@ -9,6 +9,6 @@ export default async function Page({ params }) {
         return <div>My Post: {slug}</div>
     }
     else {
-        return <div className="bg-amber-100 text-black h-[100vh] w-full text-7xl text-center content-center font-bold">Post not found</div>
+        return <div className="bg-amber-100 text-black h-screen w-full text-7xl text-center content-center font-bold">Post not found</div>
     }
 }
