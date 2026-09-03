@@ -10,7 +10,7 @@ export default function AdminloginLayout({ children }) {
   return (
     <html lang="en" className={`h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <span>login navbar</span>
+      <span>login navbar</span>
         {children}
       </body>
     </html>
