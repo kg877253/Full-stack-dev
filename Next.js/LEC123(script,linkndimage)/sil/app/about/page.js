@@ -19,8 +19,7 @@ export default function MapPage() {
       <div ref={mapRef} style={{ height: '550px', width: '1400px', border: '3px solid red' }}></div>
 
       {/* Google ki script load karo, load hote hi map banao */}
-      <Script
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}`}
+      <Script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}`}
         strategy="afterInteractive"
         onReady={initMap}
       />
