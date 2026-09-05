@@ -5,6 +5,7 @@ const app = express()
 const port = 3000
 
 //Middleware
+
 app.use(express.urlencoded({ extended: false })) //Parse URL-encoded bodies (as sent by HTML forms)
 
 //ROUTES
@@ -34,43 +35,43 @@ app.route('/api/users/:id').get((req, res) => {
 }).patch((req, res) => {
     //Edit user
     const id = Number(req.params.id)
-    if(!users){
-        return res.json({message: "not found"})
+    if (!users) {
+        return res.json({ message: "not found" })
     }
-    else{
+    else {
         const id = Number(req.params.id)
         const userindex = users.findIndex(user => user.id === id)
 
-        if(userindex === -1){
-            return res.json({message: "not found"})
+        if (userindex === -1) {
+            return res.json({ message: "not found" })
         }
-        
-        else{
-            users[userindex]={...users[userindex], ...req.body}
+
+        else {
+            users[userindex] = { ...users[userindex], ...req.body }
             fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
-            return res.json({ status: 'successfully updated', id: users[userindex].id})
+            return res.json({ status: 'successfully updated', id: users[userindex].id })
         }
     }
 }).delete((req, res) => {
     //Delete user
     const id = Number(req.params.id)
     const userindex = users.findIndex(user => user.id === id)
-    if(userindex === -1){
-            return res.json({message: "not found"})
+    if (userindex === -1) {
+        return res.json({ message: "not found" })
     }
-    else{
-        users.splice(userindex,1)
+    else {
+        users.splice(userindex, 1)
         fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
-        return res.json({ status: 'successfully deleted', id: id})
+        return res.json({ status: 'successfully deleted', id: id })
     }
 })
 
 app.post('/api/users', (req, res) => {
     //Create a new user
-    const bd= req.body
-    users.push({id: users.length + 1, ...bd})
+    const bd = req.body
+    users.push({ id: users.length + 1, ...bd })
     fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
-    return res.json({ status: 'successfully created', id: users.length})
+    return res.json({ status: 'successfully created', id: users.length })
 })
 
 app.listen(port, () => {
