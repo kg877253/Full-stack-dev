@@ -46,7 +46,7 @@ app.route('/api/users/:id').get((req, res) => {
             return res.json({ message: "not found" })}
         else {
             users[userindex] = { ...users[userindex], ...req.body }
-            fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
+            fs.writeFile('./MOCK_DATA.json', JSON.stringify(users))
             return res.json({ status: 'successfully updated', id: users[userindex].id })
         }
     }
@@ -59,7 +59,7 @@ app.route('/api/users/:id').get((req, res) => {
     }
     else {
         users.splice(userindex, 1)
-        fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
+        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users))
         return res.json({ status: 'successfully deleted', id: id })
     }
 })
@@ -68,8 +68,8 @@ app.post('/api/users', (req, res) => {
     //Create a new user
     const bd = req.body
     users.push({ id: users.length + 1, ...bd })
-    fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
-    
+    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users))
+
     return res.json({ status: 'successfully created', id: users.length })
 })
 
