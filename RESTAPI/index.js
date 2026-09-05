@@ -19,6 +19,10 @@ app.get('/users', (req, res) => {
 
 //REST API
 app.get('/api/users', (req, res) => {
+
+    res.setHeader('X-myname', 'Kartik') //Add a custom header to the response
+    //Always add X in front of the custom header name
+    console.log(req.headers)
     return res.json(users)
 })
 
