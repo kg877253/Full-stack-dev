@@ -32,7 +32,7 @@ app.route('/api/users/:id').get((req, res) => {
     const user = users.find(user => user.id === id)
 
     return res.json(user)
-}).patch((req, res) => {
+}).patch( ( req , res ) => {
     //Edit user
     const id = Number(req.params.id)
     if (!users) {
@@ -43,9 +43,7 @@ app.route('/api/users/:id').get((req, res) => {
         const userindex = users.findIndex(user => user.id === id)
 
         if (userindex === -1) {
-            return res.json({ message: "not found" })
-        }
-
+            return res.json({ message: "not found" })}
         else {
             users[userindex] = { ...users[userindex], ...req.body }
             fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
@@ -71,6 +69,7 @@ app.post('/api/users', (req, res) => {
     const bd = req.body
     users.push({ id: users.length + 1, ...bd })
     fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
+    
     return res.json({ status: 'successfully created', id: users.length })
 })
 
