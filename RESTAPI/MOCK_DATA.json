@@ -4002,18 +4002,10 @@
     {
         "id": 501,
         "first_name": "kartik",
-        "last_name": "gupta",
+        "last_name": "guptaa",
         "email": "kg8772@gmail.com",
         "gender": "male",
-        "job_title": "student dev"
-    },
-    {
-        "id": 502,
-        "first_name": "huios",
-        "last_name": "ujik",
-        "email": "huj102@gmail.com",
-        "gender": "male",
-        "job_title": "software dev"
+        "job_title": "founder"
     },
     {
         "id": 503,

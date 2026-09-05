@@ -29,17 +29,44 @@ app.route('/api/users/:id').get((req, res) => {
     return res.json(user)
 }).patch((req, res) => {
     //Edit user
-    return res.json({ status: 'pending update' })
+    const id = Number(req.params.id)
+    if(!users){
+        return res.json({message: "not found"})
+    }
+    else{
+        const id = Number(req.params.id)
+        const userindex = users.findIndex(user => user.id === id)
+
+        if(userindex === -1){
+            return res.json({message: "not found"})
+        }
+        
+        else{
+            users[userindex]={...users[userindex], ...req.body}
+            fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
+            return res.json({ status: 'successfully updated', id: users[userindex].id})
+        }
+    }
 }).delete((req, res) => {
     //Delete user
-    return res.json({ status: 'pending deletion' })
+    const id = Number(req.params.id)
+    const userindex = users.findIndex(user => user.id === id)
+    if(userindex === -1){
+            return res.json({message: "not found"})
+    }
+    else{
+        users.splice(userindex,1)
+        fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
+        return res.json({ status: 'successfully deleted', id: id})
+    }
 })
 
 app.post('/api/users', (req, res) => {
+    //Create a new user
     const bd= req.body
     users.push({id: users.length + 1, ...bd})
     fs.writeFileSync('./MOCK_DATA.json', JSON.stringify(users))
-    return res.json({ status: 'success', id: users.length})
+    return res.json({ status: 'successfully created', id: users.length})
 })
 
 app.listen(port, () => {
