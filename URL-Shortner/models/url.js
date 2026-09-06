@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');   
+const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
     shortId: {
@@ -15,11 +15,11 @@ const urlSchema = new mongoose.Schema({
         timestamp: {
             type: Date,
         }
-    }],    
-    },
+    }],
+},
     { timestamps: true }
 );
 
-const URL= mongoose.model('url', urlSchema);
+const URL = mongoose.model('url', urlSchema);
 
 module.exports = URL;
