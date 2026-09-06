@@ -27,9 +27,13 @@ app.get('/api/users', (req, res) => {
     return res.json(users)
 })
 
-app.route('/api/users/:id').get((req, res) => {
+app.route('/api/users/:id')
+.get((req, res) => {
     const id = Number(req.params.id) //Dynamically get the id from the URL
     const user = users.find(user => user.id === id)
+    if (!user) {
+        return res.status(404).json({ message: "user not found" })
+    }
 
     return res.json(user)
 }).patch( ( req , res ) => {
@@ -46,7 +50,7 @@ app.route('/api/users/:id').get((req, res) => {
             return res.json({ message: "not found" })}
         else {
             users[userindex] = { ...users[userindex], ...req.body }
-            fs.writeFile('./MOCK_DATA.json', JSON.stringify(users))
+            fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => { if (err) console.error(err) })
             return res.json({ status: 'successfully updated', id: users[userindex].id })
         }
     }
@@ -59,18 +63,25 @@ app.route('/api/users/:id').get((req, res) => {
     }
     else {
         users.splice(userindex, 1)
-        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users))
+        fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => { if (err) console.error(err) })
         return res.json({ status: 'successfully deleted', id: id })
     }
+}).put((req, res) => {
+    //Replace user
+    const id = Number(req.params.id)
+    return res.status(501).json({ message: "Not implemented currently" })
 })
 
 app.post('/api/users', (req, res) => {
     //Create a new user
     const bd = req.body
+    if( !bd || !bd.first_name || !bd.last_name || !bd.email || !bd.gender || !bd.job_title) {
+        return res.status(400).json({ message: "All fields are required" })
+    }
     users.push({ id: users.length + 1, ...bd })
-    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users))
+    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => { if (err) console.error(err) })
 
-    return res.json({ status: 'successfully created', id: users.length })
+    return res.status(201).json({ status: 'successfully created', id: users.length })
 })
 
 app.listen(port, () => {

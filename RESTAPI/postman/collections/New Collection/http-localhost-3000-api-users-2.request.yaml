@@ -1,0 +1,10 @@
+$kind: http-request
+name: http://localhost:3000/api/users
+description: ""
+url: http://localhost:3000/api/users/499
+method: PATCH
+body:
+  type: urlencoded
+  content:
+    first_name: huli
+order: 2000
