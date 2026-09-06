@@ -4,7 +4,6 @@ import express from "express";
 
 import { Todo } from "./modules/todo.js";
 
-
 await mongoose.connect("mongodb://localhost:27017/todo");
 const app = express();
 const port = 3000;
@@ -22,7 +21,6 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/a", async (req, res) => {
-
     const todos = await Todo.find({ completed: false });
 
     res.json(todos);
