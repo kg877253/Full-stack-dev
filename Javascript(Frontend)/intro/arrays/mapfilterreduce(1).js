@@ -19,6 +19,7 @@ console.log(d)
 function sum(a, b) {
     return a + b
 }
+
 let e = [1, 2, 3, 4, 51]
 let sume = e.reduce(sum)
 console.log(sume)
