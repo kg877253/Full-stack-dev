@@ -2,6 +2,7 @@
 //map method returns a new array with the results of calling a provided function on every element in the calling array.
 
 let a = [10, 20, 30, 40, 50]
+
 let b = a.map((value) => {
     return value * 2
 })
