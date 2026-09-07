@@ -13,7 +13,6 @@ let d = c.filter((value) => {
 })
 console.log(d)
 
-
 //ye naya array nhi banata hai ye sirf ek single value return karta hai
 //reduce method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
 function sum(a, b) {
