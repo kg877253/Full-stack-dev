@@ -82,7 +82,7 @@
         tbody tr:nth-child(odd) {
             background-color: #d2f9be;
         }
-        
+
         th, td {
             border: 1px solid #ddd;
             padding: 4px;
@@ -92,12 +92,15 @@
 </head>
 
 <body>
+    
     <h1>Server-Side Rendering</h1>
+
     <% if(locals.id) { %>
         <h2>Shortened URL: http://localhost:3000/main/<%= locals.id %>
         </h2>
         <p>LINK-- <a href="/main/<%= locals.id %>">Redirect URL</a></p>
     <% } %>
+
     <div>
         <form action="/main/url" method="POST">
             <label> Enter your URL:</label><br>
