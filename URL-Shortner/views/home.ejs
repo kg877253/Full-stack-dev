@@ -32,7 +32,8 @@
             justify-self: center;
             margin-top: 20px;
             border: 2px solid #2222;
-            padding: 8px;
+            border-radius: 90%/35% ;
+            padding: 18px;
             margin: 2px;
             label{
                 font-size: large;
@@ -63,6 +64,7 @@
                 color: white;
                 border: none;
                 cursor: pointer;
+                transition: background-color 0.3s;
             }
         }
         table {
@@ -95,42 +97,34 @@
         <h2>Shortened URL: http://localhost:3000/main/<%= locals.id %>
         </h2>
         <p>LINK-- <a href="/main/<%= locals.id %>">Redirect URL</a></p>
+    <% } %>
+    <div>
+        <form action="/main/url" method="POST">
+            <label> Enter your URL:</label><br>
+            <input type="text" name="url" placeholder="https://example.com" required><br>
+            <button type="submit">Shorten </button>
+        </form>
+    </div>
+        <% if(locals.urls && locals.urls.length> 0) { %>
+            <table>
+                <thead>
+                    <th>S. No.</th>
+                    <th>Shortened URL</th>
+                    <th>Original URL</th>
+                    <th>Visit Count</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((element, index)=> { %>
+                        <tr>
+                            <td><%= index + 1 %></td>
+                            <td> <a href="/main/<%= element.shortId %>">http://localhost:3000/main/<%= element.shortId %></a></td>
+                            <td> <%= element.redirectUrl %></td>
+                            <td>  <%= element.visithistory.length %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
         <% } %>
-            <div>
-                <form action="/main/url" method="POST">
-                    <label> Enter your URL:</label><br>
-                    <input type="text" name="url" placeholder="https://example.com" required><br>
-                    <button type="submit">Shorten </button>
-                </form>
-            </div>
-            <% if(locals.urls && locals.urls.length> 0) { %>
-                <table>
-                    <thead>
-                        <th>S. No.</th>
-                        <th>Shortened URL</th>
-                        <th>Original URL</th>
-                        <th>Visit Count</th>
-                    </thead>
-                    <tbody>
-                        <% urls.forEach((element, index)=> { %>
-                            <tr>
-                                <td>
-                                    <%= index + 1 %>
-                                </td>
-                                <td>
-                                    <a href="/main/<%= element.shortId %>">http://localhost:3000/main/<%= element.shortId %></a>
-                                </td>
-                                <td>
-                                    <%= element.redirectUrl %>
-                                </td>
-                                <td>
-                                    <%= element.visithistory.length %>
-                                </td>
-                            </tr>
-                            <% }); %>
-                    </tbody>
-                </table>
-                <% } %>
 </body>
 
 </html>
