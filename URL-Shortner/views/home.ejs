@@ -92,7 +92,7 @@
 </head>
 
 <body>
-    
+
     <h1>Server-Side Rendering</h1>
 
     <% if(locals.id) { %>
@@ -108,14 +108,17 @@
             <button type="submit">Shorten </button>
         </form>
     </div>
+
         <% if(locals.urls && locals.urls.length> 0) { %>
             <table>
+
                 <thead>
                     <th>S. No.</th>
                     <th>Shortened URL</th>
                     <th>Original URL</th>
                     <th>Visit Count</th>
                 </thead>
+
                 <tbody>
                     <% urls.forEach((element, index)=> { %>
                         <tr>
@@ -126,6 +129,7 @@
                         </tr>
                     <% }); %>
                 </tbody>
+                
             </table>
         <% } %>
 </body>
