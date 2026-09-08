@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 22px;
+            background-color: #f2eaea;   
+        }
+        a{
+            text-decoration: none;
+            color: #db2784;
+        }
+        h1 {
+            color: #2e2c2c;
+            width: fit-content;
+            padding: 14px;
+            border: 3px solid #abccec;
+            border-radius: 40% 10% 40% 10%;
+            justify-self: center;
+        }
+        
+        li {
+            margin: 10px;
+        }
+        
+        form  {
+            justify-self: center;
+            margin-top: 20px;
+            border: 2px solid #2222;
+            padding: 8px;
+            margin: 2px;
+            label{
+                font-size: large;
+                text-decoration: underline;
+                font-weight: 700;
+            }
+            input{
+                width: 300px;
+                padding: 10px;
+                margin-top: 15px;
+                margin-right: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                align-items: baseline;
+                font-size: medium;
+                font-weight: 500;
+                text-decoration: dotted underline;
+            }
+            input:focus{
+                outline: none;
+                border-color: #a50c5b;
+            }
+            button{
+                padding: 5px 10px;
+                margin-top: 10px;
+                background-color: #a50c5b;
+                border-radius: 20%;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            justify-self: center;
+            margin-top: 20px;
+        }
+        thead {
+            background-color: #2222;
+            font-size: large;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #abccec;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #d2f9be;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Server-Side Rendering</h1>
+    <% if(locals.id) { %>
+        <h2>Shortened URL: http://localhost:3000/main/<%= locals.id %>
+        </h2>
+        <p>LINK-- <a href="/main/<%= locals.id %>">Redirect URL</a></p>
+        <% } %>
+            <div>
+                <form action="/main/url" method="POST">
+                    <label> Enter your URL:</label><br>
+                    <input type="text" name="url" placeholder="https://example.com" required><br>
+                    <button type="submit">Shorten </button>
+                </form>
+            </div>
+            <% if(locals.urls && locals.urls.length> 0) { %>
+                <table>
+                    <thead>
+                        <th>S. No.</th>
+                        <th>Shortened URL</th>
+                        <th>Original URL</th>
+                        <th>Visit Count</th>
+                    </thead>
+                    <tbody>
+                        <% urls.forEach((element, index)=> { %>
+                            <tr>
+                                <td>
+                                    <%= index + 1 %>
+                                </td>
+                                <td>
+                                    <a href="/main/<%= element.shortId %>">http://localhost:3000/main/<%= element.shortId %></a>
+                                </td>
+                                <td>
+                                    <%= element.redirectUrl %>
+                                </td>
+                                <td>
+                                    <%= element.visithistory.length %>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <% } %>
+</body>
+
+</html>

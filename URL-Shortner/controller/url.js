@@ -17,7 +17,7 @@ async function gennewshorturl(req, res) {
         visithistory: []
     })
 
-    return res.status(201).json({ shortId: shortId });
+    return res.render('home', { id: shortId });
 }
 
 //Function to redirect to the original URL and record the visit
