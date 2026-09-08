@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 22px;
+            background-color: #c7c5c5;
+        }
+        h1 {
+            color: #2e2c2c;
+        }
+        li {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Server-Side Rendering</h1>
+    <% url.forEach(urls=> { %>
+        <li><%= urls.shortId %></li>
+        <li><%= urls.redirectUrl %></li>
+        <li><%= urls.visithistory.length %></li><br>
+    <% }); %>
+</body>
+</html>
