@@ -34,12 +34,14 @@ async function gotoshorturl(req, res) {
 
 //Function to get analytics for a short URL
 async function getanalytics(req, res) {
+
     const shortId = req.params.shortId;
     const entry = await URL.findOne({ shortId: shortId });
     if (!entry) {
         return res.status(404).json({ error: 'Short URL not found' });
     }
     return res.status(200).json({ totalclicks: entry.visithistory.length, visithistory: entry.visithistory });
+    
 }
 
 
