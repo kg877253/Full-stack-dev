@@ -41,8 +41,7 @@ async function getanalytics(req, res) {
         return res.status(404).json({ error: 'Short URL not found' });
     }
     return res.status(200).json({ totalclicks: entry.visithistory.length, visithistory: entry.visithistory });
-    
-}
 
+}
 
 module.exports = { gennewshorturl, getanalytics, gotoshorturl };
