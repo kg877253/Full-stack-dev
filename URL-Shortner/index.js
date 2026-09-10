@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const URL = require('./models/url');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const authMiddleware = require('./middlewares/auth');
 
 const staticroute = require('./routes/staticroute');
 const urlRoutes = require('./routes/url');
@@ -13,9 +15,9 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-
-app.use('/', staticroute);
+app.use('/', authMiddleware, staticroute);
 app.use('/main', urlRoutes);
 app.use('/users', userRoutes);
 
