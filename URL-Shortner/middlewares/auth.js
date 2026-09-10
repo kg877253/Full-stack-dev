@@ -1,5 +1,5 @@
 const { getuser } = require('../service/auth');
-                                     
+
 async function authMiddleware(req, res, next) {
     const publicPaths = ['/login', '/signup'];
     if (publicPaths.includes(req.path)) {
@@ -25,4 +25,4 @@ async function checkauth(req, res, next) {
     req.user = getuser(sessionid);
     next();
 }
-module.exports = {authMiddleware, checkauth};
+module.exports = { authMiddleware, checkauth };
