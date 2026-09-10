@@ -5,7 +5,7 @@ const URL = require('../models/url');
 async function gennewshorturl(req, res) {
     const shortId = nanoid(8);
     const body = req.body;
-    if (await URL.findOne({ redirectUrl: body.url })) {
+    if (await URL.findOne({ redirectUrl: body.url , createdBy: req.user._id }) ) {  
         return res.status(400).json({ error: 'URL already exists' });
     }
     if (!body.url) {
@@ -14,7 +14,8 @@ async function gennewshorturl(req, res) {
     await URL.create({
         shortId: shortId,
         redirectUrl: body.url,
-        visithistory: []
+        visithistory: [],
+        createdBy: req.user._id
     })
 
     return res.render('home', { id: shortId });

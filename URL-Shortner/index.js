@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const URL = require('./models/url');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const authMiddleware = require('./middlewares/auth');
+const {authMiddleware,checkauth} = require('./middlewares/auth');
 
 const staticroute = require('./routes/staticroute');
 const urlRoutes = require('./routes/url');
@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 app.use('/users', userRoutes);                    // login/signup — auth check se pehle
 app.use('/', authMiddleware, staticroute);         // home page protected
-app.use('/main', authMiddleware, urlRoutes);       // URL shortener bhi protected (extra fix — pehle ye unprotected tha)
+app.use('/main', checkauth, urlRoutes);       // URL shortener bhi protected (extra fix — pehle ye unprotected tha)
 
 //connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/shorturl').then(() => {

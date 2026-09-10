@@ -5,7 +5,7 @@ async function authMiddleware(req, res, next) {
     if (publicPaths.includes(req.path)) {
         return next();
     }
-    
+
     const sessionid = req.cookies.sessionid;
     if (!sessionid) {
         return res.redirect('/login');
@@ -17,4 +17,12 @@ async function authMiddleware(req, res, next) {
     next();
 }
 
-module.exports = authMiddleware;
+async function checkauth(req, res, next) {
+    const sessionid = req.cookies.sessionid;
+    if (!sessionid || !getuser(sessionid)) {
+        return res.redirect('/login');
+    }
+    req.user = getuser(sessionid);
+    next();
+}
+module.exports = {authMiddleware, checkauth};

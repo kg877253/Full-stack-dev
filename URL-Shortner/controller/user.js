@@ -17,7 +17,7 @@ async function handleUserLogin(req, res) {
     const user = await User.findOne({email: email,password: password });
 
     if (!user){
-        return res.render('login', { error: 'Invalid email or password' });
+        return res.render('signup', { error: 'Email does not exist' });
     } 
 
     const sessionid = uuidv4();
