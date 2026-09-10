@@ -19,7 +19,13 @@ function getuser(token) {
     if (!token) {
         return null;
     }
+    try {
+        
     return jwt.verify(token, secret);
+    }
+    catch (err) {
+        return null;
+    }
 }
 
 module.exports = { setuser, getuser };

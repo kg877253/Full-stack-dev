@@ -6,7 +6,7 @@ async function authMiddleware(req, res, next) {
         return next();
     }
 
-    const sessionid = req.cookies.sessionid;
+    const sessionid = req.cookies.token;
     if (!sessionid) {
         return res.redirect('/login');
     }
@@ -18,7 +18,7 @@ async function authMiddleware(req, res, next) {
 }
 
 async function checkauth(req, res, next) {
-    const sessionid = req.cookies.sessionid;
+    const sessionid = req.cookies.token;
     if (!sessionid || !getuser(sessionid)) {
         return res.redirect('/login');
     }
