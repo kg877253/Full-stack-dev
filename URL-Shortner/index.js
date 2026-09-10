@@ -17,10 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', authMiddleware, staticroute);
-app.use('/main', urlRoutes);
-app.use('/users', userRoutes);
-
+app.use('/users', userRoutes);                    // login/signup — auth check se pehle
+app.use('/', authMiddleware, staticroute);         // home page protected
+app.use('/main', authMiddleware, urlRoutes);       // URL shortener bhi protected (extra fix — pehle ye unprotected tha)
 
 //connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/shorturl').then(() => {
