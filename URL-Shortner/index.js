@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const path = require('path');
-const staticroute = require('./routes/staticroute');
 const URL = require('./models/url');
+const path = require('path');
+
+
+const staticroute = require('./routes/staticroute');
 const urlRoutes = require('./routes/url');
+const userRoutes = require('./routes/user');
 
 const app = express();
 const port = 3000;
@@ -14,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', staticroute);
 app.use('/main', urlRoutes);
+app.use('/users', userRoutes);
 
 mongoose.connect('mongodb://localhost:27017/shorturl').then(() => {
   console.log('Connected to MongoDB');

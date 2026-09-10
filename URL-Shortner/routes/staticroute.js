@@ -7,4 +7,8 @@ router.get('/', async (req, res) => {
     res.render('home', { urls: allurl });
 });
 
+router.get('/signup', (req, res) => {
+    return res.render('signup');
+})
+
 module.exports = router;
