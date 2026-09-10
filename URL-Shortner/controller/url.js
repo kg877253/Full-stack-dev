@@ -3,9 +3,12 @@ const URL = require('../models/url');
 
 //Function to generate a new short URL
 async function gennewshorturl(req, res) {
+
     const shortId = nanoid(8);
     const body = req.body;
-    if (await URL.findOne({ redirectUrl: body.url , createdBy: req.user._id }) ) {  
+    
+    // Check if the URL already exists for the user but for the same user (createdBy)
+    if (await URL.findOne({ redirectUrl: body.url, createdBy: req.user._id })) {
         return res.status(400).json({ error: 'URL already exists' });
     }
     if (!body.url) {
