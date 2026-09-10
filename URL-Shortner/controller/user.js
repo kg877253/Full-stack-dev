@@ -12,6 +12,21 @@ async function handleUserSignup(req, res) {
     return res.redirect('/');
 }
 
+//for stateful authentication
+// async function handleUserLogin(req, res) {
+//     const { email, password} = req.body;
+//     const user = await User.findOne({email: email,password: password });
+
+//     if (!user){
+//         return res.render('signup', { error: 'Email does not exist' });
+//     } 
+
+//     const sessionid = uuidv4();
+//     setuser(sessionid, user);
+//     res.cookie('sessionid', sessionid, { httpOnly: true });
+//     return res.redirect('/');
+// }
+
 async function handleUserLogin(req, res) {
     const { email, password} = req.body;
     const user = await User.findOne({email: email,password: password });
@@ -20,9 +35,8 @@ async function handleUserLogin(req, res) {
         return res.render('signup', { error: 'Email does not exist' });
     } 
 
-    const sessionid = uuidv4();
-    setuser(sessionid, user);
-    res.cookie('sessionid', sessionid, { httpOnly: true });
+    const token = setuser(user);
+    res.cookie('token', token, { httpOnly: true });
     return res.redirect('/');
 }
 
