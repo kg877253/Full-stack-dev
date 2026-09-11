@@ -4,6 +4,10 @@ const { setuser, getuser } = require('../service/auth');
 
 async function handleUserSignup(req, res) {
     const { name, email, password } = req.body;
+   
+    if (await User.findOne({ email: email })) {
+        return res.render('signup', { error: 'Email already exists' });
+    }
     await User.create({
         name: name,
         email: email,
@@ -36,7 +40,9 @@ async function handleUserLogin(req, res) {
     }
 
     const token = setuser(user);
-    res.cookie('token', token, { httpOnly: true });
+    //maxage will logout the user after whatever time you set in maxage, here it is 900000ms = 15min;
+    res.cookie('token', token, { httpOnly: true, maxAge: 900000 });
+    
     return res.redirect('/');
 }
 
