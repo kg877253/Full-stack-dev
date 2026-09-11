@@ -15,6 +15,10 @@ function setuser(user) {
     }, secret);
 }
 
+// function getuser(sessionid) {
+//     return sessionidtousermap.get(sessionid);
+// }
+
 function getuser(token) {
     if (!token) {
         return null;
