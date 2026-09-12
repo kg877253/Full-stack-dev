@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 const Manager = () => {
+  
   const ref = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "" })
 
