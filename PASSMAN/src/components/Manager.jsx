@@ -3,11 +3,12 @@ import React, { useRef, useState } from 'react'
 const Manager = () => {
   const ref = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "" })
-  
+
   const showpassword = () => {
     if (ref.current.src.includes("eyecross")) {
       ref.current.src = "./icons/eyes.svg"
-    } else {
+    } 
+    else {
       ref.current.src = "./icons/eyecross.svg"
     }
   }
