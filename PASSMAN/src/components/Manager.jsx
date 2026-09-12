@@ -4,6 +4,7 @@ const Manager = () => {
 
   const ref = useRef()
   const passwordRef = useRef()
+  const gifref = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "" })
   const [passwordarray, setpasswordarray] = useState([])
 
@@ -35,6 +36,7 @@ const Manager = () => {
     setform({ ...form, [e.target.name]: e.target.value })
   }
 
+
   return (
     <>
       <div className='absolute inset-0 -z-10 h-full w-full bg-[#1e1e1e] bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:14px_24px]'></div>
@@ -60,7 +62,7 @@ const Manager = () => {
           </div>
 
           <button className='bg-green-500 hover:bg-green-400 cursor-pointer text-white font-bold py-2 px-4 rounded-2xl max-w-fit min-w-fit flex items-center justify-center gap-2' onClick={savepassword}>
-            <img width={25} src="./icons/add.svg" alt="" />
+            <img width={25} src="./icons/addgif.gif" alt="" />
             Add Password
           </button>
 
