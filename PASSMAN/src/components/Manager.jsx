@@ -1,22 +1,23 @@
-import React, { useRef ,useState} from 'react'
+import React, { useRef, useState } from 'react'
 
 const Manager = () => {
-  const ref=useRef()
-  const [form, setform] = useState({site:"",username:"",password:""})
-  const showpassword=()=>{
-    if(ref.current.src.includes("eyecross")){
-      ref.current.src="./icons/eyes.svg"
+  const ref = useRef()
+  const [form, setform] = useState({ site: "", username: "", password: "" })
+  
+  const showpassword = () => {
+    if (ref.current.src.includes("eyecross")) {
+      ref.current.src = "./icons/eyes.svg"
     } else {
-      ref.current.src="./icons/eyecross.svg"
+      ref.current.src = "./icons/eyecross.svg"
     }
   }
-  
-  const savepassword=()=>{
+
+  const savepassword = () => {
     console.log(form)
   }
-  
-  const savechange=(e)=>{
-    setform({...form,[e.target.name]:e.target.value})
+
+  const savechange = (e) => {
+    setform({ ...form, [e.target.name]: e.target.value })
   }
 
   return (
@@ -35,11 +36,11 @@ const Manager = () => {
             <div className='relative'>
               <input onChange={savechange} value={form.password} type="text" placeholder="Password" className='w-full rounded-md p-2 bg-green-100 border-2 border-green-800' name='password' />
               <span className='absolute right-2 top-2 cursor-pointer'>
-                <img ref={ref} width={30} src="./icons/eyes.svg" alt="" onClick={showpassword}/></span>
+                <img ref={ref} width={30} src="./icons/eyes.svg" alt="" onClick={showpassword} /></span>
             </div>
           </div>
           <button className='bg-green-500 hover:bg-green-400 cursor-pointer text-white font-bold py-2 px-2 rounded-2xl w-[13%] flex items-center justify-center gap-2' onClick={savepassword}>
-              <img width={30} src="./icons/add.svg" alt="" />
+            <img width={30} src="./icons/add.svg" alt="" />
             Add Password</button>
         </div>
       </div>
