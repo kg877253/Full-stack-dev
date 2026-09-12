@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 
 const Manager = () => {
-  
+
   const ref = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "" })
 
@@ -27,9 +27,11 @@ const Manager = () => {
       <div className='absolute inset-0 -z-10 h-full w-full bg-[#1e1e1e] bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:14px_24px]'></div>
 
       <div className='text-white'>
+
         <h1 className='text-5xl font-bold text-center mt-10'><span className='text-green-500'> &lt;</span>
           <span className=''>Pass</span>
-          <span className='text-green-500'>MAN/&gt;</span></h1>
+          <span className='text-green-500'>MAN/&gt;</span>
+        </h1>
         <p className='text-center mt-3'>Manage your passwords with ease</p>
         <div className="container mx-auto mt-10 flex flex-col gap-5 p-5 text-black items-center">
           <input onChange={savechange} value={form.site} type="text " placeholder="Website" className='rounded-md p-2 w-[50%] bg-green-100 border-3 border-green-600' name='site' />
