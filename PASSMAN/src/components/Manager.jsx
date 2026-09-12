@@ -44,13 +44,13 @@ const Manager = () => {
               <span className='absolute right-2 top-2 cursor-pointer'>
                 <img ref={ref} width={30} src="./icons/eyes.svg" alt="" onClick={showpassword} /></span>
             </div>
-
           </div>
 
           <button className='bg-green-500 hover:bg-green-400 cursor-pointer text-white font-bold py-2 px-2 rounded-2xl w-[13%] flex items-center justify-center gap-2' onClick={savepassword}>
             <img width={30} src="./icons/add.svg" alt="" />
             Add Password
           </button>
+
         </div>
       </div>
     </>
