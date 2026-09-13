@@ -173,7 +173,7 @@ const Manager = () => {
                 return <tr className='' key={index}>
                   <td className='text-center py-2 px-2 border-r border-black'>
                     <div className='flex items-center justify-center gap-4'>
-                      <span className='truncate'>{item.site}</span>
+                      <span className='truncate'><a href={item.site} target="_blank" rel="noopener noreferrer">{item.site}</a></span>
                       <img className='cursor-pointer w-4 md:w-6' src="./icons/copy.svg" alt=""  onClick={() => copytext(item.site)} />
                     </div>
                   </td>
