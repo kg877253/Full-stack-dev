@@ -11,11 +11,15 @@ const Manager = () => {
   const [form, setform] = useState({ site: "", username: "", password: "" })
   const [passwordarray, setpasswordarray] = useState([])
 
+  const getpasswords = async () => {
+    const response = await fetch("http://localhost:3000/")
+    const data = await response.json()
+    console.log(data)
+    setpasswordarray(data)
+  }
+
   useEffect(() => {
-    let data = localStorage.getItem("passwords")
-    if (data) {
-      setpasswordarray(JSON.parse(data))
-    }
+    getpasswords()
   }, [])
 
   const showpassword = () => {
@@ -29,7 +33,7 @@ const Manager = () => {
     }
   }
 
-  const savepassword = () => {
+  const savepassword = async () => {
     if (!form.site || !form.username || !form.password) {
       toast.error("Please fill all fields!", {
         position: "bottom-center",
@@ -45,7 +49,12 @@ const Manager = () => {
       return;
     }
     setpasswordarray([...passwordarray, { ...form, id: uuidv4() }])
-    localStorage.setItem("passwords", JSON.stringify([...passwordarray, { ...form, id: uuidv4() }]))
+    // localStorage.setItem("passwords", JSON.stringify([...passwordarray, { ...form, id: uuidv4() }]))
+    let res = await fetch("http://localhost:3000/", 
+      { method: "POST", headers: { "Content-Type": "application/json" },
+       body: JSON.stringify([...passwordarray, { ...form , id: uuidv4() }]) 
+    })
+
     console.log([...passwordarray, form])
     setform({ site: "", username: "", password: "" })
     Swal.fire({
@@ -67,11 +76,16 @@ const Manager = () => {
       confirmButtonText: "Yes, delete it😔",
       background: "#1e1e1e",
       color: "#fff",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
+        // Delete the password from the array
         const updatedArray = passwordarray.filter((item) => item.id !== id) //main working code 3 lines
         setpasswordarray(updatedArray)
-        localStorage.setItem("passwords", JSON.stringify(updatedArray))
+        // localStorage.setItem("passwords", JSON.stringify(updatedArray))
+        await fetch("http://localhost:3000/", {
+          method: "DELETE", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedArray)
+        })
         Swal.fire({
           title: "Deleted!",
           text: "Your password has been deleted.",
@@ -83,12 +97,16 @@ const Manager = () => {
     })
   }
 
-  const editPassword = (id) => {
+  const editPassword = async (id) => {
     const passwordToEdit = passwordarray.find((item) => item.id === id);
     if (passwordToEdit) {
       setform({ site: passwordToEdit.site, username: passwordToEdit.username, password: passwordToEdit.password });
       const updatedArray = passwordarray.filter((item) => item.id !== id);
       setpasswordarray(updatedArray);
+      await fetch("http://localhost:3000/", {
+        method: "DELETE", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedArray)
+      })
       localStorage.setItem("passwords", JSON.stringify(updatedArray))
 
     }
@@ -116,7 +134,7 @@ const Manager = () => {
 
   return (
     <>
-    {/* //For popups and notifications */}
+      {/* //For popups and notifications */}
       <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false}
         closeOnClick={false}
         rtl={false}
@@ -176,13 +194,13 @@ const Manager = () => {
                   <td className='text-center py-2 px-2 border-r border-black'>
                     <div className='flex items-center justify-center gap-4'>
                       <span className='truncate'><a href={item.site} target="_blank" rel="noopener noreferrer">{item.site}</a></span>
-                      <img className='cursor-pointer w-4 md:w-6' src="./icons/copy.svg" alt=""  onClick={() => copytext(item.site)} />
+                      <img className='cursor-pointer w-4 md:w-6' src="./icons/copy.svg" alt="" onClick={() => copytext(item.site)} />
                     </div>
                   </td>
                   <td className='text-center py-2 px-2 border-r border-black'>
                     <div className='flex items-center justify-center gap-4'>
                       <span className='truncate'>{item.username}</span>
-                      <img className='cursor-pointer w-4 md:w-6' src="./icons/copy.svg" alt=""  onClick={() => copytext(item.username)} />
+                      <img className='cursor-pointer w-4 md:w-6' src="./icons/copy.svg" alt="" onClick={() => copytext(item.username)} />
                     </div>
                   </td>
                   <td className='text-center py-2 px-2 border-r border-black'>
