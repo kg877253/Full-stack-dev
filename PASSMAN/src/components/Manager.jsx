@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { ToastContainer, toast, Bounce, Slide, Zoom , Flip } from 'react-toastify';
+import { ToastContainer, toast, Bounce, Slide, Zoom, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2'
 
 const Manager = () => {
 
@@ -29,19 +30,69 @@ const Manager = () => {
   }
 
   const savepassword = () => {
-    setpasswordarray([...passwordarray, {...form, id: uuidv4() }])
-    localStorage.setItem("passwords", JSON.stringify([...passwordarray, {...form, id: uuidv4() }]))
+    if (!form.site || !form.username || !form.password) {
+      toast.error("Please fill all fields!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      return;
+    }
+    setpasswordarray([...passwordarray, { ...form, id: uuidv4() }])
+    localStorage.setItem("passwords", JSON.stringify([...passwordarray, { ...form, id: uuidv4() }]))
     console.log([...passwordarray, form])
+    setform({ site: "", username: "", password: "" })
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1000
+    });
   }
 
   const deletePassword = (id) => {
-    const updatedArray = passwordarray.filter((item) => item.id !== id)
-    setpasswordarray(updatedArray)
-    localStorage.setItem("passwords", JSON.stringify(updatedArray))
+    Swal.fire({
+      title: "Delete this password?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#4b5563",
+      confirmButtonText: "Yes, delete it😔",
+      background: "#1e1e1e",
+      color: "#fff",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const updatedArray = passwordarray.filter((item) => item.id !== id) //main working code 3 lines
+        setpasswordarray(updatedArray)
+        localStorage.setItem("passwords", JSON.stringify(updatedArray))
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your password has been deleted.",
+          icon: "success",
+          background: "#1e1e1e",
+          color: "#fff",
+        });
+      }
+    })
   }
-  
+
   const editPassword = (id) => {
     const passwordToEdit = passwordarray.find((item) => item.id === id);
+    if (passwordToEdit) {
+      setform({ site: passwordToEdit.site, username: passwordToEdit.username, password: passwordToEdit.password });
+      const updatedArray = passwordarray.filter((item) => item.id !== id);
+      setpasswordarray(updatedArray);
+      localStorage.setItem("passwords", JSON.stringify(updatedArray))
+
+    }
+
   }
 
   const savechange = (e) => {
@@ -74,11 +125,13 @@ const Manager = () => {
         theme="dark"
         transition={Bounce}
       />
-      <div className='absolute inset-0 -z-10 h-full w-full bg-[#1e1e1e] bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:14px_24px]'></div>
+      <div className='fixed inset-0 -z-10 h-full w-full bg-[#1e1e1e] bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:14px_24px]'></div>
 
       <div className='text-white'>
 
-        <h1 className='text-5xl font-bold text-center mt-10'><span className='text-green-500'> &lt;</span>
+        <h1 className='text-5xl font-bold text-center mt-10 flex items-center justify-center'>
+          <img src="/lock-logo.png" alt="lock" width={55} height={50} />
+          <span className='text-green-500'>&lt;</span>
           <span className=''>Pass</span>
           <span className='text-green-500'>MAN/&gt;</span>
         </h1>
@@ -105,7 +158,7 @@ const Manager = () => {
         <div>
           <div className='text-center text-3xl font-extrabold mt-1 underline decoration-dashed decoration-green-200'>Your Passwords</div>
           {passwordarray.length === 0 && <h1 className='text-center text-2xl mt-10'>No Passwords Saved</h1>}
-          {passwordarray.length > 0 && <table className="table-fixed w-[70%] text-white mx-auto mt-4 rounded-t-xl overflow-hidden border-separate border-spacing-0">
+          {passwordarray.length > 0 && <table className="table-fixed w-[70%] text-white mx-auto mt-4 rounded-t-xl rounded-b-xl overflow-hidden border-separate border-spacing-0">
             <thead className='bg-green-600 text-white'>
               <tr>
                 <th className='py-2'>Website</th>
