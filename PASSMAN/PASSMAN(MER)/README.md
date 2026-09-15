@@ -2,7 +2,6 @@
 
 A full-stack password manager built with the MERN stack (MongoDB, Express, React, Node.js) and styled with Tailwind CSS. Save, view, copy, edit, and delete your website credentials — all persisted in MongoDB.
 
-![PassMAN Screenshot](./screenshot.png)
 
 ## ✨ Features
 
@@ -85,7 +84,7 @@ npm run dev
 
 Visit `http://localhost:5173` in your browser.
 
-## 📡 API Endpoints
+##  API Endpoints
 
 | Method | Endpoint       | Description              |
 |--------|----------------|---------------------------|
@@ -93,14 +92,14 @@ Visit `http://localhost:5173` in your browser.
 | POST   | `/`            | Add a new password entry  |
 | DELETE | `/:id`         | Delete a password by ID   |
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 - User authentication (login/signup) with JWT
 - Password encryption before storing in the database
 - Search/filter passwords by website
 - Password strength indicator
 
-## 👤 Author
+##  Author
 
 **Kartik Gupta**
 - GitHub: [@kg877253](https://github.com/kg877253)
