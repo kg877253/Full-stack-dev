@@ -6,7 +6,6 @@ import { getPasswords, addPassword, deletePasswordById } from '../api'
 import AnimatedLogo from './AnimatedLogo'
 
 const Manager = () => {
-
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
@@ -211,8 +210,7 @@ const Manager = () => {
                 </tr>
               })}
             </tbody>
-          </table>
-          }
+          </table>}
         </div>
       </div>
     </>
