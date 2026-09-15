@@ -89,8 +89,7 @@ const Manager = () => {
     <>
       <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false}
         closeOnClick={false} rtl={false} pauseOnFocusLoss draggable pauseOnHover
-        theme="dark" transition={Bounce}
-      />
+        theme="dark" transition={Bounce}/>
 
       <div className='fixed inset-0 -z-10 h-full w-full bg-[#1e1e1e] bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:74px_24px]'></div>
       {/* Naya glow layer — cursor follow karega */}
