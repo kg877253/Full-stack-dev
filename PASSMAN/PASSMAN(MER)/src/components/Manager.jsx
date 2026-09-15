@@ -33,13 +33,11 @@ const Manager = () => {
   const showpassword = () => {
     if (ref.current.src.includes("eyecross")) {
       passwordRef.current.type = "text"
-      ref.current.src = "./icons/eyes.svg"
-    }
+      ref.current.src = "./icons/eyes.svg"}
     else {
       passwordRef.current.type = "password"
       ref.current.src = "./icons/eyecross.svg"
-    }
-  }
+    }}
 
   const savepassword = async () => {
     if (!form.site || !form.username || !form.password) {
@@ -198,13 +196,14 @@ const Manager = () => {
                       <img className='cursor-pointer w-4 md:w-6 transition-transform duration-200 hover:scale-125 active:scale-90' src="./icons/copy.svg" alt="" onClick={() => copytext(item.username)} />
                     </div>
                   </td>
-                  
+
                   <td className='text-center py-2 px-2 border-r border-black'>
                     <div className='flex items-center justify-center gap-4'>
                       <span className='truncate'>{"*".repeat(item.password.length)}</span>
                       <img className='cursor-pointer w-4 md:w-6 transition-transform duration-200 hover:scale-125 active:scale-90' src="./icons/copy.svg" alt="" onClick={() => copytext(item.password)} />
                     </div>
                   </td>
+
                   <td className='text-center py-2 px-2 flex items-center justify-center gap-4 border-r border-black'>
                     <span><img width={28} src="./icons/delete.svg" alt="" className='cursor-pointer transition-transform duration-200 hover:scale-125 hover:rotate-6 active:scale-90' onClick={() => deletePassword(item._id)} /></span>
                     <span><img width={28} src="./icons/edit.svg" alt="" className='cursor-pointer transition-transform duration-200 hover:scale-125 hover:-rotate-6 active:scale-90' onClick={() => editPassword(item._id)} /></span>
