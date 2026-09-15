@@ -60,8 +60,7 @@ const Manager = () => {
         await deletePasswordById(id)
         await fetchPasswords()
         Swal.fire({ title: "Deleted!", text: "Your password has been deleted.", icon: "success", background: "#1e1e1e", color: "#fff" });
-      }
-    })
+      }})
   }
 
   const editPassword = async (id) => {
