@@ -191,12 +191,14 @@ const Manager = () => {
                       <img className='cursor-pointer w-4 md:w-6 transition-transform duration-200 hover:scale-125 active:scale-90' src="./icons/copy.svg" alt="" onClick={() => copytext(item.site)} />
                     </div>
                   </td>
+
                   <td className='text-center py-2 px-2 border-r border-black'>
                     <div className='flex items-center justify-center gap-4'>
                       <span className='truncate'>{item.username}</span>
                       <img className='cursor-pointer w-4 md:w-6 transition-transform duration-200 hover:scale-125 active:scale-90' src="./icons/copy.svg" alt="" onClick={() => copytext(item.username)} />
                     </div>
                   </td>
+                  
                   <td className='text-center py-2 px-2 border-r border-black'>
                     <div className='flex items-center justify-center gap-4'>
                       <span className='truncate'>{"*".repeat(item.password.length)}</span>
