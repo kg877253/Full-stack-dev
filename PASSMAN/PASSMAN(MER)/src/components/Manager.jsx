@@ -3,7 +3,7 @@ import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 import { getPasswords, addPassword, deletePasswordById } from '../api'
-import AnimatedLogo from './AnimatedLogo' 
+import AnimatedLogo from './AnimatedLogo'
 
 const Manager = () => {
 
