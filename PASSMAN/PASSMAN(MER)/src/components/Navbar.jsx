@@ -6,6 +6,7 @@ const Navbar = () => {
     <nav className='bg-gray-900/90 backdrop-blur-md flex flex-row gap-0 items-center justify-between px-6 md:px-10 text-white h-20 sticky top-0 z-50 border-b border-green-500/20 shadow-lg shadow-black/30'>
       <div className='flex items-center gap-2 text-2xl md:text-3xl font-medium cursor-pointer group'>
         <AnimatedLogo size={35} />
+        
         <span className='text-green-500 transition-colors duration-300'> &lt;</span>
         <span className='transition-colors duration-300'>Pass</span>
         <span className='text-green-500 group-hover:text-green-400 transition-colors duration-300'>MAN/&gt;</span>
