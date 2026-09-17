@@ -15,8 +15,7 @@ const socialButtons = [
             </svg>
         ),
     },
-    {
-        name: "LinkedIn",
+    {name: "LinkedIn",
         color: "hover:border-sky-500 hover:shadow-sky-500/30",
         icon: (
             <svg className="h-5 w-5" viewBox="702 265 44 44">
