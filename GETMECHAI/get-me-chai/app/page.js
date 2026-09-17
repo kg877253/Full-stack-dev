@@ -7,10 +7,10 @@ export default function Home() {
   if (session) {
     return (
       <>
-      <div className="text-white">
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </div>
+        <div className="text-white">
+          Signed in as {session.user.email} <br />
+          <button onClick={() => signOut()}>Sign out</button>
+        </div>
       </>
     )
   }
@@ -69,7 +69,7 @@ export default function Home() {
       </div>
 
       <div className="h-1 opacity-10 bg-white"></div>
-      
+
     </>
   );
 }
