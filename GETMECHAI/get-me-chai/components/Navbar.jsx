@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Navbar = () => {
     return (
-        <nav className="bg-gray-800 text-white py-4 flex justify-between items-center px-6 sticky top-0 z-50">
+        <nav className="bg-gray-800 text-white py-4 flex justify-between items-center px-6 sticky top-0">
             <div className="container mx-auto flex items-center gap-3">
                 <h1 className="text-xl font-bold cursor-pointer hover:scale-110 hover:rotate-2 duration-300">Get-me-chai</h1>
                 <Image src="/chai.gif" alt="Logo" width={30} height={30} />
