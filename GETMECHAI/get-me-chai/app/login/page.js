@@ -1,7 +1,6 @@
 import React from 'react'
 
-const socialButtons = [
-    {
+const socialButtons = [{
         name: "Google",
         color: "hover:border-red-400 hover:shadow-red-400/30",
         icon: (
