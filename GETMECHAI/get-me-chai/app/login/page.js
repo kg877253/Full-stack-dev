@@ -1,9 +1,16 @@
 "use client"
 import { signIn } from 'next-auth/react'
 import React from 'react'
+import { useSession, signOut } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
-
+  const { data: session } = useSession()
+  if (session) {
+    const router = useRouter();
+    router.push('/dashboard')
+  }
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex flex-col items-center pt-16 px-4">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-2">
@@ -72,7 +79,7 @@ const Login = () => {
 
         {/* Github */}
         <button
-          onClick={() => signIn("github", { callbackUrl: "/" })}
+          onClick={() => signIn("github", { callbackUrl: "/yourpage" })}
           className="group flex cursor-pointer items-center gap-3 w-full px-5 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-medium text-gray-100 transition-all duration-300 ease-out hover:bg-white/10 hover:scale-[1.03] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400/50 hover:border-gray-400 hover:shadow-gray-400/30"
         >
           <span className="flex items-center justify-center h-8 w-8 rounded-full bg-white/90 shrink-0 transition-transform duration-300 group-hover:rotate-6">
