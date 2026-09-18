@@ -31,22 +31,12 @@ const Dashboard = () => {
         setform({ ...form, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const res = await fetch('/api/dashboard', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(form),
-        })
-        const data = await res.json()
-        console.log(data)
-    }
 
     if (status === "loading") return <p className="text-white text-center mt-20">Loading...</p>
 
     return (
         <div className="flex justify-center px-4 py-12 bg-[#0a0e17] min-h-screen text-white">
-            <form onSubmit={handleSubmit} className="w-full max-w-xl bg-[#111826] border border-white/10 rounded-2xl p-8 shadow-lg">
+            <form className="w-full max-w-xl bg-[#111826] border border-white/10 rounded-2xl p-8 shadow-lg">
                 <h2 className="text-2xl font-bold mb-8 text-center">Welcome to your Dashboard</h2>
 
                 <div className="flex justify-center mb-8">
