@@ -47,13 +47,14 @@ export default async function Username({ params }) {
             <input type="text" placeholder='Enter Message' className='bg-slate-700 p-2 rounded-md' />
             <button className='w-10/12 mx-auto bg-gradient-to-br from-purple-700 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white py-2 px-4 rounded-md cursor-pointer'>Donate</button>
           </form>
-          <div className="buttons mt-4 flex flex-row gap-4 justify-center">
 
+          <div className="buttons mt-4 flex flex-row gap-4 justify-center">
             <button className='bg-gradient-to-br from-green-500 to-teal-500 hover:from-teal-500 hover:to-green-500 text-white py-2 px-4 rounded-md cursor-pointer'>Pay 10$</button>
             <button className='bg-gradient-to-br from-red-400 to-orange-500 hover:from-orange-500 hover:to-red-500 text-white py-2 px-4 rounded-md cursor-pointer'>Pay 25$</button>
             <button className='bg-gradient-to-br from-pink-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white py-2 px-4 rounded-md cursor-pointer'>Pay 50$</button>
           </div>
         </div>
+
       </div>
     </div>
   </>
