@@ -10,6 +10,7 @@ const razorpay = new Razorpay({
     key_secret: process.env.KEY_SECRET,
 })
 
+// Razorpay order create, payment record create, return order details to client
 export const initiatePayment = async (amount, to_username, paymentform) => {
     await dbConnect()
 
@@ -17,7 +18,6 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
         throw new Error("Amount kam se kam ₹1 hona chahiye")
     }
 
-    // Razorpay amount paise mein leta hai (₹1 = 100 paise)
     const options = {
         amount: Number(amount) * 100,
         currency: "INR",
@@ -26,7 +26,6 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
 
     const order = await razorpay.orders.create(options)
 
-    // Pending state mein save — verify hone ke baad done:true hoga
     await Payment.create({
         name: paymentform.name,
         to_user: to_username,
@@ -37,26 +36,38 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
     })
 
     return {
-        orderId: order.id,
-        amount: order.amount,
-        currency: order.currency,
-        key_id: process.env.NEXT_PUBLIC_KEY_ID,
+        orderId: String(order.id),
+        amount: Number(order.amount),
+        currency: String(order.currency),
+        key_id: String(process.env.NEXT_PUBLIC_KEY_ID),
     }
 }
 
-export const fetchuser= async (username) => {
+
+export const fetchuser = async (username) => {
+    // fetch user details from database
     await dbConnect()
+
     const user = await User.findOne({ username: username })
-    let userObj = user.toObject({flattenobject: true})
+
     if (!user) {
         throw new Error("User not found")
     }
-    return userObj
+
+    return user.toObject()
 }
 
+
 export const fetchpayments = async (username) => {
+    // fetch payments for a user from database
     await dbConnect()
-    //fetch all payments for the user, sort them in descending order of amount, and return them
-    const payments = await Payment.find({ to_user: username, done: true }).sort({ amount: -1 })
+
+    const payments = await Payment.find({
+        to_user: username,
+        done: true
+    })
+    .sort({ amount: -1 })
+    .lean()
+
     return payments
 }
