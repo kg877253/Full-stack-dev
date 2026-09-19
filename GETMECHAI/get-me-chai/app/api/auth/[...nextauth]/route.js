@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import mongoose from "mongoose";
-
+import dbConnect from "@/lib/dbConnect";
 import User from "@/models/user";
 
 const handler = NextAuth({
@@ -17,9 +17,7 @@ const handler = NextAuth({
 
             if (account.provider === "github") {
 
-                await mongoose.connect(
-                    "mongodb://localhost:27017/getchai"
-                );
+                await dbConnect();
 
                 const currentuser = await User.findOne({
                     email: user.email

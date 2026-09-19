@@ -2,16 +2,16 @@ import mongoose from "mongoose";
 
 const PaymentSchema = new mongoose.Schema({
     user: {
-        type: String,
-        ref: "User",
-        required: true
-    },
-    userto : {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
     },
-    oid : {
+    userto: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+    oid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Order",
         required: true
@@ -20,19 +20,19 @@ const PaymentSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    message : {
+    message: {
         type: String,
     },
-    createdat : {
+    createdat: {
         type: Date,
         default: Date.now
     },
-    updatedat :{
+    updatedat: {
         type: Date,
         default: Date.now
     },
-    done:{
-        type: Boolean,  
+    done: {
+        type: Boolean,
         default: false
     }
 });
