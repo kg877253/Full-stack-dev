@@ -37,7 +37,7 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/yourpage" onClick={() => setDropdownOpen(false)} className="inline-flex items-center w-full p-2 hover:bg-gray-700 hover:text-white rounded">
+                                    <Link href={`/${session.user?.username}`} onClick={() => setDropdownOpen(false)} className="inline-flex items-center w-full p-2 hover:bg-gray-700 hover:text-white rounded">
                                         Your page
                                     </Link>
                                 </li>
