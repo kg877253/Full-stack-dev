@@ -3,9 +3,10 @@
 import Razorpay from "razorpay"
 import dbConnect from "@/db/connect"
 import Payment from "@/models/payment"
+import User from "@/models/user"
 
 const razorpay = new Razorpay({
-    key_id: process.env.KEY_ID,
+    key_id: process.env.NEXT_PUBLIC_KEY_ID,
     key_secret: process.env.KEY_SECRET,
 })
 
@@ -39,6 +40,23 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
         orderId: order.id,
         amount: order.amount,
         currency: order.currency,
-        key_id: process.env.RAZORPAY_KEY_ID,
+        key_id: process.env.NEXT_PUBLIC_KEY_ID,
     }
+}
+
+export const fetchuser= async (username) => {
+    await dbConnect()
+    const user = await User.findOne({ username: username })
+    let userObj = user.toObject({flattenobject: true})
+    if (!user) {
+        throw new Error("User not found")
+    }
+    return userObj
+}
+
+export const fetchpayments = async (username) => {
+    await dbConnect()
+    //fetch all payments for the user, sort them in descending order of amount, and return them
+    const payments = await Payment.find({ to_user: username, done: true }).sort({ amount: -1 })
+    return payments
 }

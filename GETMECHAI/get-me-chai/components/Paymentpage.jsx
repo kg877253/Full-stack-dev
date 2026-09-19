@@ -1,8 +1,9 @@
 "use client"
+
 import React from 'react'
 import Script from 'next/script'
-import { useState } from 'react'
-import { initiatePayment } from '@/actions/useraction'
+import { useState, useEffect } from 'react'
+import { initiatePayment, fetchuser, fetchpayments } from '@/actions/useraction'
 
 const Paymentpage = ({ username }) => {
 
@@ -11,6 +12,24 @@ const Paymentpage = ({ username }) => {
         amount: "",
         message: ""
     })
+
+    const [currentuser, setcurrentuser] = useState({})
+    const [payments, setpayments] = useState([])
+
+    useEffect(() => {
+        getuser();
+    }, [])
+
+    const getuser = async () => {
+        console.log(username)
+        const user = await fetchuser(username);
+        setcurrentuser(user);
+        const payments = await fetchpayments(username);
+        setpayments(payments);
+        console.log(user, payments);
+    }
+
+
     const handlechange = (e) => {
         setPaymentform({ ...paymentform, [e.target.name]: e.target.value })
     }
@@ -25,7 +44,8 @@ const Paymentpage = ({ username }) => {
 
             let orderId = a.orderId;
             let keyId = a.key_id;
-
+            console.log("Razorpay key:", a.key_id);
+            console.log("Order:", a.orderId);
             var options = {
                 key: keyId,
 
@@ -37,7 +57,7 @@ const Paymentpage = ({ username }) => {
                 description: "Support the creator",
 
                 order_id: orderId,
-
+                "callback_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/razorpay`,
                 prefill: {
                     name: paymentform.name,
                 },
