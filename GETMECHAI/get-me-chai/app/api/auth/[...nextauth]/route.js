@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import mongoose from "mongoose";
-import dbConnect from "@/lib/dbConnect";
+import dbConnect from "@/db/connect";
 import User from "@/models/user";
 
 const handler = NextAuth({
