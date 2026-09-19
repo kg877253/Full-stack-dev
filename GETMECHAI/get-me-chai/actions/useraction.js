@@ -53,8 +53,9 @@ export const fetchuser = async (username) => {
         throw new Error("User not found")
     }
 
-    return user
+    return JSON.parse(JSON.stringify(user))
 }
+
 
 export const fetchpayments = async (username) => {
     // fetch payments for a user from database
@@ -67,5 +68,5 @@ export const fetchpayments = async (username) => {
     .sort({ amount: -1 })
     .lean()
 
-    return payments
+    return JSON.parse(JSON.stringify(payments))
 }
