@@ -5,8 +5,8 @@ import dbConnect from "@/db/connect"
 import Payment from "@/models/payment"
 
 const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
+    key_id: process.env.KEY_ID,
+    key_secret: process.env.KEY_SECRET,
 })
 
 export const initiatePayment = async (amount, to_username, paymentform) => {
