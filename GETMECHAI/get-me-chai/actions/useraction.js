@@ -47,16 +47,14 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
 export const fetchuser = async (username) => {
     // fetch user details from database
     await dbConnect()
-
-    const user = await User.findOne({ username: username })
+    const user = await User.findOne({ username: username }).lean()
 
     if (!user) {
         throw new Error("User not found")
     }
 
-    return user.toObject()
+    return user
 }
-
 
 export const fetchpayments = async (username) => {
     // fetch payments for a user from database
