@@ -82,20 +82,36 @@ export const fetchpayments = async (username) => {
 
     return JSON.parse(JSON.stringify(payments))
 }
-
-export const updateprofile = async (data,oldusername) => {
+export const updateprofile = async (data, oldusername) => {
     await dbConnect()
-    let ndata = Object.fromEntries(data)
+    const f = Object.fromEntries(data)
 
-    if(oldusername !== ndata.username){
-        const user = await User.findOne({ username: oldusername })
-        if(user){
-            return { error: "Username already exists" }
-        }
-        
+    // username badla hai to check karo ki koi aur to use nahi kar raha
+    if (f.username !== oldusername) {
+        const taken = await User.findOne({ username: f.username })
+        if (taken) return { error: "Username already exists" }
     }
 
-    // update fields
-   await User.findOneAndUpdate({ email: ndata.email }, ndata)
-    
+    // sirf ye fields update honge, email nahi
+    const updates = {
+        name: f.name,
+        username: f.username,
+        profilepic: f.profilepic,
+        coverpic: f.coverpic,
+        razorpayid: f.razorpayid,
+        razorpaysecret: f.razorpaysecret,
+    }
+    // razorpay fields khali ho to purane wale ko mat mitao
+    if (f.razorpayid) updates.razorpayid = f.razorpayid
+    if (f.razorpaysecret) updates.razorpaysecret = f.razorpaysecret
+
+    await User.findOneAndUpdate({ username: oldusername }, updates)
+
+    // username badla to purane supporters bhi naye username pe aa jayein
+    if (f.username !== oldusername) {
+        await Payment.updateMany({ to_user: oldusername }, { to_user: f.username })
+    }
+
+    return { success: true }
+
 }

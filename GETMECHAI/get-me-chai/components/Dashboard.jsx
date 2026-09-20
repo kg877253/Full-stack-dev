@@ -1,9 +1,8 @@
 "use client"
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { fetchuser } from '@/actions/useraction'
+import { fetchuser, updateprofile } from '@/actions/useraction'
 
 const Dashboard = () => {
     const inputClass = "w-full bg-[#1a2333] border border-white/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-blue-500/60 placeholder:text-gray-500 transition"
@@ -14,7 +13,6 @@ const Dashboard = () => {
 
     const [form, setform] = useState({
         name: "",
-        email: "",
         username: "",
         profilepic: "",
         coverpic: "",
@@ -23,27 +21,35 @@ const Dashboard = () => {
     })
 
     useEffect(() => {
-        getuser()
-        if (status === "unauthenticated") {
-            router.push('/login')
-        }
-    }, [status, router])
-    
+        if (status === "unauthenticated") router.push('/login')
+        if (status === "authenticated") getuser()   // session aane ke baad hi
+    }, [status])
+
     const getuser = async () => {
-        let user = await fetchuser(session.user.username)
-        setform(user)
+        const user = await fetchuser(session.user.username)
+        if (user.error) return
+        setform({
+            ...form,
+            name: user.name || "",
+            username: user.username || "",
+            profilepic: user.profilepic || "",
+            coverpic: user.coverpic || "",
+        })
     }
 
     const handlechange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
     }
 
-    const handlesubmit = async (e)=>{
-        update();
-        let res = await updateprofile(e,session?.user?.username)
-        alert ("Profile updated successfully")
+    const handlesubmit = async (formData) => {
+        const res = await updateprofile(formData, session.user.username)
+        if (res?.error) {
+            alert(res.error)
+            return
+        }
+        await update()   // session refresh, naya username aa jayega
+        alert("Profile updated successfully")
     }
-
 
     if (status === "loading") return <p className="text-white text-center mt-20">Loading...</p>
 
@@ -65,11 +71,11 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className={labelClass}>Email</label>
-                        <input type="email" name="email" value={form.email} onChange={handlechange} placeholder="you@example.com" className={inputClass} />
+                        <input type="email" value={session?.user?.email || ""} readOnly className={`${inputClass} opacity-60 cursor-not-allowed`} />
                     </div>
                     <div>
                         <label className={labelClass}>Username</label>
-                        <input type="text" name="username" value={form.username} onChange={handlechange} placeholder="@username" className={inputClass} />
+                        <input type="text" name="username" value={form.username} onChange={handlechange} placeholder="username" className={inputClass} />
                     </div>
                     <div>
                         <label className={labelClass}>Profile Picture URL</label>
@@ -94,7 +100,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <button type="submit" className="mt-8 w-full bg-blue-600 hover:bg-blue-700 transition py-2.5 rounded-lg font-semibold">
+                <button type="submit" className="mt-8 w-full bg-blue-600 hover:bg-blue-700 transition py-2.5 rounded-lg font-semibold cursor-pointer">
                     Save
                 </button>
             </form>
