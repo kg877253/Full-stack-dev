@@ -62,7 +62,8 @@ const Paymentpage = ({ username }) => {
                     address: "Get-me-chai"
                 },
                 theme: {
-                    color: "#3399cc"}
+                    color: "#3399cc"
+                }
             };
 
             console.log(options);
@@ -109,11 +110,13 @@ const Paymentpage = ({ username }) => {
                         <h2 className='text-3xl mb-4 font-semibold'>Supporters</h2>
                         {/* Show list of all Supporters as a leaderboard */}
                         <ul className='p-3'>
-                            {payments.map((payment,index)=>{
-                                return (
-                            <li className='my-1'>`{payment.name} donated ${payment.amount} "{payment.message}"`</li>)
-                            })}
+                            {payments.map((payment, index) => (
+                                <li key={payment._id || index} className='my-1'>
+                                    {payment.name} donated ₹{payment.amount} "{payment.message}"
+                                </li>
+                            ))}
                         </ul>
+
                     </div>
                     <div className="payment bg-slate-800 w-1/2 rounded-2xl p-8">
                         <h2 className='text-3xl mb-4 font-semibold'>Make a Payment</h2>
