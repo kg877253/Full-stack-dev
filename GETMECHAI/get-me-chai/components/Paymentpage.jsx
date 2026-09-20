@@ -4,8 +4,14 @@ import React from 'react'
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
 import { initiatePayment, fetchuser, fetchpayments } from '@/actions/useraction'
+import { ToastContainer, toast } from 'react-toastify';
+import { Bounce } from 'react-toastify'
+import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const Paymentpage = ({ username }) => {
+    const SearchParams = useSearchParams()
+    const router = useRouter()
 
     const [paymentform, setPaymentform] = useState({
         name: "",
@@ -18,7 +24,25 @@ const Paymentpage = ({ username }) => {
 
     useEffect(() => {
         getuser();
+
     }, [])
+
+    useEffect(() => {
+        if (SearchParams.get("paymentdone") === "true") {
+            toast.success('Thank you for your support!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
+        router.push(`/${username}`)   // reload page to show new supporter in list
+    },[])
 
     const getuser = async () => {
         try {
@@ -93,6 +117,19 @@ const Paymentpage = ({ username }) => {
             src="https://checkout.razorpay.com/v1/checkout.js"
             strategy="afterInteractive"
         />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition={Bounce}
+            />
 
             <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex flex-col items-center pt-1 px-4">
                 <div className='relative bg-red-50'>
@@ -116,10 +153,10 @@ const Paymentpage = ({ username }) => {
                 </div>
 
                 <div className='flex m-20 gap-5 w-[75%] max-h-[400px]'>
-                    <div className="supproter bg-slate-800 w-1/2 p-8 rounded-2xl overflow-auto">
+                    <div className="supproter bg-slate-800 w-1/2 p-8 rounded-2xl ">
                         <h2 className='text-3xl mb-4 font-semibold'>Supporters</h2>
                         {/* Supporters leaderboard (amount ke hisaab se sorted) */}
-                        <ul className='p-3'>
+                        <ul className='p-3 overflow-auto max-h-[300px]'>
                             {payments.length === 0 && (
                                 <li className='text-gray-400'>There are no supporters yet. Be the first one! ☕</li>
                             )}
