@@ -7,54 +7,66 @@ import { initiatePayment, fetchuser, fetchpayments } from '@/actions/useraction'
 
 const Paymentpage = ({ username }) => {
 
-    const [paymentform, setPaymentform] = React.useState({
+    const [paymentform, setPaymentform] = useState({
         name: "",
         amount: "",
         message: ""
     })
     const [currentuser, setcurrentuser] = useState({})
     const [payments, setpayments] = useState([])
-
+    const [error, setError] = useState("")
 
     useEffect(() => {
         getuser();
     }, [])
 
     const getuser = async () => {
-        console.log(username)
-        const user = await fetchuser(username);
-        setcurrentuser(user);
-        const payments = await fetchpayments(username);
-        setpayments(payments);
-        console.log(user, payments);
+        try {
+            const user = await fetchuser(username);
+            setcurrentuser(user);
+            const payments = await fetchpayments(username);
+            setpayments(payments);
+        } catch (err) {
+            console.error("User load nahi hua:", err)
+        }
     }
 
-
     const handlechange = (e) => {
+        setError("")   // type karte hi error hat jaye
         setPaymentform({ ...paymentform, [e.target.name]: e.target.value })
     }
 
     const pay = async (amount) => {
-        try {
-            let a = await initiatePayment(
-                Number(amount),
-                username,
-                paymentform
-            );
+        setError("")
 
-            let orderId = a.orderId;
-            let keyId = a.key_id;
-            console.log("Razorpay key:", a.key_id);
-            console.log("Order:", a.orderId);
-            var options = {
-                key: keyId,
-                // Razorpay order ka actual amount
+        // client-side quick checks (server bhi dobara check karta hai)
+        if (!paymentform.name.trim()) {
+            setError("Please enter your name")
+            return
+        }
+        const amt = Number(amount)
+        if (!Number.isInteger(amt) || amt < 1) {
+            setError("Please enter a valid amount (₹1 or more)")
+            return
+        }
+
+        try {
+            const a = await initiatePayment(amt, username, paymentform)
+
+            // server-side validation error
+            if (a.error) {
+                setError(a.error)
+                return
+            }
+
+            const options = {
+                key: a.key_id,
                 amount: a.amount,
                 currency: a.currency,
                 name: "Get me chai",
                 description: "Support the creator",
-                order_id: orderId,
-                "callback_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/razorpay`,
+                order_id: a.orderId,
+                callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/razorpay`,
                 prefill: {
                     name: paymentform.name,
                 },
@@ -66,15 +78,12 @@ const Paymentpage = ({ username }) => {
                 }
             };
 
-            console.log(options);
-
-            var rzp1 = new window.Razorpay(options);
-
+            const rzp1 = new window.Razorpay(options);
             rzp1.open();
 
-        } catch (error) {
-            console.error("Payment failed:", error);
-            alert("Payment failed. Please try again.");
+        } catch (err) {
+            console.error("Payment failed:", err);
+            setError("Payment start nahi ho paayi. Dobara try karo.")
         }
     }
 
@@ -108,23 +117,52 @@ const Paymentpage = ({ username }) => {
                 <div className='flex m-20 gap-5 w-[75%]'>
                     <div className="supproter bg-slate-800 w-1/2 p-8 rounded-2xl">
                         <h2 className='text-3xl mb-4 font-semibold'>Supporters</h2>
-                        {/* Show list of all Supporters as a leaderboard */}
+                        {/* Supporters leaderboard (amount ke hisaab se sorted) */}
                         <ul className='p-3'>
-                            {payments.map((payment, index) => (
-                                <li key={payment._id || index} className='my-1'>
-                                    {payment.name} donated ₹{payment.amount} "{payment.message}"
+                            {payments.length === 0 && (
+                                <li className='text-gray-400'>Abhi koi supporter nahi. Pehle aap bano! ☕</li>
+                            )}
+                            {payments.map((p) => (
+                                <li key={p._id} className='my-1'>
+                                    {p.name} donated ₹{p.amount}
+                                    {p.message && <> with a message "{p.message}"</>}
                                 </li>
                             ))}
                         </ul>
-
                     </div>
+
                     <div className="payment bg-slate-800 w-1/2 rounded-2xl p-8">
                         <h2 className='text-3xl mb-4 font-semibold'>Make a Payment</h2>
 
                         <form className='flex flex-col gap-4'>
-                            <input name='name' onChange={handlechange} value={paymentform.name} type="text" placeholder='Enter Name' className='bg-slate-700 p-2 rounded-md' />
-                            <input name='amount' onChange={handlechange} value={paymentform.amount} type="text" placeholder='Enter Amount' className='bg-slate-700 p-2 rounded-md' />
-                            <input name='message' onChange={handlechange} value={paymentform.message} type="text" placeholder='Enter Message' className='bg-slate-700 p-2 rounded-md' />
+                            <input
+                                name='name'
+                                onChange={handlechange}
+                                value={paymentform.name}
+                                type="text"
+                                placeholder='Enter Name'
+                                className={`bg-slate-700 p-2 rounded-md ${error.includes("Naam") ? "border border-red-500" : ""}`}
+                            />
+                            <input
+                                name='amount'
+                                onChange={handlechange}
+                                value={paymentform.amount}
+                                type="number"
+                                min="1"
+                                placeholder='Enter Amount'
+                                className='bg-slate-700 p-2 rounded-md'
+                            />
+                            <input
+                                name='message'
+                                onChange={handlechange}
+                                value={paymentform.message}
+                                type="text"
+                                placeholder='Enter Message'
+                                className='bg-slate-700 p-2 rounded-md'
+                            />
+
+                            {error && <p className='text-red-400 text-sm'>{error}</p>}
+
                             <button
                                 type="button"
                                 className='w-10/12 mx-auto bg-gradient-to-br from-purple-700 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white py-2 px-4 rounded-md cursor-pointer'
@@ -135,7 +173,6 @@ const Paymentpage = ({ username }) => {
                         </form>
 
                         <div className="buttons mt-4 flex flex-row gap-4 justify-center">
-
                             <button
                                 type="button"
                                 className='bg-gradient-to-br from-green-500 to-teal-500 hover:from-teal-500 hover:to-green-500 text-white py-2 px-4 rounded-md cursor-pointer'
@@ -159,10 +196,8 @@ const Paymentpage = ({ username }) => {
                             >
                                 Pay ₹50
                             </button>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </>

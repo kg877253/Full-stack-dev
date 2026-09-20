@@ -10,28 +10,35 @@ const razorpay = new Razorpay({
     key_secret: process.env.KEY_SECRET,
 })
 
-// Razorpay order create, payment record create, return order details to client
+// Order create + payment record create + order details client ko return
+// Errors throw nahi karte, return karte hain (production me thrown error ka message client tak nahi pahunchta)
 export const initiatePayment = async (amount, to_username, paymentform) => {
     await dbConnect()
 
-    if (!amount || Number(amount) < 1) {
-        throw new Error("Amount kam se kam ₹1 hona chahiye")
-    }
+    const name = (paymentform?.name || "").trim()
+    const message = (paymentform?.message || "").trim()
+    const amt = Number(amount)
 
-    const options = {
-        amount: Number(amount) * 100,
+    //  validation (order banane se PEHLE) 
+    if (message.length > 200) return { error: "Message 200 characters tak hi allowed hai" }
+
+    // creator exist karta hai ya nahi
+    const creator = await User.findOne({ username: to_username }).select("_id").lean()
+    if (!creator) return { error: "Creator nahi mila" }
+
+    // ab Razorpay order + DB record 
+    const order = await razorpay.orders.create({
+        amount: amt * 100,
         currency: "INR",
         receipt: `receipt_${Date.now()}`,
-    }
-
-    const order = await razorpay.orders.create(options)
+    })
 
     await Payment.create({
-        name: paymentform.name,
+        name,
         to_user: to_username,
         oid: order.id,
-        amount: Number(amount),
-        message: paymentform.message || "",
+        amount: amt,
+        message,
         done: false,
     })
 
@@ -44,10 +51,13 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
 }
 
 
+// Public page ke liye: sirf safe fields (email, razorpay keys kabhi nahi)
 export const fetchuser = async (username) => {
-    // fetch user details from database
     await dbConnect()
-    const user = await User.findOne({ username: username }).lean()
+
+    const user = await User.findOne({ username })
+        .select("-razorpaysecret -razorpayid -email")
+        .lean()
 
     if (!user) {
         throw new Error("User not found")
@@ -57,16 +67,14 @@ export const fetchuser = async (username) => {
 }
 
 
+// Supporters list: sirf successful payments, sirf zaroori fields
 export const fetchpayments = async (username) => {
-    // fetch payments for a user from database
     await dbConnect()
 
-    const payments = await Payment.find({
-        to_user: username,
-        done: true
-    })
-    .sort({ amount: -1 })
-    .lean()
+    const payments = await Payment.find({ to_user: username, done: true })
+        .select("name amount message createdAt")
+        .sort({ amount: -1 })
+        .lean()
 
     return JSON.parse(JSON.stringify(payments))
 }

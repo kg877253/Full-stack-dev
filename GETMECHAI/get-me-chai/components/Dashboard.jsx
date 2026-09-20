@@ -16,9 +16,9 @@ const Dashboard = () => {
         email: "",
         username: "",
         profilepic: "",
-        coverPic: "",
-        razorpayId: "",
-        razorpaySecret: "",
+        coverpic: "",
+        razorpayid: "",
+        razorpaysecret: "",
     })
 
     useEffect(() => {
@@ -64,19 +64,19 @@ const Dashboard = () => {
                     </div>
                     <div>
                         <label className={labelClass}>Cover Picture URL</label>
-                        <input type="text" name="coverPic" value={form.coverPic} onChange={handlechange} placeholder="https://..." className={inputClass} />
+                        <input type="text" name="coverpic" value={form.coverpic} onChange={handlechange} placeholder="https://..." className={inputClass} />
                     </div>
 
                     <div className="pt-2 border-t border-white/10">
                         <p className="text-sm font-semibold text-gray-300 mb-3">Razorpay Credentials</p>
                         <div>
                             <label className={labelClass}>Key ID</label>
-                            <input type="text" name="razorpayId" value={form.razorpayId} onChange={handlechange} placeholder="rzp_test_xxxx" className={inputClass} />
+                            <input type="text" name="razorpayid" value={form.razorpayid} onChange={handlechange} placeholder="rzp_test_xxxx" className={inputClass} />
                         </div>
                         <div className="h-4"></div>
                         <div>
                             <label className={labelClass}>Key Secret</label>
-                            <input type="password" name="razorpaySecret" value={form.razorpaySecret} onChange={handlechange} placeholder="••••••••" className={inputClass} />
+                            <input type="password" name="razorpaysecret" value={form.razorpaysecret} onChange={handlechange} placeholder="••••••••" className={inputClass} />
                         </div>
                     </div>
                 </div>
