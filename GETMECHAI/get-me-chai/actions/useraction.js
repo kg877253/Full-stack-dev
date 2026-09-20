@@ -61,7 +61,7 @@ export const fetchuser = async (username) => {
     await dbConnect()
 
     const user = await User.findOne({ username })
-        .select("-razorpaysecret -razorpayid -email")
+        .select(" -email")
         .lean()
     if (!user) {
         return { error: "User not found" }
@@ -98,8 +98,6 @@ export const updateprofile = async (data, oldusername) => {
         username: f.username,
         profilepic: f.profilepic,
         coverpic: f.coverpic,
-        razorpayid: f.razorpayid,
-        razorpaysecret: f.razorpaysecret,
     }
     // razorpay fields khali ho to purane wale ko mat mitao
     if (f.razorpayid) updates.razorpayid = f.razorpayid

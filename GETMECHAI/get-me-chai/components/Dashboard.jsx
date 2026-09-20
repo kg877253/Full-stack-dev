@@ -34,6 +34,8 @@ const Dashboard = () => {
             username: user.username || "",
             profilepic: user.profilepic || "",
             coverpic: user.coverpic || "",
+            razorpayid: user.razorpayid || "",
+            razorpaysecret: user.razorpaysecret || "",
         })
     }
 

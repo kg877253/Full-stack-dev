@@ -99,7 +99,7 @@ const Paymentpage = ({ username }) => {
                     <img src={currentuser.coverpic} alt="" />
 
                     <div className='absolute -bottom-15 right-[46%]'>
-                        <img className='border border-white/40 z-10 w-30 h-30 rounded-lg' src={currentuser.profilepic} alt="" />
+                        <img className='border-2 border-black/40 object-cover z-10 w-30 h-30 rounded-lg' src={currentuser.profilepic} alt="" />
                     </div>
                 </div>
 
@@ -115,8 +115,8 @@ const Paymentpage = ({ username }) => {
                     </div>
                 </div>
 
-                <div className='flex m-20 gap-5 w-[75%]'>
-                    <div className="supproter bg-slate-800 w-1/2 p-8 rounded-2xl">
+                <div className='flex m-20 gap-5 w-[75%] max-h-[400px]'>
+                    <div className="supproter bg-slate-800 w-1/2 p-8 rounded-2xl overflow-auto">
                         <h2 className='text-3xl mb-4 font-semibold'>Supporters</h2>
                         {/* Supporters leaderboard (amount ke hisaab se sorted) */}
                         <ul className='p-3'>
@@ -124,7 +124,8 @@ const Paymentpage = ({ username }) => {
                                 <li className='text-gray-400'>There are no supporters yet. Be the first one! ☕</li>
                             )}
                             {payments.map((p) => (
-                                <li key={p._id} className='my-1'>
+                                <li key={p._id} className='my-2 flex gap-4 items-center '>
+                                    <img className='w-7 h-7 rounded-full' src="./avatar.gif" alt="avatar" />
                                     {p.name} donated ₹{p.amount}
                                     {p.message && <> with a message "{p.message}"</>}
                                 </li>
