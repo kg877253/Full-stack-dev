@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { fetchuser, updateprofile } from '@/actions/useraction'
-import { toast, ToastContainer, Bounce } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 const Dashboard = () => {
     const inputClass = "w-full bg-[#1a2333] border border-white/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-blue-500/60 placeholder:text-gray-500 transition"
@@ -47,42 +47,16 @@ const Dashboard = () => {
     const handlesubmit = async (formData) => {
         const res = await updateprofile(formData, session.user.username)
         if (res?.error) {
-            alert(res.error)
+            toast.error(res.error)
             return
         }
-        await update()   // session refresh, naya username aa jayega
-        alert('Profile updated successfully')
-        toast.success('Thank you for your support!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
+        await update()
+        toast.success('Profile updated successfully')
     }
-
     if (status === "loading") return <p className="text-white text-center mt-20">Loading...</p>
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                transition={Bounce}
-            />
-
             <div className="flex justify-center px-4 py-12 bg-[#0a0e17] min-h-screen text-white">
                 <form className="w-full max-w-xl bg-[#111826] border border-white/10 rounded-2xl p-8 shadow-lg" action={handlesubmit}>
                     <h2 className="text-2xl font-bold mb-8 text-center">Welcome to your Dashboard</h2>

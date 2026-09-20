@@ -4,8 +4,7 @@ import React from 'react'
 import Script from 'next/script'
 import { useState, useEffect } from 'react'
 import { initiatePayment, fetchuser, fetchpayments } from '@/actions/useraction'
-import { ToastContainer, toast } from 'react-toastify';
-import { Bounce } from 'react-toastify'
+import { toast, Bounce } from 'react-toastify'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 
@@ -117,20 +116,6 @@ const Paymentpage = ({ username }) => {
             src="https://checkout.razorpay.com/v1/checkout.js"
             strategy="afterInteractive"
         />
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-                transition={Bounce}
-            />
-
             <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex flex-col items-center pt-1 px-4">
                 <div className='relative bg-red-50'>
                     <img src={currentuser.coverpic} alt="" />

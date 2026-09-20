@@ -5,10 +5,6 @@ import dbConnect from "@/db/connect"
 import Payment from "@/models/payment"
 import User from "@/models/user"
 
-const razorpay = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_KEY_ID,
-    key_secret: process.env.KEY_SECRET,
-})
 
 // Order create + payment record create + order details client ko return
 // Errors throw nahi karte, return karte hain (production me thrown error ka message client tak nahi pahunchta)
@@ -28,8 +24,17 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
     if (amt > 100000) return { error: "Maximum amount is ₹1,00,000" }
 
     // creator exist karta hai ya nahi
-    const creator = await User.findOne({ username: to_username }).select("_id").lean()
+    const creator = await User.findOne({ username: to_username })
+        .select("razorpayid razorpaysecret").lean()
     if (!creator) return { error: "Creator not found" }
+    if (!creator.razorpayid || !creator.razorpaysecret) {
+        return { error: "This creator has not set up payments yet" }
+    }
+
+    const razorpay = new Razorpay({
+        key_id: creator.razorpayid,
+        key_secret: creator.razorpaysecret,
+    })
 
     // ab Razorpay order + DB record 
     const order = await razorpay.orders.create({
@@ -51,7 +56,7 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
         orderId: String(order.id),
         amount: Number(order.amount),
         currency: String(order.currency),
-        key_id: String(process.env.NEXT_PUBLIC_KEY_ID),
+        key_id: creator.razorpayid,     // pehle process.env.NEXT_PUBLIC_KEY_ID tha
     }
 }
 
@@ -61,12 +66,12 @@ export const fetchuser = async (username) => {
     await dbConnect()
 
     const user = await User.findOne({ username })
-        .select(" -email")
+        .select(" -razorpaysecret -email")
         .lean()
     if (!user) {
         return { error: "User not found" }
     }
-    
+
     return JSON.parse(JSON.stringify(user))
 }
 
