@@ -20,6 +20,7 @@ const Dashboard = () => {
         razorpayid: "",
         razorpaysecret: "",
     })
+    const [savedpic, setSavedpic] = useState("")
 
     useEffect(() => {
         if (status === "unauthenticated") router.push('/login')
@@ -38,6 +39,7 @@ const Dashboard = () => {
             razorpayid: user.razorpayid || "",
             razorpaysecret: user.razorpaysecret || "",
         })
+        setSavedpic(user.profilepic || "")
     }
 
     const handlechange = (e) => {
@@ -51,6 +53,7 @@ const Dashboard = () => {
             return
         }
         await update()
+        setSavedpic(formData.get("profilepic"))
         toast.success('Profile updated successfully')
     }
     if (status === "loading") return <p className="text-white text-center mt-20">Loading...</p>
@@ -63,7 +66,9 @@ const Dashboard = () => {
 
                     <div className="flex justify-center mb-8">
                         <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center border border-white/10 overflow-hidden">
-                            <span className="text-2xl">👤</span>
+                            {savedpic
+                                ? <img src={savedpic} alt="profile" className="w-full h-full object-cover" />
+                                : <span className="text-2xl">👤</span>}
                         </div>
                     </div>
 
