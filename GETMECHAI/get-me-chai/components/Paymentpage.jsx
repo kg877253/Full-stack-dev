@@ -26,6 +26,7 @@ const Paymentpage = ({ username }) => {
             setcurrentuser(user);
             const payments = await fetchpayments(username);
             setpayments(payments);
+            console.log(user, payments)
         } catch (err) {
             console.error("User load nahi hua:", err)
         }
@@ -120,7 +121,7 @@ const Paymentpage = ({ username }) => {
                         {/* Supporters leaderboard (amount ke hisaab se sorted) */}
                         <ul className='p-3'>
                             {payments.length === 0 && (
-                                <li className='text-gray-400'>Abhi koi supporter nahi. Pehle aap bano! ☕</li>
+                                <li className='text-gray-400'>There are no supporters yet. Be the first one! ☕</li>
                             )}
                             {payments.map((p) => (
                                 <li key={p._id} className='my-1'>

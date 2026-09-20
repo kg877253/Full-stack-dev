@@ -20,11 +20,16 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
     const amt = Number(amount)
 
     //  validation (order banane se PEHLE) 
-    if (message.length > 200) return { error: "Message 200 characters tak hi allowed hai" }
+    if (!name) return { error: "Please enter your name" }
+    if (name.length > 50) return { error: "Name should be less than 50 characters" }
+    if (!Number.isInteger(amt) || amt < 1) {
+        return { error: "Please enter a valid amount (₹1 or more)" }
+    }
+    if (amt > 100000) return { error: "Maximum amount is ₹1,00,000" }
 
     // creator exist karta hai ya nahi
     const creator = await User.findOne({ username: to_username }).select("_id").lean()
-    if (!creator) return { error: "Creator nahi mila" }
+    if (!creator) return { error: "Creator not found" }
 
     // ab Razorpay order + DB record 
     const order = await razorpay.orders.create({
@@ -58,11 +63,10 @@ export const fetchuser = async (username) => {
     const user = await User.findOne({ username })
         .select("-razorpaysecret -razorpayid -email")
         .lean()
-
     if (!user) {
-        throw new Error("User not found")
+        return { error: "User not found" }
     }
-
+    
     return JSON.parse(JSON.stringify(user))
 }
 
@@ -77,4 +81,21 @@ export const fetchpayments = async (username) => {
         .lean()
 
     return JSON.parse(JSON.stringify(payments))
+}
+
+export const updateprofile = async (data,oldusername) => {
+    await dbConnect()
+    let ndata = Object.fromEntries(data)
+
+    if(oldusername !== ndata.username){
+        const user = await User.findOne({ username: oldusername })
+        if(user){
+            return { error: "Username already exists" }
+        }
+        
+    }
+
+    // update fields
+   await User.findOneAndUpdate({ email: ndata.email }, ndata)
+    
 }

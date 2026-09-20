@@ -3,12 +3,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { fetchuser } from '@/actions/useraction'
 
 const Dashboard = () => {
     const inputClass = "w-full bg-[#1a2333] border border-white/10 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/60 focus:border-blue-500/60 placeholder:text-gray-500 transition"
     const labelClass = "block text-sm text-gray-300 mb-1.5"
 
-    const { data: session, status } = useSession()
+    const { data: session, status, update } = useSession()
     const router = useRouter()
 
     const [form, setform] = useState({
@@ -22,13 +23,25 @@ const Dashboard = () => {
     })
 
     useEffect(() => {
+        getuser()
         if (status === "unauthenticated") {
             router.push('/login')
         }
     }, [status, router])
+    
+    const getuser = async () => {
+        let user = await fetchuser(session.user.username)
+        setform(user)
+    }
 
     const handlechange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
+    }
+
+    const handlesubmit = async (e)=>{
+        update();
+        let res = await updateprofile(e,session?.user?.username)
+        alert ("Profile updated successfully")
     }
 
 
@@ -36,7 +49,7 @@ const Dashboard = () => {
 
     return (
         <div className="flex justify-center px-4 py-12 bg-[#0a0e17] min-h-screen text-white">
-            <form className="w-full max-w-xl bg-[#111826] border border-white/10 rounded-2xl p-8 shadow-lg">
+            <form className="w-full max-w-xl bg-[#111826] border border-white/10 rounded-2xl p-8 shadow-lg" action={handlesubmit}>
                 <h2 className="text-2xl font-bold mb-8 text-center">Welcome to your Dashboard</h2>
 
                 <div className="flex justify-center mb-8">
