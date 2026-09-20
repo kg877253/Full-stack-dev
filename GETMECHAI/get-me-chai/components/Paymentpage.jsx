@@ -12,9 +12,9 @@ const Paymentpage = ({ username }) => {
         amount: "",
         message: ""
     })
-
     const [currentuser, setcurrentuser] = useState({})
     const [payments, setpayments] = useState([])
+
 
     useEffect(() => {
         getuser();
@@ -48,27 +48,21 @@ const Paymentpage = ({ username }) => {
             console.log("Order:", a.orderId);
             var options = {
                 key: keyId,
-
                 // Razorpay order ka actual amount
                 amount: a.amount,
-
                 currency: a.currency,
                 name: "Get me chai",
                 description: "Support the creator",
-
                 order_id: orderId,
                 "callback_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/razorpay`,
                 prefill: {
                     name: paymentform.name,
                 },
-
                 notes: {
                     address: "Get-me-chai"
                 },
-
                 theme: {
-                    color: "#3399cc"
-                }
+                    color: "#3399cc"}
             };
 
             console.log(options);
@@ -115,10 +109,10 @@ const Paymentpage = ({ username }) => {
                         <h2 className='text-3xl mb-4 font-semibold'>Supporters</h2>
                         {/* Show list of all Supporters as a leaderboard */}
                         <ul className='p-3'>
-                            <li className='my-1'>John Doe donated $10 ""</li>
-                            <li className='my-1'>Jane Smith donated $25 ""</li>
-                            <li className='my-1'>Bob Johnson donated $50 "" </li>
-                            <li className='my-1'>Alice Williams donated $100 ""</li>
+                            {payments.map((payment,index)=>{
+                                return (
+                            <li className='my-1'>`{payment.name} donated ${payment.amount} "{payment.message}"`</li>)
+                            })}
                         </ul>
                     </div>
                     <div className="payment bg-slate-800 w-1/2 rounded-2xl p-8">

@@ -6,6 +6,6 @@ export default async function Username({ params }) {
   const { username } = await params;
 
   return <>
-    <Paymentpage username={username}/>
+    {await <Paymentpage key={username} username={username}/>}
   </>
 }
