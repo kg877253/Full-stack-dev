@@ -104,6 +104,7 @@ export const updateprofile = async (data, oldusername) => {
         profilepic: f.profilepic,
         coverpic: f.coverpic,
     }
+    
     // razorpay fields khali ho to purane wale ko mat mitao
     if (f.razorpayid) updates.razorpayid = f.razorpayid
     if (f.razorpaysecret) updates.razorpaysecret = f.razorpaysecret
