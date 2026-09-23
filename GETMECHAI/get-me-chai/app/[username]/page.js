@@ -9,10 +9,11 @@ export default async function Username({ params }) {
   const user = await fetchuser(username);
 
   console.log("User fetched in page.js:", user); // Debugging log
-
+//Agar user nahi mila to 404 page dikhao
   if (user.error === "User not found") {
     notFound();
   }
+  
   else {
     return <>
       {<Paymentpage key={username} username={username} />}
