@@ -1,11 +1,21 @@
 import React from 'react'
 import Paymentpage from '../../components/Paymentpage'
+import { notFound } from 'next/navigation'
+import { fetchuser } from '@/actions/useraction'
 
 export default async function Username({ params }) {
   // Await the params Promise to access its properties
   const { username } = await params;
+  const user = await fetchuser(username);
 
-  return <>
-    {await <Paymentpage key={username} username={username}/>}
-  </>
+  console.log("User fetched in page.js:", user); // Debugging log
+
+  if (user.error === "User not found") {
+    notFound();
+  }
+  else {
+    return <>
+      {<Paymentpage key={username} username={username} />}
+    </>
+  }
 }

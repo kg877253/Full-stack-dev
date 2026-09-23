@@ -41,7 +41,7 @@ const Paymentpage = ({ username }) => {
             });
         }
         router.push(`/${username}`)   // reload page to show new supporter in list
-    },[])
+    }, [])
 
     const getuser = async () => {
         try {
@@ -127,13 +127,13 @@ const Paymentpage = ({ username }) => {
 
                 <div className="info mt-18 flex flex-col items-center gap-2 text-center">
                     <div className='text-3xl font-medium'>
-                        JB2A - Jules&Ben's Animated Assets
+                        {currentuser.name?.toUpperCase()}--Animation
                     </div>
                     <div className='text-sm text-white/80 font-medium'>
                         @{username}
                     </div>
                     <div className='text-gray-400'>
-                        26,984 members . 114 posts . $16,460/release
+                        {payments.length} supporters | Total ₹{payments.reduce((acc, p) => acc + p.amount, 0)} raised
                     </div>
                 </div>
 
