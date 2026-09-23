@@ -66,19 +66,6 @@ const Login = () => {
           <span>Continue with Twitter</span>
         </button>
 
-        {/* Facebook */}
-        <button
-          onClick={() => signIn("facebook")}
-          className="group flex cursor-pointer items-center gap-3 w-full px-5 py-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-sm font-medium text-gray-100 transition-all duration-300 ease-out hover:bg-white/10 hover:scale-[1.03] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400/50 hover:border-blue-500 hover:shadow-blue-500/30"
-        >
-          <span className="flex items-center justify-center h-8 w-8 rounded-full bg-white/90 shrink-0 transition-transform duration-300 group-hover:rotate-6">
-            <svg className="h-5 w-5" viewBox="200 160 48 48">
-              <path fill="#4460A0" d="M225.638355,208 L202.649232,208 C201.185673,208 200,206.813592 200,205.350603 L200,162.649211 C200,161.18585 201.185859,160 202.649232,160 L245.350955,160 C246.813955,160 248,161.18585 248,162.649211 L248,205.350603 C248,206.813778 246.813769,208 245.350955,208 L233.119305,208 L233.119305,189.411755 L239.358521,189.411755 L240.292755,182.167586 L233.119305,182.167586 L233.119305,177.542641 C233.119305,175.445287 233.701712,174.01601 236.70929,174.01601 L240.545311,174.014333 L240.545311,167.535091 C239.881886,167.446808 237.604784,167.24957 234.955552,167.24957 C229.424834,167.24957 225.638355,170.625526 225.638355,176.825209 L225.638355,182.167586 L219.383122,182.167586 L219.383122,189.411755 L225.638355,189.411755 L225.638355,208 L225.638355,208 Z" />
-            </svg>
-          </span>
-          <span>Continue with Facebook</span>
-        </button>
-
         {/* Github */}
         <button
           onClick={() => signIn("github", { callbackUrl: "/dashboard" })}

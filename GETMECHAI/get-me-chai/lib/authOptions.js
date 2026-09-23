@@ -1,4 +1,5 @@
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import dbConnect from "@/db/connect";
 import User from "@/models/user";
 
@@ -8,11 +9,16 @@ export const authOptions = {
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
         }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        }),
     ],
 
     callbacks: {
         async signIn({ user, account }) {
-            if (account.provider !== "github") return false;
+            if (!["github", "google"].includes(account.provider)) return false;
+            if (!user.email) return false;
 
             await dbConnect();
             const currentuser = await User.findOne({ email: user.email });
@@ -21,6 +27,8 @@ export const authOptions = {
                 const newuser = await User.create({
                     email: user.email,
                     username: user.email.split("@")[0],
+                    name: user.name,
+                    profilepic: user.image,
                 });
                 user.name = newuser.username;
             }
@@ -28,7 +36,7 @@ export const authOptions = {
         },
 
         async session({ session }) {
-            await dbConnect();   // ← ye line missing thi (Step 3 ka fix bhi isi me ho gaya)
+            await dbConnect();
             const dbuser = await User.findOne({ email: session.user.email });
             if (dbuser) {
                 session.user.username = dbuser.username;
