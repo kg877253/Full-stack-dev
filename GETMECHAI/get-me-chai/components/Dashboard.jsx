@@ -47,7 +47,7 @@ const Dashboard = () => {
     }
 
     const handlesubmit = async (formData) => {
-        const res = await updateprofile(formData, session.user.username)
+        const res = await updateprofile(formData)
         if (res?.error) {
             toast.error(res.error)
             return

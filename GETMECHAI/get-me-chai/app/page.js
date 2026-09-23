@@ -8,11 +8,11 @@ export default function Home() {
 
   return (
     <>
-      <div className="h-[40vh] flex flex-col items-center justify-center text-white md:px-1 px-5">
-        <h1 className="md:text-5xl text-2xl font-bold mb-4 flex items-center gap-3 overflow-auto">
-          Welcome to Get-me-chai <span><Image src="/chai.gif" width={60} height={60} alt="" /></span>
+      <div className="min-h-[40vh] flex flex-col items-center justify-center text-white px-4 sm:px-6 py-10 sm:py-0">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-center">
+          Welcome to Get-me-chai <Image src="/chai.gif" width={50} height={50} alt="" className="w-10 h-10 sm:w-[60px] sm:h-[60px]" />
         </h1>
-        <p className="text-lg mb-5">
+        <p className="text-sm sm:text-lg mb-5 text-center max-w-xl">
           Get-me-chai is a platform that allows creators to receive funding from their supporters. Join us!
         </p>
 
@@ -36,28 +36,28 @@ export default function Home() {
 
       <div className="h-1 opacity-10 bg-white"></div>
 
-      <div className=" mx-auto flex flex-col items-center justify-center text-white my-12 px-6 md:px-1">
-        <h1 className=" md:text-3xl text-2xl font-bold">Your Fans can buy u a Chai</h1>
+      <div className="mx-auto flex flex-col items-center justify-center text-white my-10 sm:my-12 px-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-center">Your Fans can buy u a Chai</h1>
 
-        <div className="items-center flex flex-row gap-14 py-10">
-          <div className="flex flex-col items-center justify-center gap-3">
+        <div className="items-center flex flex-col sm:flex-row gap-8 sm:gap-14 py-10">
+          <div className="flex flex-col items-center justify-center gap-3 max-w-[220px]">
             <Image className="bg-slate-300 rounded-full p-3 mb-4" src="/gift.gif" width={75} height={75} alt="" />
-            <p className="md:font-bold text-center ">Your Fan's want to help</p>
-            <p className="text-center md:text-base text-xs">
+            <p className="font-bold text-center">Your Fan's want to help</p>
+            <p className="text-center text-sm sm:text-base">
               Show your support and help your favorite creators!
             </p>
           </div>
-          <div className="flex flex-col items-center justify-center gap-3">
+          <div className="flex flex-col items-center justify-center gap-3 max-w-[220px]">
             <Image className="bg-slate-300 rounded-full p-3 mb-4" src="/coin.gif" width={75} height={75} alt="" />
-            <p className="md:font-bold text-center">Your Fan's want to help</p>
-            <p className="text-center md:text-base text-xs">
+            <p className="font-bold text-center">Your Fan's want to help</p>
+            <p className="text-center text-sm sm:text-base">
               Show your support and help your favorite creators!
             </p>
           </div>
-          <div className="flex flex-col items-center justify-center gap-3 ">
+          <div className="flex flex-col items-center justify-center gap-3 max-w-[220px]">
             <Image className="bg-slate-300 rounded-full p-3 mb-4" src="/people.gif" width={75} height={75} alt="" />
-            <p className="md:font-bold text-center">Your Fan's want to help</p>
-            <p className="text-center md:text-base text-xs">
+            <p className="font-bold text-center">Your Fan's want to help</p>
+            <p className="text-center text-sm sm:text-base">
               Show your support and help your favorite creators!
             </p>
           </div>
@@ -65,7 +65,6 @@ export default function Home() {
       </div>
 
       <div className="h-1 opacity-10 bg-white"></div>
-
     </>
   );
 }

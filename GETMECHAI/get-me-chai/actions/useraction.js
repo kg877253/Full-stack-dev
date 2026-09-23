@@ -4,7 +4,8 @@ import Razorpay from "razorpay"
 import dbConnect from "@/db/connect"
 import Payment from "@/models/payment"
 import User from "@/models/user"
-
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/lib/authOptions"
 
 // Order create + payment record create + order details client ko return
 // Errors throw nahi karte, return karte hain (production me thrown error ka message client tak nahi pahunchta)
@@ -37,11 +38,17 @@ export const initiatePayment = async (amount, to_username, paymentform) => {
     })
 
     // ab Razorpay order + DB record 
-    const order = await razorpay.orders.create({
-        amount: amt * 100,
-        currency: "INR",
-        receipt: `receipt_${Date.now()}`,
-    })
+    let order
+    try {
+        order = await razorpay.orders.create({
+            amount: amt * 100,
+            currency: "INR",
+            receipt: `receipt_${Date.now()}`,
+        })
+    } catch (err) {
+        console.error("Razorpay order error:", err)
+        return { error: "Could not start payment. Creator's Razorpay keys may be invalid." }
+    }
 
     await Payment.create({
         name,
@@ -79,40 +86,64 @@ export const fetchuser = async (username) => {
 export const fetchpayments = async (username) => {
     await dbConnect()
 
-    const payments = await Payment.find({ to_user: username, done: true })
-        .select("name amount message createdAt").sort({ amount: -1 }).limit(10).lean()
+    const [list, total, sumResult] = await Promise.all([
+        Payment.find({ to_user: username, done: true })
+            .select("name amount message createdAt").sort({ amount: -1 }).limit(10).lean(),
+        Payment.countDocuments({ to_user: username, done: true }),
+        Payment.aggregate([
+            { $match: { to_user: username, done: true } },
+            { $group: { _id: null, sum: { $sum: "$amount" } } },
+        ]),
+    ])
 
-    return JSON.parse(JSON.stringify(payments))
+    return {
+        list: JSON.parse(JSON.stringify(list)),
+        total,
+        totalRaised: sumResult[0]?.sum || 0,
+    }
 }
-export const updateprofile = async (data, oldusername) => {
+// Dashboard ke liye: sirf apna hi profile update kar sakta hai, isliye session check
+
+const RESERVED = ["dashboard", "login", "api", "yourpage", "about", "notfound"]
+
+export const updateprofile = async (data) => {
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.email) return { error: "Please login first" }
+
     await dbConnect()
     const f = Object.fromEntries(data)
 
-    // username badla hai to check karo ki koi aur to use nahi kar raha
-    if (f.username !== oldusername) {
-        const taken = await User.findOne({ username: f.username })
+    const me = await User.findOne({ email: session.user.email })
+    if (!me) return { error: "User not found" }
+
+    const newUsername = (f.username || "").trim()
+
+    if (newUsername !== me.username) {
+        if (!/^[a-zA-Z0-9_.-]{3,30}$/.test(newUsername)) {
+            return { error: "Username must be 3-30 characters (letters, numbers, _ . -)" }
+        }
+        if (RESERVED.includes(newUsername.toLowerCase())) {
+            return { error: "This username is not allowed" }
+        }
+        const taken = await User.findOne({ username: newUsername })
         if (taken) return { error: "Username already exists" }
     }
 
-    // sirf ye fields update honge, email nahi
     const updates = {
         name: f.name,
-        username: f.username,
+        username: newUsername,
         profilepic: f.profilepic,
         coverpic: f.coverpic,
     }
-
-    // razorpay fields khali ho to purane wale ko mat mitao
     if (f.razorpayid) updates.razorpayid = f.razorpayid
     if (f.razorpaysecret) updates.razorpaysecret = f.razorpaysecret
 
-    await User.findOneAndUpdate({ username: oldusername }, updates)
+    const oldUsername = me.username
+    await User.findOneAndUpdate({ email: session.user.email }, updates)
 
-    // username badla to purane supporters bhi naye username pe aa jayein
-    if (f.username !== oldusername) {
-        await Payment.updateMany({ to_user: oldusername }, { to_user: f.username })
+    if (newUsername !== oldUsername) {
+        await Payment.updateMany({ to_user: oldUsername }, { to_user: newUsername })
     }
 
     return { success: true }
-
 }
