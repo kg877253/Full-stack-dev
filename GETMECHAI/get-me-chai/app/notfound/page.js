@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata = {
+    title: 'Page not found - GetMeAChai',
+    description: 'The page you are looking for could not be found on GetMeAChai.',
+}
+
 const Notfoundpage = () => {
     return (
         <main className="relative flex min-h-[calc(100vh-145px)] items-center justify-center overflow-hidden px-5 py-16 text-white sm:px-8">

@@ -66,8 +66,7 @@ export const fetchuser = async (username) => {
     await dbConnect()
 
     const user = await User.findOne({ username })
-        .select(" -razorpaysecret -email")
-        .lean()
+        .select(" -razorpaysecret -email").lean()
     if (!user) {
         return { error: "User not found" }
     }
@@ -81,9 +80,7 @@ export const fetchpayments = async (username) => {
     await dbConnect()
 
     const payments = await Payment.find({ to_user: username, done: true })
-        .select("name amount message createdAt")
-        .sort({ amount: -1 })
-        .lean()
+        .select("name amount message createdAt").sort({ amount: -1 }).limit(10).lean()
 
     return JSON.parse(JSON.stringify(payments))
 }
@@ -104,7 +101,7 @@ export const updateprofile = async (data, oldusername) => {
         profilepic: f.profilepic,
         coverpic: f.coverpic,
     }
-    
+
     // razorpay fields khali ho to purane wale ko mat mitao
     if (f.razorpayid) updates.razorpayid = f.razorpayid
     if (f.razorpaysecret) updates.razorpaysecret = f.razorpaysecret

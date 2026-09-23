@@ -116,47 +116,57 @@ const Paymentpage = ({ username }) => {
             src="https://checkout.razorpay.com/v1/checkout.js"
             strategy="afterInteractive"
         />
-            <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex flex-col items-center pt-1 px-4">
-                <div className='relative bg-red-50'>
-                    <img src={currentuser.coverpic} alt="" />
+            <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-white flex flex-col items-center pt-1 px-3 sm:px-4">
+                <div className='relative w-full max-w-3xl'>
+                    <img
+                        src={currentuser.coverpic}
+                        alt=""
+                        className='w-full h-32 sm:h-48 md:h-60 object-cover rounded-b-lg'
+                    />
 
-                    <div className='absolute -bottom-15 right-[46%]'>
-                        <img className='border-2 border-black/40 object-cover z-10 w-30 h-30 rounded-lg' src={currentuser.profilepic} alt="" />
+                    <div className='absolute -bottom-8 sm:-bottom-12 md:-bottom-15 left-1/2 -translate-x-1/2'>
+                        <img
+                            className='border-2 border-black/40 object-cover z-10 w-16 h-16 sm:w-24 sm:h-24 md:w-30 md:h-30 rounded-lg'
+                            src={currentuser.profilepic}
+                            alt=""
+                        />
                     </div>
                 </div>
 
-                <div className="info mt-18 flex flex-col items-center gap-2 text-center">
-                    <div className='text-3xl font-medium'>
+                <div className="info mt-10 sm:mt-14 md:mt-18 flex flex-col items-center gap-2 text-center px-2">
+                    <div className='text-xl sm:text-2xl md:text-3xl font-medium break-words'>
                         {currentuser.name?.toUpperCase()}--Animation
                     </div>
                     <div className='text-sm text-white/80 font-medium'>
                         @{username}
                     </div>
-                    <div className='text-gray-400'>
+                    <div className='text-gray-400 text-sm sm:text-base text-center'>
                         {payments.length} supporters | Total ₹{payments.reduce((acc, p) => acc + p.amount, 0)} raised
                     </div>
                 </div>
 
-                <div className='flex m-20 gap-5 w-[75%] max-h-[400px]'>
-                    <div className="supproter bg-slate-800 w-1/2 p-8 rounded-2xl ">
-                        <h2 className='text-3xl mb-4 font-semibold'>Supporters</h2>
+                <div className='flex flex-col md:flex-row my-8 md:my-16 gap-5 w-full max-w-4xl'>
+                    <div className="supproter bg-slate-800 w-full md:w-1/2 p-5 sm:p-8 rounded-2xl">
+                        <h2 className='text-2xl sm:text-3xl mb-4 font-semibold'>Supporters</h2>
                         {/* Supporters leaderboard (amount ke hisaab se sorted) */}
-                        <ul className='p-3 overflow-auto max-h-[300px]'>
+                        <ul className='overflow-auto max-h-[250px] sm:max-h-[300px]'>
                             {payments.length === 0 && (
                                 <li className='text-gray-400'>There are no supporters yet. Be the first one! ☕</li>
                             )}
                             {payments.map((p) => (
-                                <li key={p._id} className='my-2 flex gap-4 items-center '>
-                                    <img className='w-7 h-7 rounded-full' src="./avatar.gif" alt="avatar" />
-                                    {p.name} donated ₹{p.amount}
-                                    {p.message && <> with a message "{p.message}"</>}
+                                <li key={p._id} className='my-2 flex gap-3 sm:gap-4 items-start'>
+                                    <img className='w-7 h-7 rounded-full shrink-0' src="/avatar.gif" alt="avatar" />
+                                    <span className='text-sm sm:text-base break-words'>
+                                        {p.name} donated ₹{p.amount}
+                                        {p.message && <> with a message "{p.message}"</>}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    <div className="payment bg-slate-800 w-1/2 rounded-2xl p-8">
-                        <h2 className='text-3xl mb-4 font-semibold'>Make a Payment</h2>
+                    <div className="payment bg-slate-800 w-full md:w-1/2 rounded-2xl p-5 sm:p-8">
+                        <h2 className='text-2xl sm:text-3xl mb-4 font-semibold'>Make a Payment</h2>
 
                         <form className='flex flex-col gap-4'>
                             <input
@@ -165,7 +175,7 @@ const Paymentpage = ({ username }) => {
                                 value={paymentform.name}
                                 type="text"
                                 placeholder='Enter Name'
-                                className={`bg-slate-700 p-2 rounded-md ${error.includes("Naam") ? "border border-red-500" : ""}`}
+                                className={`bg-slate-700 p-2 rounded-md w-full ${error.toLowerCase().includes("name") ? "border border-red-500" : ""}`}
                             />
                             <input
                                 name='amount'
@@ -174,7 +184,7 @@ const Paymentpage = ({ username }) => {
                                 type="number"
                                 min="1"
                                 placeholder='Enter Amount'
-                                className='bg-slate-700 p-2 rounded-md'
+                                className='bg-slate-700 p-2 rounded-md w-full'
                             />
                             <input
                                 name='message'
@@ -182,24 +192,24 @@ const Paymentpage = ({ username }) => {
                                 value={paymentform.message}
                                 type="text"
                                 placeholder='Enter Message'
-                                className='bg-slate-700 p-2 rounded-md'
+                                className='bg-slate-700 p-2 rounded-md w-full'
                             />
 
                             {error && <p className='text-red-400 text-sm'>{error}</p>}
 
                             <button
                                 type="button"
-                                className='w-10/12 mx-auto bg-gradient-to-br from-purple-700 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white py-2 px-4 rounded-md cursor-pointer'
+                                className='w-full sm:w-10/12 mx-auto bg-gradient-to-br from-purple-700 to-blue-500 hover:from-blue-500 hover:to-purple-600 text-white py-2 px-4 rounded-md cursor-pointer'
                                 onClick={() => pay(paymentform.amount)}
                             >
                                 Donate
                             </button>
                         </form>
 
-                        <div className="buttons mt-4 flex flex-row gap-4 justify-center">
+                        <div className="buttons mt-4 flex flex-wrap flex-row gap-3 sm:gap-4 justify-center">
                             <button
                                 type="button"
-                                className='bg-gradient-to-br from-green-500 to-teal-500 hover:from-teal-500 hover:to-green-500 text-white py-2 px-4 rounded-md cursor-pointer'
+                                className='flex-1 min-w-[80px] bg-gradient-to-br from-green-500 to-teal-500 hover:from-teal-500 hover:to-green-500 text-white py-2 px-3 sm:px-4 rounded-md cursor-pointer'
                                 onClick={() => pay(10)}
                             >
                                 Pay ₹10
@@ -207,7 +217,7 @@ const Paymentpage = ({ username }) => {
 
                             <button
                                 type="button"
-                                className='bg-gradient-to-br from-red-400 to-orange-500 hover:from-orange-500 hover:to-red-500 text-white py-2 px-4 rounded-md cursor-pointer'
+                                className='flex-1 min-w-[80px] bg-gradient-to-br from-red-400 to-orange-500 hover:from-orange-500 hover:to-red-500 text-white py-2 px-3 sm:px-4 rounded-md cursor-pointer'
                                 onClick={() => pay(25)}
                             >
                                 Pay ₹25
@@ -215,7 +225,7 @@ const Paymentpage = ({ username }) => {
 
                             <button
                                 type="button"
-                                className='bg-gradient-to-br from-pink-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white py-2 px-4 rounded-md cursor-pointer'
+                                className='flex-1 min-w-[80px] bg-gradient-to-br from-pink-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white py-2 px-3 sm:px-4 rounded-md cursor-pointer'
                                 onClick={() => pay(50)}
                             >
                                 Pay ₹50

@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'About - GetMeAChai',
+  description: 'Learn how GetMeAChai helps fans support independent creators.',
+}
+
 const About = () => {
   return (
     <main className="min-h-screen px-5 pb-28 pt-12 text-white sm:px-8 sm:pt-16">

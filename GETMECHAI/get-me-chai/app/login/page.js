@@ -20,7 +20,7 @@ const Login = () => {
       </h1>
       <p className="text-gray-400 text-sm mb-10">Choose a platform to continue</p>
 
-      <div className="loginsocialbuttons flex flex-col gap-3 w-full max-w-xs">
+      <div className="loginsocialbuttons flex flex-col md:gap-3 gap-1 w-full max-w-xs">
 
         {/* Google */}
         <button

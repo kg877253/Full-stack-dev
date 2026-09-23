@@ -64,8 +64,8 @@ const Dashboard = () => {
                 <form className="w-full max-w-xl bg-[#111826] border border-white/10 rounded-2xl p-8 shadow-lg" action={handlesubmit}>
                     <h2 className="text-2xl font-bold mb-8 text-center">Welcome to your Dashboard</h2>
 
-                    <div className="flex justify-center mb-8">
-                        <div className="w-20 h-20 rounded-full bg-gray-700 flex items-center justify-center border border-white/10 overflow-hidden">
+                    <div className="flex justify-center md:mb-8 mb-4">
+                        <div className="md:w-20 md:h-20 w-14 h-14 rounded-full bg-gray-700 flex items-center justify-center border border-white/10 overflow-hidden">
                             {savedpic
                                 ? <img src={savedpic} alt="profile" className="w-full h-full object-cover" />
                                 : <span className="text-2xl">👤</span>}
