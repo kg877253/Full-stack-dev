@@ -6,7 +6,7 @@ async function handleUserSignup(req, res) {
     const { name, email, password } = req.body;
    
     if (await User.findOne({ email: email })) {
-        return res.render('signup', { error: 'Email already exists' });
+        return res.render('login', { error: 'Login to your account' });
     }
     await User.create({
         name: name,
@@ -33,10 +33,10 @@ async function handleUserSignup(req, res) {
 
 async function handleUserLogin(req, res) {
     const { email, password } = req.body;
-    const user = await User.findOne({ email: email, password: password });
+    const user = await User.findOne({ email: email});
 
     if (!user) {
-        return res.render('login', { error: 'Invalid email or password' });
+        return res.render('signup', { error: 'Please sign up first' });
     }
 
     const token = setuser(user);
