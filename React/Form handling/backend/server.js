@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    console.log('Received POST request with data:', req.body)
-    res.send('Received POST request!')
+  console.log('Received POST request with data:', req.body)
+  res.send('Received POST request!')
 })
 
 app.listen(port, () => {
