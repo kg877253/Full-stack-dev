@@ -6,7 +6,7 @@ const User = () => {
     return (
         <div className='bg-indigo-400'>
             {/* <h1>User: {namme}</h1> */}
-            <h1>User ka nam dalo url me: {params.namme}</h1>
+            <h1>User ka nam dalo url se: {params.namme}</h1>
         </div>
     )
 }
